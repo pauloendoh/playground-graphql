@@ -30,6 +30,11 @@ export class Recipe {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  rating?: number | null;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })

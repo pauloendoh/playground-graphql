@@ -27,6 +27,11 @@ export class RecipeMinAggregate {
   })
   description!: string | null;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  rating!: number | null;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

@@ -1,5 +1,5 @@
-import { myPrismaClient } from "../../utils/myPrismaClient";
-import { RecipeValidInput } from "./types/RecipeValidInput";
+import { myPrismaClient } from '../../utils/myPrismaClient'
+import { RecipeValidInput } from './types/RecipeValidInput'
 
 export class RecipeRepository {
   constructor(private prismaClient = myPrismaClient) {}
@@ -10,19 +10,27 @@ export class RecipeRepository {
         ...input,
         userId,
       },
-    });
+    })
+  }
+
+  userOwnsRecipe(recipeId: string, userId: string) {
+    return this.prismaClient.recipe.findFirst({
+      where: {
+        id: recipeId,
+        userId,
+      },
+    })
   }
 
   updateRecipe(input: RecipeValidInput, userId: string) {
     return this.prismaClient.recipe.update({
       data: {
         ...input,
-        userId,
       },
       where: {
         id: input.id,
       },
-    });
+    })
   }
 
   getRecipes(userId: string) {
@@ -30,7 +38,7 @@ export class RecipeRepository {
       where: {
         userId,
       },
-    });
+    })
   }
 
   deleteRecipe(recipeId: string, userId: string) {
@@ -38,6 +46,6 @@ export class RecipeRepository {
       where: {
         id: recipeId,
       },
-    });
+    })
   }
 }

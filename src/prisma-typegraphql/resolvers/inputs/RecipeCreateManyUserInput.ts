@@ -22,6 +22,11 @@ export class RecipeCreateManyUserInput {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  rating?: number | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

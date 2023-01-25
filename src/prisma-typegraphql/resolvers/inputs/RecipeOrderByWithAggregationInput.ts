@@ -2,9 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { RecipeAvgOrderByAggregateInput } from "../inputs/RecipeAvgOrderByAggregateInput";
 import { RecipeCountOrderByAggregateInput } from "../inputs/RecipeCountOrderByAggregateInput";
 import { RecipeMaxOrderByAggregateInput } from "../inputs/RecipeMaxOrderByAggregateInput";
 import { RecipeMinOrderByAggregateInput } from "../inputs/RecipeMinOrderByAggregateInput";
+import { RecipeSumOrderByAggregateInput } from "../inputs/RecipeSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("RecipeOrderByWithAggregationInput", {
@@ -34,6 +36,11 @@ export class RecipeOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  rating?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   createdAt?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
@@ -46,6 +53,11 @@ export class RecipeOrderByWithAggregationInput {
   })
   _count?: RecipeCountOrderByAggregateInput | undefined;
 
+  @TypeGraphQL.Field(_type => RecipeAvgOrderByAggregateInput, {
+    nullable: true
+  })
+  _avg?: RecipeAvgOrderByAggregateInput | undefined;
+
   @TypeGraphQL.Field(_type => RecipeMaxOrderByAggregateInput, {
     nullable: true
   })
@@ -55,4 +67,9 @@ export class RecipeOrderByWithAggregationInput {
     nullable: true
   })
   _min?: RecipeMinOrderByAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => RecipeSumOrderByAggregateInput, {
+    nullable: true
+  })
+  _sum?: RecipeSumOrderByAggregateInput | undefined;
 }

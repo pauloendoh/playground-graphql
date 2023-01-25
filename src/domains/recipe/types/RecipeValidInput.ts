@@ -1,33 +1,31 @@
-import { IsString, MinLength } from "class-validator";
-import * as TypeGraphQL from "type-graphql";
-import { RecipeCreateWithoutUserInput } from "../../../prisma-typegraphql";
+import { IsString } from 'class-validator'
+import * as TypeGraphQL from 'type-graphql'
+import { Recipe, User } from '../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
-export class RecipeValidInput implements RecipeCreateWithoutUserInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  id?: string | undefined;
+export class RecipeValidInput implements Recipe {
+  @TypeGraphQL.Field(() => String, { nullable: true })
+  id: string
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
-  })
+  @TypeGraphQL.Field(() => String, { nullable: true })
+  userId: string
+
+  user?: User | undefined
+
+  @TypeGraphQL.Field(() => String, { nullable: false })
   @IsString()
-  @MinLength(1)
-  title!: string;
+  title: string
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
-  })
-  description!: string;
+  @TypeGraphQL.Field(() => String, { nullable: false })
+  @IsString()
+  description: string
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
-  })
-  createdAt?: Date | undefined;
+  @TypeGraphQL.Field(() => Date, { nullable: true })
+  createdAt: Date
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
-  })
-  updatedAt?: Date | undefined;
+  @TypeGraphQL.Field(() => Number, { nullable: true })
+  rating?: number | null | undefined
+
+  @TypeGraphQL.Field(() => Date, { nullable: true })
+  updatedAt: Date
 }

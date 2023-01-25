@@ -35,5 +35,5 @@ export class FindFirstRecipeOrThrowArgs {
   @TypeGraphQL.Field(_type => [RecipeScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "userId" | "title" | "description" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "userId" | "title" | "description" | "rating" | "createdAt" | "updatedAt"> | undefined;
 }

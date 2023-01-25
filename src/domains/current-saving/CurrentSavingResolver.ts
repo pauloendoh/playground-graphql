@@ -6,20 +6,22 @@ import {
   Resolver,
   UseMiddleware,
 } from 'type-graphql'
-import { CurrentSaving, Recipe } from '../../prisma-typegraphql'
+import { CurrentSaving } from '../../prisma-typegraphql'
 import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
 import { CurrentSavingService } from './CurrentSavingService'
-import { CurrentSavingValidInput } from './types/CurrentExpenseValidInput'
+import { CurrentSavingValidInput } from './types/CurrentSavingValidInput'
 
 @Resolver()
-export class CurrentExpenseResolver {
+export class CurrentSavingResolver {
   constructor(private savingService = new CurrentSavingService()) {}
 
-  @Query(() => [Recipe])
+  @Query(() => [CurrentSaving])
   @UseMiddleware(isAuth)
-  async getRecipesQuery(@Ctx() { req }: MyContext): Promise<Recipe[]> {
-    return [new Recipe()]
+  async currentSavingsQuery(
+    @Ctx() { req }: MyContext
+  ): Promise<CurrentSaving[]> {
+    return this.savingService.findCurrentSavings(req.user.id)
   }
 
   @Mutation(() => CurrentSaving)
@@ -28,6 +30,15 @@ export class CurrentExpenseResolver {
     @Ctx() { req }: MyContext,
     @Arg('data') data: CurrentSavingValidInput
   ) {
-    return this.savingService.saveCurrentExpense(data, req.user.id)
+    return this.savingService.saveCurrentSaving(data, req.user.id)
+  }
+
+  @Mutation(() => Boolean)
+  @UseMiddleware(isAuth)
+  async deleteSavingMutation(
+    @Ctx() { req }: MyContext,
+    @Arg('savingId') savingId: string
+  ) {
+    return this.savingService.deleteSaving(savingId, req.user.id)
   }
 }

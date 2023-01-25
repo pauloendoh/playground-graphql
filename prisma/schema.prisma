@@ -33,6 +33,7 @@ model Recipe {
   user        User   @relation(fields: [userId], references: [id])
   title       String
   description String
+  rating      Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
