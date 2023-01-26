@@ -1,9 +1,11 @@
 import * as TypeGraphQL from "type-graphql";
+import { Category } from "../../../models/Category";
 import { CurrentSaving } from "../../../models/CurrentSaving";
 import { Expense } from "../../../models/Expense";
 import { Recipe } from "../../../models/Recipe";
 import { User } from "../../../models/User";
 import { WishlistItem } from "../../../models/WishlistItem";
+import { UserCategoriesArgs } from "./args/UserCategoriesArgs";
 import { UserCurrentSavingsArgs } from "./args/UserCurrentSavingsArgs";
 import { UserExpensesArgs } from "./args/UserExpensesArgs";
 import { UserRecipeArgs } from "./args/UserRecipeArgs";
@@ -54,5 +56,16 @@ export class UserRelationsResolver {
         id: user.id,
       },
     }).expenses(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [Category], {
+    nullable: false
+  })
+  async categories(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserCategoriesArgs): Promise<Category[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).categories(args);
   }
 }

@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { CategoryCreateNestedManyWithoutUserInput } from "../inputs/CategoryCreateNestedManyWithoutUserInput";
 import { CurrentSavingCreateNestedManyWithoutUserInput } from "../inputs/CurrentSavingCreateNestedManyWithoutUserInput";
 import { RecipeCreateNestedManyWithoutUserInput } from "../inputs/RecipeCreateNestedManyWithoutUserInput";
 import { WishlistItemCreateNestedManyWithoutUserInput } from "../inputs/WishlistItemCreateNestedManyWithoutUserInput";
@@ -54,4 +55,9 @@ export class UserCreateWithoutExpensesInput {
     nullable: true
   })
   wishlistItems?: WishlistItemCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => CategoryCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  categories?: CategoryCreateNestedManyWithoutUserInput | undefined;
 }

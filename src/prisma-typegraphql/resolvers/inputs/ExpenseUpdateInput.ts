@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { CategoryUpdateManyWithoutExpensesNestedInput } from "../inputs/CategoryUpdateManyWithoutExpensesNestedInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { DecimalFieldUpdateOperationsInput } from "../inputs/DecimalFieldUpdateOperationsInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
@@ -48,6 +49,11 @@ export class ExpenseUpdateInput {
     nullable: true
   })
   description?: NullableStringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => CategoryUpdateManyWithoutExpensesNestedInput, {
+    nullable: true
+  })
+  categories?: CategoryUpdateManyWithoutExpensesNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true

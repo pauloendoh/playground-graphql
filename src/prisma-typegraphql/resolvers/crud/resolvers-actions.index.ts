@@ -1,3 +1,17 @@
+export { AggregateCategoryResolver } from "./Category/AggregateCategoryResolver";
+export { CreateManyCategoryResolver } from "./Category/CreateManyCategoryResolver";
+export { CreateOneCategoryResolver } from "./Category/CreateOneCategoryResolver";
+export { DeleteManyCategoryResolver } from "./Category/DeleteManyCategoryResolver";
+export { DeleteOneCategoryResolver } from "./Category/DeleteOneCategoryResolver";
+export { FindFirstCategoryResolver } from "./Category/FindFirstCategoryResolver";
+export { FindFirstCategoryOrThrowResolver } from "./Category/FindFirstCategoryOrThrowResolver";
+export { FindManyCategoryResolver } from "./Category/FindManyCategoryResolver";
+export { FindUniqueCategoryResolver } from "./Category/FindUniqueCategoryResolver";
+export { FindUniqueCategoryOrThrowResolver } from "./Category/FindUniqueCategoryOrThrowResolver";
+export { GroupByCategoryResolver } from "./Category/GroupByCategoryResolver";
+export { UpdateManyCategoryResolver } from "./Category/UpdateManyCategoryResolver";
+export { UpdateOneCategoryResolver } from "./Category/UpdateOneCategoryResolver";
+export { UpsertOneCategoryResolver } from "./Category/UpsertOneCategoryResolver";
 export { AggregateCurrentSavingResolver } from "./CurrentSaving/AggregateCurrentSavingResolver";
 export { CreateManyCurrentSavingResolver } from "./CurrentSaving/CreateManyCurrentSavingResolver";
 export { CreateOneCurrentSavingResolver } from "./CurrentSaving/CreateOneCurrentSavingResolver";

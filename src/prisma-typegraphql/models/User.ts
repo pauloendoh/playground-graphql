@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { Category } from "../models/Category";
 import { CurrentSaving } from "../models/CurrentSaving";
 import { Expense } from "../models/Expense";
 import { Recipe } from "../models/Recipe";
@@ -49,6 +50,8 @@ export class User {
   wishlistItems?: WishlistItem[];
 
   expenses?: Expense[];
+
+  categories?: Category[];
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true

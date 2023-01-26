@@ -27,7 +27,7 @@ export class ExpenseResolver {
   async saveExpenseMutation(
     @Ctx() { req }: MyContext,
     @Arg('data') data: ExpenseInput
-  ) {
+  ): Promise<Expense> {
     return this.expenseService.saveExpense(data, req.user.id)
   }
 

@@ -1,3 +1,4 @@
+export * from "./Category/args";
 export * from "./CurrentSaving/args";
 export * from "./Expense/args";
 export * from "./Recipe/args";

@@ -1,3 +1,4 @@
+export { CategoryScalarFieldEnum } from "./CategoryScalarFieldEnum";
 export { CurrentSavingScalarFieldEnum } from "./CurrentSavingScalarFieldEnum";
 export { ExpenseScalarFieldEnum } from "./ExpenseScalarFieldEnum";
 export { QueryMode } from "./QueryMode";

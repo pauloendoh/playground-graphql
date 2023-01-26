@@ -2,7 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { Category } from "../models/Category";
 import { User } from "../models/User";
+import { ExpenseCount } from "../resolvers/outputs/ExpenseCount";
 
 @TypeGraphQL.ObjectType("Expense", {
   isAbstract: true
@@ -45,6 +47,8 @@ export class Expense {
   })
   description?: string | null;
 
+  categories?: Category[];
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
@@ -54,4 +58,9 @@ export class Expense {
     nullable: false
   })
   updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => ExpenseCount, {
+    nullable: true
+  })
+  _count?: ExpenseCount | null;
 }

@@ -6,8 +6,9 @@ import { buildSchemaSync } from 'type-graphql'
 const schema = buildSchemaSync({
   resolvers: [__dirname + '/domains/**/*Resolver.{ts,js}'],
   validate: {
-    forbidUnknownValues: false,
+    forbidUnknownValues: false, // I don't remember why I put this
   },
+  nullableByDefault: true, //  So you don't need this everywhere -> @Field(() => String, { nullable: true })
 })
 
 const apolloServer = new ApolloServer({

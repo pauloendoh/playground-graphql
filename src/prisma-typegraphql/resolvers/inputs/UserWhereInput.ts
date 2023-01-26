@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { CategoryListRelationFilter } from "../inputs/CategoryListRelationFilter";
 import { CurrentSavingListRelationFilter } from "../inputs/CurrentSavingListRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { ExpenseListRelationFilter } from "../inputs/ExpenseListRelationFilter";
@@ -77,4 +78,9 @@ export class UserWhereInput {
     nullable: true
   })
   expenses?: ExpenseListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => CategoryListRelationFilter, {
+    nullable: true
+  })
+  categories?: CategoryListRelationFilter | undefined;
 }

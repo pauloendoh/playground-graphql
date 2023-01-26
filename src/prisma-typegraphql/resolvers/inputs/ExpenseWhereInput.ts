@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { CategoryListRelationFilter } from "../inputs/CategoryListRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { DecimalFilter } from "../inputs/DecimalFilter";
@@ -68,6 +69,11 @@ export class ExpenseWhereInput {
     nullable: true
   })
   description?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => CategoryListRelationFilter, {
+    nullable: true
+  })
+  categories?: CategoryListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
