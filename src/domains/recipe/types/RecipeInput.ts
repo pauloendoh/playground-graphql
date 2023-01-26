@@ -3,7 +3,7 @@ import * as TypeGraphQL from 'type-graphql'
 import { Recipe, User } from '../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
-export class RecipeValidInput implements Recipe {
+export class RecipeInput implements Recipe {
   @TypeGraphQL.Field(() => String, { nullable: true })
   id: string
 
@@ -12,11 +12,11 @@ export class RecipeValidInput implements Recipe {
 
   user?: User | undefined
 
-  @TypeGraphQL.Field(() => String, { nullable: false })
+  @TypeGraphQL.Field(() => String)
   @IsString()
   title: string
 
-  @TypeGraphQL.Field(() => String, { nullable: false })
+  @TypeGraphQL.Field(() => String)
   @IsString()
   description: string
 

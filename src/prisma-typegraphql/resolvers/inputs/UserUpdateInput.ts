@@ -6,6 +6,7 @@ import { CurrentSavingUpdateManyWithoutUserNestedInput } from "../inputs/Current
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { RecipeUpdateManyWithoutUserNestedInput } from "../inputs/RecipeUpdateManyWithoutUserNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
+import { WishlistItemUpdateManyWithoutUserNestedInput } from "../inputs/WishlistItemUpdateManyWithoutUserNestedInput";
 
 @TypeGraphQL.InputType("UserUpdateInput", {
   isAbstract: true
@@ -50,4 +51,9 @@ export class UserUpdateInput {
     nullable: true
   })
   currentSavings?: CurrentSavingUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => WishlistItemUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  wishlistItems?: WishlistItemUpdateManyWithoutUserNestedInput | undefined;
 }

@@ -13,6 +13,7 @@ const schema = buildSchemaSync({
 const apolloServer = new ApolloServer({
   schema,
   csrfPrevention: true,
+
   context: ({ req, res }) => ({ req, res }),
 })
 

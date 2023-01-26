@@ -1,4 +1,5 @@
 import { Prisma } from '@prisma/client'
+import { IsNumberString } from 'class-validator'
 import * as TypeGraphQL from 'type-graphql'
 import { CurrentSaving, User } from '../../../prisma-typegraphql'
 
@@ -13,6 +14,7 @@ export class CurrentSavingValidInput implements CurrentSaving {
   user?: User | undefined
 
   @TypeGraphQL.Field(() => String, { nullable: false })
+  @IsNumberString()
   value: Prisma.Decimal
 
   @TypeGraphQL.Field(() => String, { nullable: true })

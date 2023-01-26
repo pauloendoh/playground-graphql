@@ -25,6 +25,7 @@ model User {
   updatedAt      DateTime        @updatedAt
   recipe         Recipe[]
   currentSavings CurrentSaving[]
+  wishlistItems  WishlistItem[]
 }
 
 model Recipe {
@@ -47,6 +48,18 @@ model CurrentSaving {
 
   value Decimal
   date  DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WishlistItem {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  itemName         String
+  priceInThousands Decimal
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

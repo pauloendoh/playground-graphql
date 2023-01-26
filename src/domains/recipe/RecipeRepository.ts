@@ -1,14 +1,16 @@
 import { myPrismaClient } from '../../utils/myPrismaClient'
-import { RecipeValidInput } from './types/RecipeValidInput'
+import { RecipeInput } from './types/RecipeInput'
 
 export class RecipeRepository {
   constructor(private prismaClient = myPrismaClient) {}
 
-  createRecipe(input: RecipeValidInput, userId: string) {
+  createRecipe(input: RecipeInput, userId: string) {
     return this.prismaClient.recipe.create({
       data: {
         ...input,
         userId,
+        user: undefined,
+        updatedAt: undefined,
       },
     })
   }
@@ -22,10 +24,13 @@ export class RecipeRepository {
     })
   }
 
-  updateRecipe(input: RecipeValidInput, userId: string) {
+  updateRecipe(input: RecipeInput, userId: string) {
     return this.prismaClient.recipe.update({
       data: {
         ...input,
+        userId,
+        user: undefined,
+        updatedAt: undefined,
       },
       where: {
         id: input.id,

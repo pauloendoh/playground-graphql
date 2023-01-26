@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CurrentSavingOrderByRelationAggregateInput } from "../inputs/CurrentSavingOrderByRelationAggregateInput";
 import { RecipeOrderByRelationAggregateInput } from "../inputs/RecipeOrderByRelationAggregateInput";
+import { WishlistItemOrderByRelationAggregateInput } from "../inputs/WishlistItemOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("UserOrderByWithRelationInput", {
@@ -49,4 +50,9 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   currentSavings?: CurrentSavingOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => WishlistItemOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  wishlistItems?: WishlistItemOrderByRelationAggregateInput | undefined;
 }

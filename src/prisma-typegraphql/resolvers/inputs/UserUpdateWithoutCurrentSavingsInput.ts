@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { RecipeUpdateManyWithoutUserNestedInput } from "../inputs/RecipeUpdateManyWithoutUserNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
+import { WishlistItemUpdateManyWithoutUserNestedInput } from "../inputs/WishlistItemUpdateManyWithoutUserNestedInput";
 
 @TypeGraphQL.InputType("UserUpdateWithoutCurrentSavingsInput", {
   isAbstract: true
@@ -44,4 +45,9 @@ export class UserUpdateWithoutCurrentSavingsInput {
     nullable: true
   })
   recipe?: RecipeUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => WishlistItemUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  wishlistItems?: WishlistItemUpdateManyWithoutUserNestedInput | undefined;
 }

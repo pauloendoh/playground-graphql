@@ -22,19 +22,20 @@ export class CurrentSavingRepository {
   }
 
   createCurrentSaving(input: CurrentSavingValidInput, userId: string) {
+    const { user, ...data } = input
     return this.prismaClient.currentSaving.create({
       data: {
-        ...input,
+        ...data,
         userId,
       },
     })
   }
 
   updateCurrentSaving(input: CurrentSavingValidInput) {
+    const { user, updatedAt, ...data } = input
+
     return this.prismaClient.currentSaving.update({
-      data: {
-        ...input,
-      },
+      data,
       where: {
         id: input.id,
       },

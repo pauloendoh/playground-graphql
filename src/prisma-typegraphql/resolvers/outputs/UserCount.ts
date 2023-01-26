@@ -16,4 +16,9 @@ export class UserCount {
     nullable: false
   })
   currentSavings!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  wishlistItems!: number;
 }

@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn --transpile-only --clear --debounce 250 src/server.ts",
     "build": "tsc",
     "start": "node ./dist/server.js",
-    "migrate": "prisma migrate dev"
+    "migrate": "prisma migrate dev --name"
   },
   "keywords": [],
   "author": "",

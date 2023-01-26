@@ -6,6 +6,7 @@ import { CurrentSavingListRelationFilter } from "../inputs/CurrentSavingListRela
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { RecipeListRelationFilter } from "../inputs/RecipeListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
+import { WishlistItemListRelationFilter } from "../inputs/WishlistItemListRelationFilter";
 
 @TypeGraphQL.InputType("UserWhereInput", {
   isAbstract: true
@@ -65,4 +66,9 @@ export class UserWhereInput {
     nullable: true
   })
   currentSavings?: CurrentSavingListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => WishlistItemListRelationFilter, {
+    nullable: true
+  })
+  wishlistItems?: WishlistItemListRelationFilter | undefined;
 }

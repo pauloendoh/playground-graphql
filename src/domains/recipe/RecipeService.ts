@@ -1,23 +1,23 @@
 import { config } from 'dotenv'
 import { RecipeRepository } from './RecipeRepository'
-import { RecipeValidInput } from './types/RecipeValidInput'
+import { RecipeInput } from './types/RecipeInput'
 
 config()
 
 export class RecipeService {
   constructor(private recipeRepo = new RecipeRepository()) {}
 
-  saveRecipe(input: RecipeValidInput, userId: string) {
+  saveRecipe(input: RecipeInput, userId: string) {
     if (input.id) return this.updateRecipe(input, userId)
 
     return this.createRecipe(input, userId)
   }
 
-  createRecipe(input: RecipeValidInput, userId: string) {
+  createRecipe(input: RecipeInput, userId: string) {
     return this.recipeRepo.createRecipe(input, userId)
   }
 
-  updateRecipe(input: RecipeValidInput, userId: string) {
+  updateRecipe(input: RecipeInput, userId: string) {
     const isAllowed = this.recipeRepo.userOwnsRecipe(input.id!, userId)
     if (!isAllowed) throw new Error('You are not allowed to update this recipe')
 

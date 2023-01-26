@@ -4,3 +4,4 @@ export { RecipeScalarFieldEnum } from "./RecipeScalarFieldEnum";
 export { SortOrder } from "./SortOrder";
 export { TransactionIsolationLevel } from "./TransactionIsolationLevel";
 export { UserScalarFieldEnum } from "./UserScalarFieldEnum";
+export { WishlistItemScalarFieldEnum } from "./WishlistItemScalarFieldEnum";

@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { CurrentSaving } from "../models/CurrentSaving";
 import { Recipe } from "../models/Recipe";
+import { WishlistItem } from "../models/WishlistItem";
 import { UserCount } from "../resolvers/outputs/UserCount";
 
 @TypeGraphQL.ObjectType("User", {
@@ -43,6 +44,8 @@ export class User {
   recipe?: Recipe[];
 
   currentSavings?: CurrentSaving[];
+
+  wishlistItems?: WishlistItem[];
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true
