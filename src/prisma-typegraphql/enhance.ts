@@ -12,7 +12,8 @@ const crudResolversMap = {
   User: crudResolvers.UserCrudResolver,
   Recipe: crudResolvers.RecipeCrudResolver,
   CurrentSaving: crudResolvers.CurrentSavingCrudResolver,
-  WishlistItem: crudResolvers.WishlistItemCrudResolver
+  WishlistItem: crudResolvers.WishlistItemCrudResolver,
+  Expense: crudResolvers.ExpenseCrudResolver
 };
 const actionResolversMap = {
   User: {
@@ -78,13 +79,30 @@ const actionResolversMap = {
     updateManyWishlistItem: actionResolvers.UpdateManyWishlistItemResolver,
     updateOneWishlistItem: actionResolvers.UpdateOneWishlistItemResolver,
     upsertOneWishlistItem: actionResolvers.UpsertOneWishlistItemResolver
+  },
+  Expense: {
+    aggregateExpense: actionResolvers.AggregateExpenseResolver,
+    createManyExpense: actionResolvers.CreateManyExpenseResolver,
+    createOneExpense: actionResolvers.CreateOneExpenseResolver,
+    deleteManyExpense: actionResolvers.DeleteManyExpenseResolver,
+    deleteOneExpense: actionResolvers.DeleteOneExpenseResolver,
+    findFirstExpense: actionResolvers.FindFirstExpenseResolver,
+    findFirstExpenseOrThrow: actionResolvers.FindFirstExpenseOrThrowResolver,
+    expenses: actionResolvers.FindManyExpenseResolver,
+    expense: actionResolvers.FindUniqueExpenseResolver,
+    getExpense: actionResolvers.FindUniqueExpenseOrThrowResolver,
+    groupByExpense: actionResolvers.GroupByExpenseResolver,
+    updateManyExpense: actionResolvers.UpdateManyExpenseResolver,
+    updateOneExpense: actionResolvers.UpdateOneExpenseResolver,
+    upsertOneExpense: actionResolvers.UpsertOneExpenseResolver
   }
 };
 const crudResolversInfo = {
   User: ["aggregateUser", "createManyUser", "createOneUser", "deleteManyUser", "deleteOneUser", "findFirstUser", "findFirstUserOrThrow", "users", "user", "getUser", "groupByUser", "updateManyUser", "updateOneUser", "upsertOneUser"],
   Recipe: ["aggregateRecipe", "createManyRecipe", "createOneRecipe", "deleteManyRecipe", "deleteOneRecipe", "findFirstRecipe", "findFirstRecipeOrThrow", "recipes", "recipe", "getRecipe", "groupByRecipe", "updateManyRecipe", "updateOneRecipe", "upsertOneRecipe"],
   CurrentSaving: ["aggregateCurrentSaving", "createManyCurrentSaving", "createOneCurrentSaving", "deleteManyCurrentSaving", "deleteOneCurrentSaving", "findFirstCurrentSaving", "findFirstCurrentSavingOrThrow", "currentSavings", "currentSaving", "getCurrentSaving", "groupByCurrentSaving", "updateManyCurrentSaving", "updateOneCurrentSaving", "upsertOneCurrentSaving"],
-  WishlistItem: ["aggregateWishlistItem", "createManyWishlistItem", "createOneWishlistItem", "deleteManyWishlistItem", "deleteOneWishlistItem", "findFirstWishlistItem", "findFirstWishlistItemOrThrow", "wishlistItems", "wishlistItem", "getWishlistItem", "groupByWishlistItem", "updateManyWishlistItem", "updateOneWishlistItem", "upsertOneWishlistItem"]
+  WishlistItem: ["aggregateWishlistItem", "createManyWishlistItem", "createOneWishlistItem", "deleteManyWishlistItem", "deleteOneWishlistItem", "findFirstWishlistItem", "findFirstWishlistItemOrThrow", "wishlistItems", "wishlistItem", "getWishlistItem", "groupByWishlistItem", "updateManyWishlistItem", "updateOneWishlistItem", "upsertOneWishlistItem"],
+  Expense: ["aggregateExpense", "createManyExpense", "createOneExpense", "deleteManyExpense", "deleteOneExpense", "findFirstExpense", "findFirstExpenseOrThrow", "expenses", "expense", "getExpense", "groupByExpense", "updateManyExpense", "updateOneExpense", "upsertOneExpense"]
 };
 const argsInfo = {
   AggregateUserArgs: ["where", "orderBy", "cursor", "take", "skip"],
@@ -142,7 +160,21 @@ const argsInfo = {
   GroupByWishlistItemArgs: ["where", "orderBy", "by", "having", "take", "skip"],
   UpdateManyWishlistItemArgs: ["data", "where"],
   UpdateOneWishlistItemArgs: ["data", "where"],
-  UpsertOneWishlistItemArgs: ["where", "create", "update"]
+  UpsertOneWishlistItemArgs: ["where", "create", "update"],
+  AggregateExpenseArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyExpenseArgs: ["data", "skipDuplicates"],
+  CreateOneExpenseArgs: ["data"],
+  DeleteManyExpenseArgs: ["where"],
+  DeleteOneExpenseArgs: ["where"],
+  FindFirstExpenseArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstExpenseOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyExpenseArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueExpenseArgs: ["where"],
+  FindUniqueExpenseOrThrowArgs: ["where"],
+  GroupByExpenseArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyExpenseArgs: ["data", "where"],
+  UpdateOneExpenseArgs: ["data", "where"],
+  UpsertOneExpenseArgs: ["where", "create", "update"]
 };
 
 type ResolverModelNames = keyof typeof crudResolversMap;
@@ -235,13 +267,15 @@ const relationResolversMap = {
   User: relationResolvers.UserRelationsResolver,
   Recipe: relationResolvers.RecipeRelationsResolver,
   CurrentSaving: relationResolvers.CurrentSavingRelationsResolver,
-  WishlistItem: relationResolvers.WishlistItemRelationsResolver
+  WishlistItem: relationResolvers.WishlistItemRelationsResolver,
+  Expense: relationResolvers.ExpenseRelationsResolver
 };
 const relationResolversInfo = {
-  User: ["recipe", "currentSavings", "wishlistItems"],
+  User: ["recipe", "currentSavings", "wishlistItems", "expenses"],
   Recipe: ["user"],
   CurrentSaving: ["user"],
-  WishlistItem: ["user"]
+  WishlistItem: ["user"],
+  Expense: ["user"]
 };
 
 type RelationResolverModelNames = keyof typeof relationResolversMap;
@@ -325,7 +359,8 @@ const modelsInfo = {
   User: ["id", "username", "email", "password", "createdAt", "updatedAt"],
   Recipe: ["id", "userId", "title", "description", "rating", "savedPosition", "createdAt", "updatedAt"],
   CurrentSaving: ["id", "userId", "value", "date", "createdAt", "updatedAt"],
-  WishlistItem: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"]
+  WishlistItem: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"],
+  Expense: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"]
 };
 
 type ModelNames = keyof typeof models;
@@ -372,8 +407,10 @@ const outputsInfo = {
   CurrentSavingGroupBy: ["id", "userId", "value", "date", "createdAt", "updatedAt", "_count", "_avg", "_sum", "_min", "_max"],
   AggregateWishlistItem: ["_count", "_avg", "_sum", "_min", "_max"],
   WishlistItemGroupBy: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt", "_count", "_avg", "_sum", "_min", "_max"],
+  AggregateExpense: ["_count", "_avg", "_sum", "_min", "_max"],
+  ExpenseGroupBy: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt", "_count", "_avg", "_sum", "_min", "_max"],
   AffectedRowsOutput: ["count"],
-  UserCount: ["recipe", "currentSavings", "wishlistItems"],
+  UserCount: ["recipe", "currentSavings", "wishlistItems", "expenses"],
   UserCountAggregate: ["id", "username", "email", "password", "createdAt", "updatedAt", "_all"],
   UserMinAggregate: ["id", "username", "email", "password", "createdAt", "updatedAt"],
   UserMaxAggregate: ["id", "username", "email", "password", "createdAt", "updatedAt"],
@@ -391,7 +428,12 @@ const outputsInfo = {
   WishlistItemAvgAggregate: ["priceInThousands"],
   WishlistItemSumAggregate: ["priceInThousands"],
   WishlistItemMinAggregate: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"],
-  WishlistItemMaxAggregate: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"]
+  WishlistItemMaxAggregate: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"],
+  ExpenseCountAggregate: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt", "_all"],
+  ExpenseAvgAggregate: ["value", "rating"],
+  ExpenseSumAggregate: ["value", "rating"],
+  ExpenseMinAggregate: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseMaxAggregate: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -432,8 +474,8 @@ export function applyOutputTypesEnhanceMap(
 }
 
 const inputsInfo = {
-  UserWhereInput: ["AND", "OR", "NOT", "id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems"],
-  UserOrderByWithRelationInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems"],
+  UserWhereInput: ["AND", "OR", "NOT", "id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses"],
+  UserOrderByWithRelationInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses"],
   UserWhereUniqueInput: ["id", "username", "email"],
   UserOrderByWithAggregationInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "_count", "_max", "_min"],
   UserScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "username", "email", "password", "createdAt", "updatedAt"],
@@ -452,8 +494,13 @@ const inputsInfo = {
   WishlistItemWhereUniqueInput: ["id"],
   WishlistItemOrderByWithAggregationInput: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt", "_count", "_avg", "_max", "_min", "_sum"],
   WishlistItemScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"],
-  UserCreateInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems"],
-  UserUpdateInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems"],
+  ExpenseWhereInput: ["AND", "OR", "NOT", "id", "userId", "user", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseOrderByWithRelationInput: ["id", "userId", "user", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseWhereUniqueInput: ["id"],
+  ExpenseOrderByWithAggregationInput: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt", "_count", "_avg", "_max", "_min", "_sum"],
+  ExpenseScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  UserCreateInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses"],
+  UserUpdateInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses"],
   UserCreateManyInput: ["id", "username", "email", "password", "createdAt", "updatedAt"],
   UserUpdateManyMutationInput: ["id", "username", "email", "password", "createdAt", "updatedAt"],
   RecipeCreateInput: ["id", "user", "title", "description", "rating", "savedPosition", "createdAt", "updatedAt"],
@@ -468,14 +515,20 @@ const inputsInfo = {
   WishlistItemUpdateInput: ["id", "user", "itemName", "priceInThousands", "createdAt", "updatedAt"],
   WishlistItemCreateManyInput: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"],
   WishlistItemUpdateManyMutationInput: ["id", "itemName", "priceInThousands", "createdAt", "updatedAt"],
+  ExpenseCreateInput: ["id", "user", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseUpdateInput: ["id", "user", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseCreateManyInput: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseUpdateManyMutationInput: ["id", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
   DateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   RecipeListRelationFilter: ["every", "some", "none"],
   CurrentSavingListRelationFilter: ["every", "some", "none"],
   WishlistItemListRelationFilter: ["every", "some", "none"],
+  ExpenseListRelationFilter: ["every", "some", "none"],
   RecipeOrderByRelationAggregateInput: ["_count"],
   CurrentSavingOrderByRelationAggregateInput: ["_count"],
   WishlistItemOrderByRelationAggregateInput: ["_count"],
+  ExpenseOrderByRelationAggregateInput: ["_count"],
   UserCountOrderByAggregateInput: ["id", "username", "email", "password", "createdAt", "updatedAt"],
   UserMaxOrderByAggregateInput: ["id", "username", "email", "password", "createdAt", "updatedAt"],
   UserMinOrderByAggregateInput: ["id", "username", "email", "password", "createdAt", "updatedAt"],
@@ -501,14 +554,25 @@ const inputsInfo = {
   WishlistItemMaxOrderByAggregateInput: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"],
   WishlistItemMinOrderByAggregateInput: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"],
   WishlistItemSumOrderByAggregateInput: ["priceInThousands"],
+  DateTimeNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  StringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
+  ExpenseCountOrderByAggregateInput: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseAvgOrderByAggregateInput: ["value", "rating"],
+  ExpenseMaxOrderByAggregateInput: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseMinOrderByAggregateInput: ["id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseSumOrderByAggregateInput: ["value", "rating"],
+  DateTimeNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_min", "_max"],
+  StringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "_count", "_min", "_max"],
   RecipeCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
   CurrentSavingCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
   WishlistItemCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
+  ExpenseCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
   StringFieldUpdateOperationsInput: ["set"],
   DateTimeFieldUpdateOperationsInput: ["set"],
   RecipeUpdateManyWithoutUserNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   CurrentSavingUpdateManyWithoutUserNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   WishlistItemUpdateManyWithoutUserNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  ExpenseUpdateManyWithoutUserNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   UserCreateNestedOneWithoutRecipeInput: ["create", "connectOrCreate", "connect"],
   UserUpdateOneRequiredWithoutRecipeNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
   NullableIntFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
@@ -517,6 +581,10 @@ const inputsInfo = {
   DecimalFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
   UserCreateNestedOneWithoutWishlistItemsInput: ["create", "connectOrCreate", "connect"],
   UserUpdateOneRequiredWithoutWishlistItemsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  UserCreateNestedOneWithoutExpensesInput: ["create", "connectOrCreate", "connect"],
+  UserUpdateOneRequiredWithoutExpensesNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  NullableDateTimeFieldUpdateOperationsInput: ["set"],
+  NullableStringFieldUpdateOperationsInput: ["set"],
   NestedStringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
   NestedDateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
@@ -527,6 +595,10 @@ const inputsInfo = {
   NestedFloatNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedDecimalFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedDecimalWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
+  NestedDateTimeNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  NestedStringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
+  NestedDateTimeNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_min", "_max"],
+  NestedStringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
   RecipeCreateWithoutUserInput: ["id", "title", "description", "rating", "savedPosition", "createdAt", "updatedAt"],
   RecipeCreateOrConnectWithoutUserInput: ["where", "create"],
   RecipeCreateManyUserInputEnvelope: ["data", "skipDuplicates"],
@@ -536,6 +608,9 @@ const inputsInfo = {
   WishlistItemCreateWithoutUserInput: ["id", "itemName", "priceInThousands", "createdAt", "updatedAt"],
   WishlistItemCreateOrConnectWithoutUserInput: ["where", "create"],
   WishlistItemCreateManyUserInputEnvelope: ["data", "skipDuplicates"],
+  ExpenseCreateWithoutUserInput: ["id", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  ExpenseCreateOrConnectWithoutUserInput: ["where", "create"],
+  ExpenseCreateManyUserInputEnvelope: ["data", "skipDuplicates"],
   RecipeUpsertWithWhereUniqueWithoutUserInput: ["where", "update", "create"],
   RecipeUpdateWithWhereUniqueWithoutUserInput: ["where", "data"],
   RecipeUpdateManyWithWhereWithoutUserInput: ["where", "data"],
@@ -548,24 +623,34 @@ const inputsInfo = {
   WishlistItemUpdateWithWhereUniqueWithoutUserInput: ["where", "data"],
   WishlistItemUpdateManyWithWhereWithoutUserInput: ["where", "data"],
   WishlistItemScalarWhereInput: ["AND", "OR", "NOT", "id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"],
-  UserCreateWithoutRecipeInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "currentSavings", "wishlistItems"],
+  ExpenseUpsertWithWhereUniqueWithoutUserInput: ["where", "update", "create"],
+  ExpenseUpdateWithWhereUniqueWithoutUserInput: ["where", "data"],
+  ExpenseUpdateManyWithWhereWithoutUserInput: ["where", "data"],
+  ExpenseScalarWhereInput: ["AND", "OR", "NOT", "id", "userId", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
+  UserCreateWithoutRecipeInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "currentSavings", "wishlistItems", "expenses"],
   UserCreateOrConnectWithoutRecipeInput: ["where", "create"],
   UserUpsertWithoutRecipeInput: ["update", "create"],
-  UserUpdateWithoutRecipeInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "currentSavings", "wishlistItems"],
-  UserCreateWithoutCurrentSavingsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "wishlistItems"],
+  UserUpdateWithoutRecipeInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "currentSavings", "wishlistItems", "expenses"],
+  UserCreateWithoutCurrentSavingsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "wishlistItems", "expenses"],
   UserCreateOrConnectWithoutCurrentSavingsInput: ["where", "create"],
   UserUpsertWithoutCurrentSavingsInput: ["update", "create"],
-  UserUpdateWithoutCurrentSavingsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "wishlistItems"],
-  UserCreateWithoutWishlistItemsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings"],
+  UserUpdateWithoutCurrentSavingsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "wishlistItems", "expenses"],
+  UserCreateWithoutWishlistItemsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "expenses"],
   UserCreateOrConnectWithoutWishlistItemsInput: ["where", "create"],
   UserUpsertWithoutWishlistItemsInput: ["update", "create"],
-  UserUpdateWithoutWishlistItemsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings"],
+  UserUpdateWithoutWishlistItemsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "expenses"],
+  UserCreateWithoutExpensesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems"],
+  UserCreateOrConnectWithoutExpensesInput: ["where", "create"],
+  UserUpsertWithoutExpensesInput: ["update", "create"],
+  UserUpdateWithoutExpensesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems"],
   RecipeCreateManyUserInput: ["id", "title", "description", "rating", "savedPosition", "createdAt", "updatedAt"],
   CurrentSavingCreateManyUserInput: ["id", "value", "date", "createdAt", "updatedAt"],
   WishlistItemCreateManyUserInput: ["id", "itemName", "priceInThousands", "createdAt", "updatedAt"],
+  ExpenseCreateManyUserInput: ["id", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"],
   RecipeUpdateWithoutUserInput: ["id", "title", "description", "rating", "savedPosition", "createdAt", "updatedAt"],
   CurrentSavingUpdateWithoutUserInput: ["id", "value", "date", "createdAt", "updatedAt"],
-  WishlistItemUpdateWithoutUserInput: ["id", "itemName", "priceInThousands", "createdAt", "updatedAt"]
+  WishlistItemUpdateWithoutUserInput: ["id", "itemName", "priceInThousands", "createdAt", "updatedAt"],
+  ExpenseUpdateWithoutUserInput: ["id", "name", "value", "rating", "date", "description", "createdAt", "updatedAt"]
 };
 
 type InputTypesNames = keyof typeof inputTypes;

@@ -26,6 +26,7 @@ model User {
   recipe         Recipe[]
   currentSavings CurrentSaving[]
   wishlistItems  WishlistItem[]
+  expenses       Expense[]
 }
 
 model Recipe {
@@ -44,7 +45,7 @@ model Recipe {
 model CurrentSaving {
   id     String @id @default(cuid())
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   value Decimal
   date  DateTime @default(now())
@@ -56,10 +57,25 @@ model CurrentSaving {
 model WishlistItem {
   id     String @id @default(cuid())
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   itemName         String
   priceInThousands Decimal
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Expense {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name        String
+  value       Decimal
+  rating      Int?
+  date        DateTime? @default(now())
+  description String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

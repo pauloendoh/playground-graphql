@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CurrentSavingListRelationFilter } from "../inputs/CurrentSavingListRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
+import { ExpenseListRelationFilter } from "../inputs/ExpenseListRelationFilter";
 import { RecipeListRelationFilter } from "../inputs/RecipeListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { WishlistItemListRelationFilter } from "../inputs/WishlistItemListRelationFilter";
@@ -71,4 +72,9 @@ export class UserWhereInput {
     nullable: true
   })
   wishlistItems?: WishlistItemListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => ExpenseListRelationFilter, {
+    nullable: true
+  })
+  expenses?: ExpenseListRelationFilter | undefined;
 }

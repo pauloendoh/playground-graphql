@@ -1,9 +1,11 @@
 import * as TypeGraphQL from "type-graphql";
 import { CurrentSaving } from "../../../models/CurrentSaving";
+import { Expense } from "../../../models/Expense";
 import { Recipe } from "../../../models/Recipe";
 import { User } from "../../../models/User";
 import { WishlistItem } from "../../../models/WishlistItem";
 import { UserCurrentSavingsArgs } from "./args/UserCurrentSavingsArgs";
+import { UserExpensesArgs } from "./args/UserExpensesArgs";
 import { UserRecipeArgs } from "./args/UserRecipeArgs";
 import { UserWishlistItemsArgs } from "./args/UserWishlistItemsArgs";
 import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
@@ -41,5 +43,16 @@ export class UserRelationsResolver {
         id: user.id,
       },
     }).wishlistItems(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [Expense], {
+    nullable: false
+  })
+  async expenses(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserExpensesArgs): Promise<Expense[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).expenses(args);
   }
 }
