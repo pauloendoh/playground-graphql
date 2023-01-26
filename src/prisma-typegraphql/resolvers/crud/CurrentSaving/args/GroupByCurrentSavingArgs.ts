@@ -20,7 +20,7 @@ export class GroupByCurrentSavingArgs {
   @TypeGraphQL.Field(_type => [CurrentSavingScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "userId" | "value" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "userId" | "value" | "date" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => CurrentSavingScalarWhereWithAggregatesInput, {
     nullable: true

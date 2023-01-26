@@ -30,6 +30,11 @@ export class CurrentSavingGroupBy {
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
+  date!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
   createdAt!: Date;
 
   @TypeGraphQL.Field(_type => Date, {

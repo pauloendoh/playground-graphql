@@ -25,6 +25,11 @@ export class CurrentSavingCreateManyInput {
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
+  date?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
   createdAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => Date, {

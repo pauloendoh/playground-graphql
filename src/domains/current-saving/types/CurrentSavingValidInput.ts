@@ -1,34 +1,26 @@
 import { Prisma } from '@prisma/client'
 import * as TypeGraphQL from 'type-graphql'
-import { DecimalJSScalar } from '../../../prisma-typegraphql'
-import { CurrentSavingCreateWithoutUserInput } from '../../../prisma-typegraphql/resolvers/inputs/CurrentSavingCreateWithoutUserInput'
+import { CurrentSaving, User } from '../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
-export class CurrentSavingValidInput
-  implements CurrentSavingCreateWithoutUserInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  id?: string | undefined
+export class CurrentSavingValidInput implements CurrentSaving {
+  @TypeGraphQL.Field(() => String, { nullable: true })
+  id: string
 
-  @TypeGraphQL.Field((_type) => DecimalJSScalar, {
-    nullable: false,
-  })
-  value!: Prisma.Decimal
+  @TypeGraphQL.Field(() => String, { nullable: true })
+  userId: string
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
-  })
-  createdAt?: Date | undefined
+  user?: User | undefined
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
-  })
-  updatedAt?: Date | undefined
+  @TypeGraphQL.Field(() => String, { nullable: false })
+  value: Prisma.Decimal
 
-  // custom
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  userId?: string
+  @TypeGraphQL.Field(() => String, { nullable: true })
+  date: Date
+
+  @TypeGraphQL.Field(() => Date, { nullable: true })
+  createdAt: Date
+
+  @TypeGraphQL.Field(() => Date, { nullable: true })
+  updatedAt: Date
 }

@@ -11,4 +11,9 @@ export class RecipeAvgAggregate {
     nullable: true
   })
   rating!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  savedPosition!: number | null;
 }

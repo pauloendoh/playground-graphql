@@ -50,6 +50,11 @@ export class RecipeScalarWhereInput {
   })
   rating?: IntNullableFilter | undefined;
 
+  @TypeGraphQL.Field(_type => IntNullableFilter, {
+    nullable: true
+  })
+  savedPosition?: IntNullableFilter | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })

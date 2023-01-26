@@ -35,5 +35,5 @@ export class UserCurrentSavingsArgs {
   @TypeGraphQL.Field(_type => [CurrentSavingScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "userId" | "value" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "userId" | "value" | "date" | "createdAt" | "updatedAt"> | undefined;
 }

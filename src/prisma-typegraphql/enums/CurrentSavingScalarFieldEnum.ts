@@ -4,6 +4,7 @@ export enum CurrentSavingScalarFieldEnum {
   id = "id",
   userId = "userId",
   value = "value",
+  date = "date",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

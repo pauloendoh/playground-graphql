@@ -30,6 +30,11 @@ export class RecipeUpdateWithoutUserInput {
   })
   rating?: NullableIntFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => NullableIntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  savedPosition?: NullableIntFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })

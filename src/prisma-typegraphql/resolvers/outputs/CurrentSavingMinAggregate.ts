@@ -25,6 +25,11 @@ export class CurrentSavingMinAggregate {
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
+  date!: Date | null;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
   createdAt!: Date | null;
 
   @TypeGraphQL.Field(_type => Date, {

@@ -28,12 +28,13 @@ model User {
 }
 
 model Recipe {
-  id          String @id @default(cuid())
-  userId      String
-  user        User   @relation(fields: [userId], references: [id])
-  title       String
-  description String
-  rating      Int?
+  id            String @id @default(cuid())
+  userId        String
+  user          User   @relation(fields: [userId], references: [id])
+  title         String
+  description   String
+  rating        Int?
+  savedPosition Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -45,6 +46,7 @@ model CurrentSaving {
   user   User   @relation(fields: [userId], references: [id])
 
   value Decimal
+  date  DateTime @default(now())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -28,4 +28,7 @@ export class RecipeValidInput implements Recipe {
 
   @TypeGraphQL.Field(() => Date, { nullable: true })
   updatedAt: Date
+
+  @TypeGraphQL.Field(() => Number, { nullable: true })
+  savedPosition?: number | null | undefined
 }

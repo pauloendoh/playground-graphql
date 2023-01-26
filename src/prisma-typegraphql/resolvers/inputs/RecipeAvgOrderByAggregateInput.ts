@@ -12,4 +12,9 @@ export class RecipeAvgOrderByAggregateInput {
     nullable: true
   })
   rating?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  savedPosition?: "asc" | "desc" | undefined;
 }

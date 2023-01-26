@@ -20,7 +20,7 @@ export class GroupByRecipeArgs {
   @TypeGraphQL.Field(_type => [RecipeScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "userId" | "title" | "description" | "rating" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "userId" | "title" | "description" | "rating" | "savedPosition" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => RecipeScalarWhereWithAggregatesInput, {
     nullable: true

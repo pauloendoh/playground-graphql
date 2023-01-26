@@ -11,4 +11,9 @@ export class RecipeSumAggregate {
     nullable: true
   })
   rating!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  savedPosition!: number | null;
 }

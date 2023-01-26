@@ -50,6 +50,11 @@ export class RecipeScalarWhereWithAggregatesInput {
   })
   rating?: IntNullableWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => IntNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  savedPosition?: IntNullableWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
     nullable: true
   })

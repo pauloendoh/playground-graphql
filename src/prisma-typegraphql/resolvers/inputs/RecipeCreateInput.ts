@@ -33,6 +33,11 @@ export class RecipeCreateInput {
   })
   rating?: number | undefined;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  savedPosition?: number | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
