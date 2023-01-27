@@ -11,6 +11,7 @@ import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
 import { ExpenseService } from './ExpenseService'
 import { ExpenseInput } from './types/ExpenseInput'
+import { PaginationInput } from './types/PaginationInput'
 
 @Resolver()
 export class ExpenseResolver {
@@ -18,8 +19,11 @@ export class ExpenseResolver {
 
   @Query(() => [Expense])
   @UseMiddleware(isAuth)
-  async expensesQuery(@Ctx() { req }: MyContext): Promise<Expense[]> {
-    return this.expenseService.findExpenses(req.user.id)
+  async expensesQuery(
+    @Ctx() { req }: MyContext,
+    @Arg('pagination', { nullable: true }) pagination: PaginationInput
+  ): Promise<Expense[]> {
+    return this.expenseService.findExpenses(req.user.id, pagination)
   }
 
   @Mutation(() => Expense)

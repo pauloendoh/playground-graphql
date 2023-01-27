@@ -1,5 +1,6 @@
 import { ExpenseRepository } from './ExpenseRepository'
 import { ExpenseInput } from './types/ExpenseInput'
+import { PaginationInput } from './types/PaginationInput'
 
 export class ExpenseService {
   constructor(private readonly expenseRepository = new ExpenseRepository()) {}
@@ -15,8 +16,8 @@ export class ExpenseService {
     return this.expenseRepository.createExpense(input, userId)
   }
 
-  async findExpenses(userId: string) {
-    return this.expenseRepository.findExpenses(userId)
+  async findExpenses(userId: string, pagination: PaginationInput) {
+    return this.expenseRepository.findExpenses(userId, pagination)
   }
 
   async deleteExpense(id: string, userId: string) {

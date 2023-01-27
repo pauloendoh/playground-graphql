@@ -5,7 +5,7 @@ import { CategoryCount } from '../../../prisma-typegraphql/resolvers/outputs/Cat
 
 @InputType()
 export class CategoryInput implements Category {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   id: string
 
   userId: string

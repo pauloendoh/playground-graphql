@@ -1,5 +1,6 @@
 import { myPrismaClient } from '../../utils/myPrismaClient'
 import { ExpenseInput } from './types/ExpenseInput'
+import { PaginationInput } from './types/PaginationInput'
 
 export class ExpenseRepository {
   constructor(private readonly prisma = myPrismaClient) {}
@@ -37,11 +38,21 @@ export class ExpenseRepository {
     })
   }
 
-  findExpenses(userId: string) {
+  findExpenses(userId: string, pagination: PaginationInput) {
+    const skip =
+      pagination && pagination.page && pagination.pageSize
+        ? (pagination.page - 1) * pagination.pageSize
+        : undefined
+
     return this.prisma.expense.findMany({
       where: {
         userId,
       },
+      orderBy: {
+        date: 'desc',
+      },
+      skip,
+      take: pagination?.pageSize,
     })
   }
 
