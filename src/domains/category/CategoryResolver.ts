@@ -8,13 +8,15 @@ import { CategoryInput } from './types/CategoryInput'
 export class CategoryResolver {
   constructor(private service = new CategoryService()) {}
 
-  @Query(() => [Category])
+  @Query(() => [Category!]!)
   @UseMiddleware(isAuth)
   async categoriesQuery(@Ctx() { req }: MyContext): Promise<Category[]> {
     return this.service.findByUserId(req.user.id)
   }
 
-  @Mutation(() => Category)
+  @Mutation(() => Category, {
+    nullable: false,
+  })
   @UseMiddleware(isAuth)
   async saveCategoryMutation(
     @Ctx() { req }: MyContext,

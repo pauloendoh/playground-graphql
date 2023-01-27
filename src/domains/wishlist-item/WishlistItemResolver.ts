@@ -22,12 +22,12 @@ export class WishlistItemResolver {
     return this.service.findWishlistItems(req.user.id)
   }
 
-  @Mutation(() => WishlistItem)
+  @Mutation(() => WishlistItem!)
   @UseMiddleware(isAuth)
   async saveWishlistItemMutation(
     @Ctx() { req }: MyContext,
     @Arg('data') data: WishlistItemValidInput
-  ) {
+  ): Promise<WishlistItem> {
     return this.service.saveWishlistItem(data, req.user.id)
   }
 

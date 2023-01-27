@@ -5,10 +5,10 @@ import { Expense, User } from '../../../prisma-typegraphql'
 
 @InputType()
 export class ExpenseInput implements Expense {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   id: string
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   userId: string
 
   user?: User | undefined
@@ -24,16 +24,16 @@ export class ExpenseInput implements Expense {
   @IsNumberString()
   value: Decimal
 
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   date?: Date | null | undefined
 
-  @Field(() => Number)
+  @Field(() => Number, { nullable: true })
   rating?: number | null | undefined
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   description?: string | null | undefined
 
-  @Field(() => [String])
+  @Field(() => [String], { defaultValue: [] })
   categoryIds: string[]
 
   createdAt: Date

@@ -9,7 +9,6 @@ const schema = buildSchemaSync({
   validate: {
     forbidUnknownValues: false, // I don't remember why I put this
   },
-  nullableByDefault: true, //  So you don't need this everywhere -> @Field(() => String, { nullable: true })
 })
 
 const apolloServer = new ApolloServer({
