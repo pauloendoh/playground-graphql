@@ -2,6 +2,7 @@ import { ApolloServer } from 'apollo-server-express'
 import express from 'express'
 import 'reflect-metadata'
 import { buildSchemaSync } from 'type-graphql'
+import { myPrismaClient } from './utils/myPrismaClient'
 
 const schema = buildSchemaSync({
   resolvers: [__dirname + '/domains/**/*Resolver.{ts,js}'],
@@ -15,7 +16,7 @@ const apolloServer = new ApolloServer({
   schema,
   csrfPrevention: true,
 
-  context: ({ req, res }) => ({ req, res }),
+  context: ({ req, res }) => ({ req, res, prisma: myPrismaClient }),
 })
 
 const app = express()

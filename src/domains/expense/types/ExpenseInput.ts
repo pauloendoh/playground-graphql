@@ -33,6 +33,9 @@ export class ExpenseInput implements Expense {
   @Field(() => String)
   description?: string | null | undefined
 
+  @Field(() => [String])
+  categoryIds: string[]
+
   createdAt: Date
 
   updatedAt: Date

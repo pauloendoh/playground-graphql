@@ -14,7 +14,7 @@ export class CategoryRepository {
   }
 
   create(input: CategoryInput, userId: string) {
-    const { user, createdAt, updatedAt, ...data } = input
+    const { user, createdAt, updatedAt, expenses, _count, ...data } = input
     return this.prisma.category.create({
       data: {
         ...data,
@@ -30,6 +30,14 @@ export class CategoryRepository {
         id: input.id,
       },
       data,
+    })
+  }
+
+  findById(id: string) {
+    return this.prisma.category.findUnique({
+      where: {
+        id,
+      },
     })
   }
 

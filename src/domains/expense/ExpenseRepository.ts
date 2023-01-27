@@ -14,9 +14,10 @@ export class ExpenseRepository {
   }
 
   createExpense(input: ExpenseInput, userId: string) {
-    const { user, createdAt, updatedAt, ...data } = input
+    const { user, createdAt, updatedAt, categoryIds, ...data } = input
     return this.prisma.expense.create({
       data: {
+        categories: { connect: input.categoryIds.map((id) => ({ id })) },
         ...data,
         userId,
       },
@@ -24,12 +25,15 @@ export class ExpenseRepository {
   }
 
   updateExpense(input: ExpenseInput, userId: string) {
-    const { user, createdAt, updatedAt, ...data } = input
+    const { user, createdAt, updatedAt, categoryIds, ...data } = input
     return this.prisma.expense.update({
       where: {
         id: input.id,
       },
-      data,
+      data: {
+        categories: { connect: input.categoryIds.map((id) => ({ id })) },
+        ...data,
+      },
     })
   }
 

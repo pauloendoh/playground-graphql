@@ -15,6 +15,10 @@ export class CategoryService {
     return this.categoryRepo.create(input, userId)
   }
 
+  findById(id: string) {
+    return this.categoryRepo.findById(id)
+  }
+
   async findByUserId(userId: string) {
     return this.categoryRepo.findByUserId(userId)
   }
