@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --clear --debounce 250 src/server.ts",
     "build": "tsc",
+    "build:release": "tsc && npx prisma migrate deploy",
     "start": "node ./dist/server.js",
-    "migrate": "prisma migrate dev --name"
+    "migrate": "prisma migrate dev --name",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
