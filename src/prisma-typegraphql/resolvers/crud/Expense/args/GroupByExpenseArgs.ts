@@ -20,7 +20,7 @@ export class GroupByExpenseArgs {
   @TypeGraphQL.Field(_type => [ExpenseScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "userId" | "name" | "value" | "rating" | "date" | "description" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "userId" | "name" | "value" | "rating" | "date" | "description" | "timesPerMonth" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => ExpenseScalarWhereWithAggregatesInput, {
     nullable: true

@@ -47,6 +47,11 @@ export class Expense {
   })
   description?: string | null;
 
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  timesPerMonth?: Prisma.Decimal | null;
+
   categories?: Category[];
 
   @TypeGraphQL.Field(_type => Date, {

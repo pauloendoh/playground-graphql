@@ -35,5 +35,5 @@ export class FindFirstExpenseArgs {
   @TypeGraphQL.Field(_type => [ExpenseScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "userId" | "name" | "value" | "rating" | "date" | "description" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "userId" | "name" | "value" | "rating" | "date" | "description" | "timesPerMonth" | "createdAt" | "updatedAt"> | undefined;
 }

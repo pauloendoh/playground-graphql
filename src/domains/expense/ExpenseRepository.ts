@@ -18,8 +18,8 @@ export class ExpenseRepository {
     const { user, createdAt, updatedAt, categoryIds, ...data } = input
     return this.prisma.expense.create({
       data: {
-        categories: { connect: categoryIds?.map((id) => ({ id })) },
         ...data,
+        categories: { connect: categoryIds?.map((id) => ({ id })) },
         userId,
       },
     })
@@ -32,8 +32,8 @@ export class ExpenseRepository {
         id: input.id,
       },
       data: {
-        categories: { connect: input.categoryIds?.map((id) => ({ id })) },
         ...data,
+        categories: { connect: input.categoryIds?.map((id) => ({ id })) },
       },
     })
   }

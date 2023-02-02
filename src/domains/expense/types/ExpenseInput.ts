@@ -1,7 +1,12 @@
 import { Decimal } from '@prisma/client/runtime'
 import { IsNumberString, IsString, MinLength } from 'class-validator'
 import { Field, InputType } from 'type-graphql'
-import { Expense, User } from '../../../prisma-typegraphql'
+import {
+  Category,
+  Expense,
+  ExpenseCount,
+  User,
+} from '../../../prisma-typegraphql'
 
 @InputType()
 export class ExpenseInput implements Expense {
@@ -37,6 +42,11 @@ export class ExpenseInput implements Expense {
   categoryIds: string[]
 
   createdAt: Date
-
   updatedAt: Date
+
+  @Field(() => String, { nullable: true })
+  timesPerMonth?: Decimal | null | undefined
+
+  categories?: Category[] | undefined
+  _count?: ExpenseCount | null | undefined
 }

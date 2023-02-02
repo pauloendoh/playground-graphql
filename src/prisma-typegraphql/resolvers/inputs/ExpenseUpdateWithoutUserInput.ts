@@ -6,6 +6,7 @@ import { CategoryUpdateManyWithoutExpensesNestedInput } from "../inputs/Category
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { DecimalFieldUpdateOperationsInput } from "../inputs/DecimalFieldUpdateOperationsInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
+import { NullableDecimalFieldUpdateOperationsInput } from "../inputs/NullableDecimalFieldUpdateOperationsInput";
 import { NullableIntFieldUpdateOperationsInput } from "../inputs/NullableIntFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
@@ -43,6 +44,11 @@ export class ExpenseUpdateWithoutUserInput {
     nullable: true
   })
   description?: NullableStringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableDecimalFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  timesPerMonth?: NullableDecimalFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => CategoryUpdateManyWithoutExpensesNestedInput, {
     nullable: true

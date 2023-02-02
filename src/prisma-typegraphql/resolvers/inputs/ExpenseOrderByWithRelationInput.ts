@@ -50,6 +50,11 @@ export class ExpenseOrderByWithRelationInput {
   })
   description?: "asc" | "desc" | undefined;
 
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  timesPerMonth?: "asc" | "desc" | undefined;
+
   @TypeGraphQL.Field(_type => CategoryOrderByRelationAggregateInput, {
     nullable: true
   })

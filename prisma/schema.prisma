@@ -72,11 +72,12 @@ model Expense {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  name        String
-  value       Decimal
-  rating      Int?
-  date        DateTime? @default(now())
-  description String?
+  name          String
+  value         Decimal
+  rating        Int?
+  date          DateTime? @default(now())
+  description   String?
+  timesPerMonth Decimal?
 
   categories Category[]
 

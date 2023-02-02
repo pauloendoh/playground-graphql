@@ -8,6 +8,7 @@ export enum ExpenseScalarFieldEnum {
   rating = "rating",
   date = "date",
   description = "description",
+  timesPerMonth = "timesPerMonth",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

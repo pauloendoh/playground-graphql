@@ -14,9 +14,8 @@ export const myPrismaClient = new PrismaClient({
 })
 
 myPrismaClient.$on('query', (e) => {
-  console.log(`--------- ${e.timestamp.toLocaleTimeString()} -----------`)
-  console.log('🔍 Query: ' + e.query)
-  console.log('Params: ' + e.params)
-
-  console.log('Duration: ' + e.duration + 'ms')
+  // console.log(`--------- ${e.timestamp.toLocaleTimeString()} -----------`)
+  // console.log('🔍 Query: ' + e.query)
+  // console.log('Params: ' + e.params)
+  // console.log('Duration: ' + e.duration + 'ms')
 })

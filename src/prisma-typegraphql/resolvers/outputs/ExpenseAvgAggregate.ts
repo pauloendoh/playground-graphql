@@ -16,4 +16,9 @@ export class ExpenseAvgAggregate {
     nullable: true
   })
   rating!: number | null;
+
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  timesPerMonth!: Prisma.Decimal | null;
 }

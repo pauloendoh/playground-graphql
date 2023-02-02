@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { DecimalFilter } from "../inputs/DecimalFilter";
+import { DecimalNullableFilter } from "../inputs/DecimalNullableFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
@@ -62,6 +63,11 @@ export class ExpenseScalarWhereInput {
     nullable: true
   })
   description?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DecimalNullableFilter, {
+    nullable: true
+  })
+  timesPerMonth?: DecimalNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

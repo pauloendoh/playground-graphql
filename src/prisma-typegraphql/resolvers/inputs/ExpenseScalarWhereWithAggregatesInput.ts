@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeNullableWithAggregatesFilter } from "../inputs/DateTimeNullableWithAggregatesFilter";
 import { DateTimeWithAggregatesFilter } from "../inputs/DateTimeWithAggregatesFilter";
+import { DecimalNullableWithAggregatesFilter } from "../inputs/DecimalNullableWithAggregatesFilter";
 import { DecimalWithAggregatesFilter } from "../inputs/DecimalWithAggregatesFilter";
 import { IntNullableWithAggregatesFilter } from "../inputs/IntNullableWithAggregatesFilter";
 import { StringNullableWithAggregatesFilter } from "../inputs/StringNullableWithAggregatesFilter";
@@ -62,6 +63,11 @@ export class ExpenseScalarWhereWithAggregatesInput {
     nullable: true
   })
   description?: StringNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DecimalNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  timesPerMonth?: DecimalNullableWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
     nullable: true

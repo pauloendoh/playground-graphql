@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Expense" ALTER COLUMN "timesPerMonth" SET DATA TYPE DECIMAL(65,30);

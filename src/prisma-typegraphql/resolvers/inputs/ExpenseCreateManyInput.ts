@@ -42,6 +42,11 @@ export class ExpenseCreateManyInput {
   })
   description?: string | undefined;
 
+  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+    nullable: true
+  })
+  timesPerMonth?: Prisma.Decimal | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
