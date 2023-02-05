@@ -3,10 +3,10 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryListRelationFilter } from "../inputs/CategoryListRelationFilter";
-import { CurrentSavingListRelationFilter } from "../inputs/CurrentSavingListRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { ExpenseListRelationFilter } from "../inputs/ExpenseListRelationFilter";
 import { RecipeListRelationFilter } from "../inputs/RecipeListRelationFilter";
+import { SavingListRelationFilter } from "../inputs/SavingListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { WishlistItemListRelationFilter } from "../inputs/WishlistItemListRelationFilter";
 
@@ -64,10 +64,10 @@ export class UserWhereInput {
   })
   recipe?: RecipeListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => CurrentSavingListRelationFilter, {
+  @TypeGraphQL.Field(_type => SavingListRelationFilter, {
     nullable: true
   })
-  currentSavings?: CurrentSavingListRelationFilter | undefined;
+  currentSavings?: SavingListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => WishlistItemListRelationFilter, {
     nullable: true

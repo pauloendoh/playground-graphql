@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { CurrentSavingOrderByWithRelationInput } from "../../../inputs/CurrentSavingOrderByWithRelationInput";
-import { CurrentSavingWhereInput } from "../../../inputs/CurrentSavingWhereInput";
-import { CurrentSavingWhereUniqueInput } from "../../../inputs/CurrentSavingWhereUniqueInput";
-import { CurrentSavingScalarFieldEnum } from "../../../../enums/CurrentSavingScalarFieldEnum";
+import { SavingOrderByWithRelationInput } from "../../../inputs/SavingOrderByWithRelationInput";
+import { SavingWhereInput } from "../../../inputs/SavingWhereInput";
+import { SavingWhereUniqueInput } from "../../../inputs/SavingWhereUniqueInput";
+import { SavingScalarFieldEnum } from "../../../../enums/SavingScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class UserCurrentSavingsArgs {
-  @TypeGraphQL.Field(_type => CurrentSavingWhereInput, {
+  @TypeGraphQL.Field(_type => SavingWhereInput, {
     nullable: true
   })
-  where?: CurrentSavingWhereInput | undefined;
+  where?: SavingWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [CurrentSavingOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [SavingOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: CurrentSavingOrderByWithRelationInput[] | undefined;
+  orderBy?: SavingOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => CurrentSavingWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => SavingWhereUniqueInput, {
     nullable: true
   })
-  cursor?: CurrentSavingWhereUniqueInput | undefined;
+  cursor?: SavingWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,7 +32,7 @@ export class UserCurrentSavingsArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [CurrentSavingScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [SavingScalarFieldEnum], {
     nullable: true
   })
   distinct?: Array<"id" | "userId" | "value" | "date" | "createdAt" | "updatedAt"> | undefined;

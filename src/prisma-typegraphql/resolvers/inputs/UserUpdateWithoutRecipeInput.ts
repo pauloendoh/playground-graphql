@@ -3,9 +3,9 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryUpdateManyWithoutUserNestedInput } from "../inputs/CategoryUpdateManyWithoutUserNestedInput";
-import { CurrentSavingUpdateManyWithoutUserNestedInput } from "../inputs/CurrentSavingUpdateManyWithoutUserNestedInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { ExpenseUpdateManyWithoutUserNestedInput } from "../inputs/ExpenseUpdateManyWithoutUserNestedInput";
+import { SavingUpdateManyWithoutUserNestedInput } from "../inputs/SavingUpdateManyWithoutUserNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { WishlistItemUpdateManyWithoutUserNestedInput } from "../inputs/WishlistItemUpdateManyWithoutUserNestedInput";
 
@@ -43,10 +43,10 @@ export class UserUpdateWithoutRecipeInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => CurrentSavingUpdateManyWithoutUserNestedInput, {
+  @TypeGraphQL.Field(_type => SavingUpdateManyWithoutUserNestedInput, {
     nullable: true
   })
-  currentSavings?: CurrentSavingUpdateManyWithoutUserNestedInput | undefined;
+  currentSavings?: SavingUpdateManyWithoutUserNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => WishlistItemUpdateManyWithoutUserNestedInput, {
     nullable: true

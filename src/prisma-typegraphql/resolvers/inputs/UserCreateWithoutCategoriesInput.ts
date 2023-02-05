@@ -2,9 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { CurrentSavingCreateNestedManyWithoutUserInput } from "../inputs/CurrentSavingCreateNestedManyWithoutUserInput";
 import { ExpenseCreateNestedManyWithoutUserInput } from "../inputs/ExpenseCreateNestedManyWithoutUserInput";
 import { RecipeCreateNestedManyWithoutUserInput } from "../inputs/RecipeCreateNestedManyWithoutUserInput";
+import { SavingCreateNestedManyWithoutUserInput } from "../inputs/SavingCreateNestedManyWithoutUserInput";
 import { WishlistItemCreateNestedManyWithoutUserInput } from "../inputs/WishlistItemCreateNestedManyWithoutUserInput";
 
 @TypeGraphQL.InputType("UserCreateWithoutCategoriesInput", {
@@ -46,10 +46,10 @@ export class UserCreateWithoutCategoriesInput {
   })
   recipe?: RecipeCreateNestedManyWithoutUserInput | undefined;
 
-  @TypeGraphQL.Field(_type => CurrentSavingCreateNestedManyWithoutUserInput, {
+  @TypeGraphQL.Field(_type => SavingCreateNestedManyWithoutUserInput, {
     nullable: true
   })
-  currentSavings?: CurrentSavingCreateNestedManyWithoutUserInput | undefined;
+  currentSavings?: SavingCreateNestedManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => WishlistItemCreateNestedManyWithoutUserInput, {
     nullable: true

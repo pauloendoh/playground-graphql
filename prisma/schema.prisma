@@ -21,13 +21,13 @@ model User {
   email    String @unique
   password String
 
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  recipe         Recipe[]
-  currentSavings CurrentSaving[]
-  wishlistItems  WishlistItem[]
-  expenses       Expense[]
-  categories     Category[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  recipe        Recipe[]
+  savings       Saving[]
+  wishlistItems WishlistItem[]
+  expenses      Expense[]
+  categories    Category[]
 }
 
 model Recipe {
@@ -43,7 +43,7 @@ model Recipe {
   updatedAt DateTime @updatedAt
 }
 
-model CurrentSaving {
+model Saving {
   id     String @id @default(cuid())
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

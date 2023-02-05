@@ -1,3 +1,3 @@
-import { CurrentSavingResolver } from './current-saving/CurrentSavingResolver'
+import { SavingResolver } from './saving/SavingResolver'
 
-const currentSaving = CurrentSavingResolver
+const savingResolver = SavingResolver

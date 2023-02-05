@@ -3,8 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryCreateNestedManyWithoutUserInput } from "../inputs/CategoryCreateNestedManyWithoutUserInput";
-import { CurrentSavingCreateNestedManyWithoutUserInput } from "../inputs/CurrentSavingCreateNestedManyWithoutUserInput";
 import { ExpenseCreateNestedManyWithoutUserInput } from "../inputs/ExpenseCreateNestedManyWithoutUserInput";
+import { SavingCreateNestedManyWithoutUserInput } from "../inputs/SavingCreateNestedManyWithoutUserInput";
 import { WishlistItemCreateNestedManyWithoutUserInput } from "../inputs/WishlistItemCreateNestedManyWithoutUserInput";
 
 @TypeGraphQL.InputType("UserCreateWithoutRecipeInput", {
@@ -41,10 +41,10 @@ export class UserCreateWithoutRecipeInput {
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => CurrentSavingCreateNestedManyWithoutUserInput, {
+  @TypeGraphQL.Field(_type => SavingCreateNestedManyWithoutUserInput, {
     nullable: true
   })
-  currentSavings?: CurrentSavingCreateNestedManyWithoutUserInput | undefined;
+  currentSavings?: SavingCreateNestedManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => WishlistItemCreateNestedManyWithoutUserInput, {
     nullable: true

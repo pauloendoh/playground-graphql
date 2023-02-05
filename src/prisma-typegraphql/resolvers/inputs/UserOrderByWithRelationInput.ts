@@ -3,9 +3,9 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryOrderByRelationAggregateInput } from "../inputs/CategoryOrderByRelationAggregateInput";
-import { CurrentSavingOrderByRelationAggregateInput } from "../inputs/CurrentSavingOrderByRelationAggregateInput";
 import { ExpenseOrderByRelationAggregateInput } from "../inputs/ExpenseOrderByRelationAggregateInput";
 import { RecipeOrderByRelationAggregateInput } from "../inputs/RecipeOrderByRelationAggregateInput";
+import { SavingOrderByRelationAggregateInput } from "../inputs/SavingOrderByRelationAggregateInput";
 import { WishlistItemOrderByRelationAggregateInput } from "../inputs/WishlistItemOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -48,10 +48,10 @@ export class UserOrderByWithRelationInput {
   })
   recipe?: RecipeOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => CurrentSavingOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => SavingOrderByRelationAggregateInput, {
     nullable: true
   })
-  currentSavings?: CurrentSavingOrderByRelationAggregateInput | undefined;
+  currentSavings?: SavingOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => WishlistItemOrderByRelationAggregateInput, {
     nullable: true
