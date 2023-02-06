@@ -1,4 +1,5 @@
 import { ExpenseRepository } from './ExpenseRepository'
+import { ExpenseFilterInput } from './types/ExpenseFilterInput'
 import { ExpenseInput } from './types/ExpenseInput'
 import { PaginationInput } from './types/PaginationInput'
 
@@ -16,8 +17,13 @@ export class ExpenseService {
     return this.expenseRepository.createExpense(input, userId)
   }
 
-  async findExpenses(userId: string, pagination: PaginationInput) {
-    return this.expenseRepository.findExpenses(userId, pagination)
+  async findMany(params: {
+    userId: string
+    pagination: PaginationInput
+    filter?: ExpenseFilterInput
+  }) {
+    const { userId, pagination, filter } = params
+    return this.expenseRepository.findMany({ userId, pagination, filter })
   }
 
   async deleteExpense(id: string, userId: string) {

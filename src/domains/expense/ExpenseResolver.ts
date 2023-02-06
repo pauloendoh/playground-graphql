@@ -10,6 +10,7 @@ import { Expense } from '../../prisma-typegraphql'
 import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
 import { ExpenseService } from './ExpenseService'
+import { ExpenseFilterInput } from './types/ExpenseFilterInput'
 import { ExpenseInput } from './types/ExpenseInput'
 import { PaginationInput } from './types/PaginationInput'
 
@@ -21,9 +22,14 @@ export class ExpenseResolver {
   @UseMiddleware(isAuth)
   async expensesQuery(
     @Ctx() { req }: MyContext,
-    @Arg('pagination', { nullable: true }) pagination: PaginationInput
+    @Arg('pagination', { nullable: true }) pagination: PaginationInput,
+    @Arg('filter', { nullable: true }) filter?: ExpenseFilterInput
   ): Promise<Expense[]> {
-    return this.expenseService.findExpenses(req.user.id, pagination)
+    return this.expenseService.findMany({
+      userId: req.user.id,
+      pagination,
+      filter,
+    })
   }
 
   @Mutation(() => Expense)
