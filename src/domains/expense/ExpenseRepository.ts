@@ -59,6 +59,7 @@ export class ExpenseRepository {
           filter && filter.expensesByText.length > 0
             ? {
                 contains: filter?.expensesByText,
+                mode: 'insensitive',
               }
             : undefined,
       },
