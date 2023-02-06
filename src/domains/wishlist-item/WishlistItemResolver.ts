@@ -31,12 +31,12 @@ export class WishlistItemResolver {
     return this.service.saveWishlistItem(data, req.user.id)
   }
 
-  // @Mutation(() => Boolean)
-  // @UseMiddleware(isAuth)
-  // async deleteRecipeMutation(
-  //   @Ctx() { req }: MyContext,
-  //   @Arg("recipeId") recipeId: string
-  // ) {
-  //   return this.service.deleteRecipe(recipeId, req.user.id);
-  // }
+  @Mutation(() => Boolean)
+  @UseMiddleware(isAuth)
+  async deleteWishlistMutation(
+    @Ctx() { req }: MyContext,
+    @Arg('id') id: string
+  ) {
+    return this.service.delete(id, req.user.id)
+  }
 }

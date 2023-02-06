@@ -51,4 +51,12 @@ export class WishlistItemRepository {
       },
     })
   }
+
+  async delete(wishlistItemId: string) {
+    return await this.prisma.wishlistItem.delete({
+      where: {
+        id: wishlistItemId,
+      },
+    })
+  }
 }

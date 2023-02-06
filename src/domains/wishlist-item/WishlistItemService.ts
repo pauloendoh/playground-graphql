@@ -29,4 +29,15 @@ export class WishlistItemService {
   findWishlistItems(userId: string) {
     return this.repo.findWishlistItems(userId)
   }
+
+  async delete(wishlistId: string, userId: string) {
+    const ok = await this.repo.isOwner(wishlistId, userId)
+
+    if (!ok) {
+      throw new Error('Not authorized')
+    }
+
+    const response = await this.repo.delete(wishlistId)
+    return !!response
+  }
 }
