@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { DecimalFieldUpdateOperationsInput } from "../inputs/DecimalFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutCurrentSavingsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutCurrentSavingsNestedInput";
+import { UserUpdateOneRequiredWithoutSavingsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutSavingsNestedInput";
 
 @TypeGraphQL.InputType("SavingUpdateInput", {
   isAbstract: true
@@ -16,10 +16,10 @@ export class SavingUpdateInput {
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutCurrentSavingsNestedInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutSavingsNestedInput, {
     nullable: true
   })
-  user?: UserUpdateOneRequiredWithoutCurrentSavingsNestedInput | undefined;
+  user?: UserUpdateOneRequiredWithoutSavingsNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => DecimalFieldUpdateOperationsInput, {
     nullable: true

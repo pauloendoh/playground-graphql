@@ -6,6 +6,7 @@ import { CategoryListRelationFilter } from "../inputs/CategoryListRelationFilter
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { ExpenseListRelationFilter } from "../inputs/ExpenseListRelationFilter";
 import { RecipeListRelationFilter } from "../inputs/RecipeListRelationFilter";
+import { SalaryRelationFilter } from "../inputs/SalaryRelationFilter";
 import { SavingListRelationFilter } from "../inputs/SavingListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { WishlistItemListRelationFilter } from "../inputs/WishlistItemListRelationFilter";
@@ -67,7 +68,7 @@ export class UserWhereInput {
   @TypeGraphQL.Field(_type => SavingListRelationFilter, {
     nullable: true
   })
-  currentSavings?: SavingListRelationFilter | undefined;
+  savings?: SavingListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => WishlistItemListRelationFilter, {
     nullable: true
@@ -83,4 +84,9 @@ export class UserWhereInput {
     nullable: true
   })
   categories?: CategoryListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => SalaryRelationFilter, {
+    nullable: true
+  })
+  salary?: SalaryRelationFilter | undefined;
 }

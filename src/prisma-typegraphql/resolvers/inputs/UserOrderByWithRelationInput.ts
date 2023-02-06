@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { CategoryOrderByRelationAggregateInput } from "../inputs/CategoryOrderByRelationAggregateInput";
 import { ExpenseOrderByRelationAggregateInput } from "../inputs/ExpenseOrderByRelationAggregateInput";
 import { RecipeOrderByRelationAggregateInput } from "../inputs/RecipeOrderByRelationAggregateInput";
+import { SalaryOrderByWithRelationInput } from "../inputs/SalaryOrderByWithRelationInput";
 import { SavingOrderByRelationAggregateInput } from "../inputs/SavingOrderByRelationAggregateInput";
 import { WishlistItemOrderByRelationAggregateInput } from "../inputs/WishlistItemOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
@@ -51,7 +52,7 @@ export class UserOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SavingOrderByRelationAggregateInput, {
     nullable: true
   })
-  currentSavings?: SavingOrderByRelationAggregateInput | undefined;
+  savings?: SavingOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => WishlistItemOrderByRelationAggregateInput, {
     nullable: true
@@ -67,4 +68,9 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   categories?: CategoryOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => SalaryOrderByWithRelationInput, {
+    nullable: true
+  })
+  salary?: SalaryOrderByWithRelationInput | undefined;
 }

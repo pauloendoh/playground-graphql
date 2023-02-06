@@ -6,6 +6,7 @@ import { CategoryUpdateManyWithoutUserNestedInput } from "../inputs/CategoryUpda
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { ExpenseUpdateManyWithoutUserNestedInput } from "../inputs/ExpenseUpdateManyWithoutUserNestedInput";
 import { RecipeUpdateManyWithoutUserNestedInput } from "../inputs/RecipeUpdateManyWithoutUserNestedInput";
+import { SalaryUpdateOneWithoutUserNestedInput } from "../inputs/SalaryUpdateOneWithoutUserNestedInput";
 import { SavingUpdateManyWithoutUserNestedInput } from "../inputs/SavingUpdateManyWithoutUserNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
@@ -51,7 +52,7 @@ export class UserUpdateWithoutWishlistItemsInput {
   @TypeGraphQL.Field(_type => SavingUpdateManyWithoutUserNestedInput, {
     nullable: true
   })
-  currentSavings?: SavingUpdateManyWithoutUserNestedInput | undefined;
+  savings?: SavingUpdateManyWithoutUserNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => ExpenseUpdateManyWithoutUserNestedInput, {
     nullable: true
@@ -62,4 +63,9 @@ export class UserUpdateWithoutWishlistItemsInput {
     nullable: true
   })
   categories?: CategoryUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => SalaryUpdateOneWithoutUserNestedInput, {
+    nullable: true
+  })
+  salary?: SalaryUpdateOneWithoutUserNestedInput | undefined;
 }

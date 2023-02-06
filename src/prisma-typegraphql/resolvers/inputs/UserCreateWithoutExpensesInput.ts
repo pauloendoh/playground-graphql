@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryCreateNestedManyWithoutUserInput } from "../inputs/CategoryCreateNestedManyWithoutUserInput";
 import { RecipeCreateNestedManyWithoutUserInput } from "../inputs/RecipeCreateNestedManyWithoutUserInput";
+import { SalaryCreateNestedOneWithoutUserInput } from "../inputs/SalaryCreateNestedOneWithoutUserInput";
 import { SavingCreateNestedManyWithoutUserInput } from "../inputs/SavingCreateNestedManyWithoutUserInput";
 import { WishlistItemCreateNestedManyWithoutUserInput } from "../inputs/WishlistItemCreateNestedManyWithoutUserInput";
 
@@ -49,7 +50,7 @@ export class UserCreateWithoutExpensesInput {
   @TypeGraphQL.Field(_type => SavingCreateNestedManyWithoutUserInput, {
     nullable: true
   })
-  currentSavings?: SavingCreateNestedManyWithoutUserInput | undefined;
+  savings?: SavingCreateNestedManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => WishlistItemCreateNestedManyWithoutUserInput, {
     nullable: true
@@ -60,4 +61,9 @@ export class UserCreateWithoutExpensesInput {
     nullable: true
   })
   categories?: CategoryCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => SalaryCreateNestedOneWithoutUserInput, {
+    nullable: true
+  })
+  salary?: SalaryCreateNestedOneWithoutUserInput | undefined;
 }

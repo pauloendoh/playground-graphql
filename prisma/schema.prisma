@@ -28,6 +28,7 @@ model User {
   wishlistItems WishlistItem[]
   expenses      Expense[]
   categories    Category[]
+  salary        Salary?
 }
 
 model Recipe {
@@ -94,6 +95,17 @@ model Category {
 
   name    String
   bgColor String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Salary {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  value Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

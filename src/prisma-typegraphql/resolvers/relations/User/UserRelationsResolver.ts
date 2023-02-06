@@ -2,13 +2,14 @@ import * as TypeGraphQL from "type-graphql";
 import { Category } from "../../../models/Category";
 import { Expense } from "../../../models/Expense";
 import { Recipe } from "../../../models/Recipe";
+import { Salary } from "../../../models/Salary";
 import { Saving } from "../../../models/Saving";
 import { User } from "../../../models/User";
 import { WishlistItem } from "../../../models/WishlistItem";
 import { UserCategoriesArgs } from "./args/UserCategoriesArgs";
-import { UserCurrentSavingsArgs } from "./args/UserCurrentSavingsArgs";
 import { UserExpensesArgs } from "./args/UserExpensesArgs";
 import { UserRecipeArgs } from "./args/UserRecipeArgs";
+import { UserSavingsArgs } from "./args/UserSavingsArgs";
 import { UserWishlistItemsArgs } from "./args/UserWishlistItemsArgs";
 import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
@@ -28,12 +29,12 @@ export class UserRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => [Saving], {
     nullable: false
   })
-  async currentSavings(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserCurrentSavingsArgs): Promise<Saving[]> {
+  async savings(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserSavingsArgs): Promise<Saving[]> {
     return getPrismaFromContext(ctx).user.findUnique({
       where: {
         id: user.id,
       },
-    }).currentSavings(args);
+    }).savings(args);
   }
 
   @TypeGraphQL.FieldResolver(_type => [WishlistItem], {
@@ -67,5 +68,16 @@ export class UserRelationsResolver {
         id: user.id,
       },
     }).categories(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => Salary, {
+    nullable: true
+  })
+  async salary(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any): Promise<Salary | null> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).salary({});
   }
 }

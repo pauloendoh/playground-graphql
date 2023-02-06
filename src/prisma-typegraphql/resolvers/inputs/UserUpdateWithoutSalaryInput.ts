@@ -6,13 +6,14 @@ import { CategoryUpdateManyWithoutUserNestedInput } from "../inputs/CategoryUpda
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { ExpenseUpdateManyWithoutUserNestedInput } from "../inputs/ExpenseUpdateManyWithoutUserNestedInput";
 import { RecipeUpdateManyWithoutUserNestedInput } from "../inputs/RecipeUpdateManyWithoutUserNestedInput";
+import { SavingUpdateManyWithoutUserNestedInput } from "../inputs/SavingUpdateManyWithoutUserNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { WishlistItemUpdateManyWithoutUserNestedInput } from "../inputs/WishlistItemUpdateManyWithoutUserNestedInput";
 
-@TypeGraphQL.InputType("UserUpdateWithoutCurrentSavingsInput", {
+@TypeGraphQL.InputType("UserUpdateWithoutSalaryInput", {
   isAbstract: true
 })
-export class UserUpdateWithoutCurrentSavingsInput {
+export class UserUpdateWithoutSalaryInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -47,6 +48,11 @@ export class UserUpdateWithoutCurrentSavingsInput {
     nullable: true
   })
   recipe?: RecipeUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => SavingUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  savings?: SavingUpdateManyWithoutUserNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => WishlistItemUpdateManyWithoutUserNestedInput, {
     nullable: true

@@ -14,7 +14,8 @@ const crudResolversMap = {
   Saving: crudResolvers.SavingCrudResolver,
   WishlistItem: crudResolvers.WishlistItemCrudResolver,
   Expense: crudResolvers.ExpenseCrudResolver,
-  Category: crudResolvers.CategoryCrudResolver
+  Category: crudResolvers.CategoryCrudResolver,
+  Salary: crudResolvers.SalaryCrudResolver
 };
 const actionResolversMap = {
   User: {
@@ -112,6 +113,22 @@ const actionResolversMap = {
     updateManyCategory: actionResolvers.UpdateManyCategoryResolver,
     updateOneCategory: actionResolvers.UpdateOneCategoryResolver,
     upsertOneCategory: actionResolvers.UpsertOneCategoryResolver
+  },
+  Salary: {
+    aggregateSalary: actionResolvers.AggregateSalaryResolver,
+    createManySalary: actionResolvers.CreateManySalaryResolver,
+    createOneSalary: actionResolvers.CreateOneSalaryResolver,
+    deleteManySalary: actionResolvers.DeleteManySalaryResolver,
+    deleteOneSalary: actionResolvers.DeleteOneSalaryResolver,
+    findFirstSalary: actionResolvers.FindFirstSalaryResolver,
+    findFirstSalaryOrThrow: actionResolvers.FindFirstSalaryOrThrowResolver,
+    salaries: actionResolvers.FindManySalaryResolver,
+    salary: actionResolvers.FindUniqueSalaryResolver,
+    getSalary: actionResolvers.FindUniqueSalaryOrThrowResolver,
+    groupBySalary: actionResolvers.GroupBySalaryResolver,
+    updateManySalary: actionResolvers.UpdateManySalaryResolver,
+    updateOneSalary: actionResolvers.UpdateOneSalaryResolver,
+    upsertOneSalary: actionResolvers.UpsertOneSalaryResolver
   }
 };
 const crudResolversInfo = {
@@ -120,7 +137,8 @@ const crudResolversInfo = {
   Saving: ["aggregateSaving", "createManySaving", "createOneSaving", "deleteManySaving", "deleteOneSaving", "findFirstSaving", "findFirstSavingOrThrow", "savings", "saving", "getSaving", "groupBySaving", "updateManySaving", "updateOneSaving", "upsertOneSaving"],
   WishlistItem: ["aggregateWishlistItem", "createManyWishlistItem", "createOneWishlistItem", "deleteManyWishlistItem", "deleteOneWishlistItem", "findFirstWishlistItem", "findFirstWishlistItemOrThrow", "wishlistItems", "wishlistItem", "getWishlistItem", "groupByWishlistItem", "updateManyWishlistItem", "updateOneWishlistItem", "upsertOneWishlistItem"],
   Expense: ["aggregateExpense", "createManyExpense", "createOneExpense", "deleteManyExpense", "deleteOneExpense", "findFirstExpense", "findFirstExpenseOrThrow", "expenses", "expense", "getExpense", "groupByExpense", "updateManyExpense", "updateOneExpense", "upsertOneExpense"],
-  Category: ["aggregateCategory", "createManyCategory", "createOneCategory", "deleteManyCategory", "deleteOneCategory", "findFirstCategory", "findFirstCategoryOrThrow", "categories", "category", "getCategory", "groupByCategory", "updateManyCategory", "updateOneCategory", "upsertOneCategory"]
+  Category: ["aggregateCategory", "createManyCategory", "createOneCategory", "deleteManyCategory", "deleteOneCategory", "findFirstCategory", "findFirstCategoryOrThrow", "categories", "category", "getCategory", "groupByCategory", "updateManyCategory", "updateOneCategory", "upsertOneCategory"],
+  Salary: ["aggregateSalary", "createManySalary", "createOneSalary", "deleteManySalary", "deleteOneSalary", "findFirstSalary", "findFirstSalaryOrThrow", "salaries", "salary", "getSalary", "groupBySalary", "updateManySalary", "updateOneSalary", "upsertOneSalary"]
 };
 const argsInfo = {
   AggregateUserArgs: ["where", "orderBy", "cursor", "take", "skip"],
@@ -206,7 +224,21 @@ const argsInfo = {
   GroupByCategoryArgs: ["where", "orderBy", "by", "having", "take", "skip"],
   UpdateManyCategoryArgs: ["data", "where"],
   UpdateOneCategoryArgs: ["data", "where"],
-  UpsertOneCategoryArgs: ["where", "create", "update"]
+  UpsertOneCategoryArgs: ["where", "create", "update"],
+  AggregateSalaryArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManySalaryArgs: ["data", "skipDuplicates"],
+  CreateOneSalaryArgs: ["data"],
+  DeleteManySalaryArgs: ["where"],
+  DeleteOneSalaryArgs: ["where"],
+  FindFirstSalaryArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstSalaryOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManySalaryArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueSalaryArgs: ["where"],
+  FindUniqueSalaryOrThrowArgs: ["where"],
+  GroupBySalaryArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManySalaryArgs: ["data", "where"],
+  UpdateOneSalaryArgs: ["data", "where"],
+  UpsertOneSalaryArgs: ["where", "create", "update"]
 };
 
 type ResolverModelNames = keyof typeof crudResolversMap;
@@ -301,15 +333,17 @@ const relationResolversMap = {
   Saving: relationResolvers.SavingRelationsResolver,
   WishlistItem: relationResolvers.WishlistItemRelationsResolver,
   Expense: relationResolvers.ExpenseRelationsResolver,
-  Category: relationResolvers.CategoryRelationsResolver
+  Category: relationResolvers.CategoryRelationsResolver,
+  Salary: relationResolvers.SalaryRelationsResolver
 };
 const relationResolversInfo = {
-  User: ["recipe", "currentSavings", "wishlistItems", "expenses", "categories"],
+  User: ["recipe", "savings", "wishlistItems", "expenses", "categories", "salary"],
   Recipe: ["user"],
   Saving: ["user"],
   WishlistItem: ["user"],
   Expense: ["user", "categories"],
-  Category: ["user", "expenses"]
+  Category: ["user", "expenses"],
+  Salary: ["user"]
 };
 
 type RelationResolverModelNames = keyof typeof relationResolversMap;
@@ -395,7 +429,8 @@ const modelsInfo = {
   Saving: ["id", "userId", "value", "date", "createdAt", "updatedAt"],
   WishlistItem: ["id", "userId", "itemName", "priceInThousands", "createdAt", "updatedAt"],
   Expense: ["id", "userId", "name", "value", "rating", "date", "description", "timesPerMonth", "createdAt", "updatedAt"],
-  Category: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt"]
+  Category: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt"],
+  Salary: ["id", "userId", "value", "createdAt", "updatedAt"]
 };
 
 type ModelNames = keyof typeof models;
@@ -446,8 +481,10 @@ const outputsInfo = {
   ExpenseGroupBy: ["id", "userId", "name", "value", "rating", "date", "description", "timesPerMonth", "createdAt", "updatedAt", "_count", "_avg", "_sum", "_min", "_max"],
   AggregateCategory: ["_count", "_min", "_max"],
   CategoryGroupBy: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt", "_count", "_min", "_max"],
+  AggregateSalary: ["_count", "_avg", "_sum", "_min", "_max"],
+  SalaryGroupBy: ["id", "userId", "value", "createdAt", "updatedAt", "_count", "_avg", "_sum", "_min", "_max"],
   AffectedRowsOutput: ["count"],
-  UserCount: ["recipe", "currentSavings", "wishlistItems", "expenses", "categories"],
+  UserCount: ["recipe", "savings", "wishlistItems", "expenses", "categories"],
   UserCountAggregate: ["id", "username", "email", "password", "createdAt", "updatedAt", "_all"],
   UserMinAggregate: ["id", "username", "email", "password", "createdAt", "updatedAt"],
   UserMaxAggregate: ["id", "username", "email", "password", "createdAt", "updatedAt"],
@@ -475,7 +512,12 @@ const outputsInfo = {
   CategoryCount: ["expenses"],
   CategoryCountAggregate: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt", "_all"],
   CategoryMinAggregate: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt"],
-  CategoryMaxAggregate: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt"]
+  CategoryMaxAggregate: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt"],
+  SalaryCountAggregate: ["id", "userId", "value", "createdAt", "updatedAt", "_all"],
+  SalaryAvgAggregate: ["value"],
+  SalarySumAggregate: ["value"],
+  SalaryMinAggregate: ["id", "userId", "value", "createdAt", "updatedAt"],
+  SalaryMaxAggregate: ["id", "userId", "value", "createdAt", "updatedAt"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -516,8 +558,8 @@ export function applyOutputTypesEnhanceMap(
 }
 
 const inputsInfo = {
-  UserWhereInput: ["AND", "OR", "NOT", "id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses", "categories"],
-  UserOrderByWithRelationInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses", "categories"],
+  UserWhereInput: ["AND", "OR", "NOT", "id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "expenses", "categories", "salary"],
+  UserOrderByWithRelationInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "expenses", "categories", "salary"],
   UserWhereUniqueInput: ["id", "username", "email"],
   UserOrderByWithAggregationInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "_count", "_max", "_min"],
   UserScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "username", "email", "password", "createdAt", "updatedAt"],
@@ -546,8 +588,13 @@ const inputsInfo = {
   CategoryWhereUniqueInput: ["id"],
   CategoryOrderByWithAggregationInput: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt", "_count", "_max", "_min"],
   CategoryScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "userId", "name", "bgColor", "createdAt", "updatedAt"],
-  UserCreateInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses", "categories"],
-  UserUpdateInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses", "categories"],
+  SalaryWhereInput: ["AND", "OR", "NOT", "id", "userId", "user", "value", "createdAt", "updatedAt"],
+  SalaryOrderByWithRelationInput: ["id", "userId", "user", "value", "createdAt", "updatedAt"],
+  SalaryWhereUniqueInput: ["id", "userId"],
+  SalaryOrderByWithAggregationInput: ["id", "userId", "value", "createdAt", "updatedAt", "_count", "_avg", "_max", "_min", "_sum"],
+  SalaryScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "userId", "value", "createdAt", "updatedAt"],
+  UserCreateInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "expenses", "categories", "salary"],
+  UserUpdateInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "expenses", "categories", "salary"],
   UserCreateManyInput: ["id", "username", "email", "password", "createdAt", "updatedAt"],
   UserUpdateManyMutationInput: ["id", "username", "email", "password", "createdAt", "updatedAt"],
   RecipeCreateInput: ["id", "user", "title", "description", "rating", "savedPosition", "createdAt", "updatedAt"],
@@ -570,6 +617,10 @@ const inputsInfo = {
   CategoryUpdateInput: ["id", "user", "expenses", "name", "bgColor", "createdAt", "updatedAt"],
   CategoryCreateManyInput: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt"],
   CategoryUpdateManyMutationInput: ["id", "name", "bgColor", "createdAt", "updatedAt"],
+  SalaryCreateInput: ["id", "user", "value", "createdAt", "updatedAt"],
+  SalaryUpdateInput: ["id", "user", "value", "createdAt", "updatedAt"],
+  SalaryCreateManyInput: ["id", "userId", "value", "createdAt", "updatedAt"],
+  SalaryUpdateManyMutationInput: ["id", "value", "createdAt", "updatedAt"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
   DateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   RecipeListRelationFilter: ["every", "some", "none"],
@@ -577,6 +628,7 @@ const inputsInfo = {
   WishlistItemListRelationFilter: ["every", "some", "none"],
   ExpenseListRelationFilter: ["every", "some", "none"],
   CategoryListRelationFilter: ["every", "some", "none"],
+  SalaryRelationFilter: ["is", "isNot"],
   RecipeOrderByRelationAggregateInput: ["_count"],
   SavingOrderByRelationAggregateInput: ["_count"],
   WishlistItemOrderByRelationAggregateInput: ["_count"],
@@ -621,11 +673,19 @@ const inputsInfo = {
   CategoryCountOrderByAggregateInput: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt"],
   CategoryMaxOrderByAggregateInput: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt"],
   CategoryMinOrderByAggregateInput: ["id", "userId", "name", "bgColor", "createdAt", "updatedAt"],
+  IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  SalaryCountOrderByAggregateInput: ["id", "userId", "value", "createdAt", "updatedAt"],
+  SalaryAvgOrderByAggregateInput: ["value"],
+  SalaryMaxOrderByAggregateInput: ["id", "userId", "value", "createdAt", "updatedAt"],
+  SalaryMinOrderByAggregateInput: ["id", "userId", "value", "createdAt", "updatedAt"],
+  SalarySumOrderByAggregateInput: ["value"],
+  IntWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
   RecipeCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
   SavingCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
   WishlistItemCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
   ExpenseCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
   CategoryCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
+  SalaryCreateNestedOneWithoutUserInput: ["create", "connectOrCreate", "connect"],
   StringFieldUpdateOperationsInput: ["set"],
   DateTimeFieldUpdateOperationsInput: ["set"],
   RecipeUpdateManyWithoutUserNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
@@ -633,11 +693,12 @@ const inputsInfo = {
   WishlistItemUpdateManyWithoutUserNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   ExpenseUpdateManyWithoutUserNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   CategoryUpdateManyWithoutUserNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  SalaryUpdateOneWithoutUserNestedInput: ["create", "connectOrCreate", "upsert", "disconnect", "delete", "connect", "update"],
   UserCreateNestedOneWithoutRecipeInput: ["create", "connectOrCreate", "connect"],
   UserUpdateOneRequiredWithoutRecipeNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
   NullableIntFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
-  UserCreateNestedOneWithoutCurrentSavingsInput: ["create", "connectOrCreate", "connect"],
-  UserUpdateOneRequiredWithoutCurrentSavingsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  UserCreateNestedOneWithoutSavingsInput: ["create", "connectOrCreate", "connect"],
+  UserUpdateOneRequiredWithoutSavingsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
   DecimalFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
   UserCreateNestedOneWithoutWishlistItemsInput: ["create", "connectOrCreate", "connect"],
   UserUpdateOneRequiredWithoutWishlistItemsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
@@ -652,6 +713,9 @@ const inputsInfo = {
   ExpenseCreateNestedManyWithoutCategoriesInput: ["create", "connectOrCreate", "connect"],
   UserUpdateOneRequiredWithoutCategoriesNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
   ExpenseUpdateManyWithoutCategoriesNestedInput: ["create", "connectOrCreate", "upsert", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  UserCreateNestedOneWithoutSalaryInput: ["create", "connectOrCreate", "connect"],
+  UserUpdateOneRequiredWithoutSalaryNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  IntFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
   NestedStringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
   NestedDateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
@@ -668,6 +732,8 @@ const inputsInfo = {
   NestedDateTimeNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_min", "_max"],
   NestedStringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
   NestedDecimalNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
+  NestedIntWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
+  NestedFloatFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   RecipeCreateWithoutUserInput: ["id", "title", "description", "rating", "savedPosition", "createdAt", "updatedAt"],
   RecipeCreateOrConnectWithoutUserInput: ["where", "create"],
   RecipeCreateManyUserInputEnvelope: ["data", "skipDuplicates"],
@@ -683,6 +749,8 @@ const inputsInfo = {
   CategoryCreateWithoutUserInput: ["id", "expenses", "name", "bgColor", "createdAt", "updatedAt"],
   CategoryCreateOrConnectWithoutUserInput: ["where", "create"],
   CategoryCreateManyUserInputEnvelope: ["data", "skipDuplicates"],
+  SalaryCreateWithoutUserInput: ["id", "value", "createdAt", "updatedAt"],
+  SalaryCreateOrConnectWithoutUserInput: ["where", "create"],
   RecipeUpsertWithWhereUniqueWithoutUserInput: ["where", "update", "create"],
   RecipeUpdateWithWhereUniqueWithoutUserInput: ["where", "data"],
   RecipeUpdateManyWithWhereWithoutUserInput: ["where", "data"],
@@ -703,36 +771,42 @@ const inputsInfo = {
   CategoryUpdateWithWhereUniqueWithoutUserInput: ["where", "data"],
   CategoryUpdateManyWithWhereWithoutUserInput: ["where", "data"],
   CategoryScalarWhereInput: ["AND", "OR", "NOT", "id", "userId", "name", "bgColor", "createdAt", "updatedAt"],
-  UserCreateWithoutRecipeInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "currentSavings", "wishlistItems", "expenses", "categories"],
+  SalaryUpsertWithoutUserInput: ["update", "create"],
+  SalaryUpdateWithoutUserInput: ["id", "value", "createdAt", "updatedAt"],
+  UserCreateWithoutRecipeInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "savings", "wishlistItems", "expenses", "categories", "salary"],
   UserCreateOrConnectWithoutRecipeInput: ["where", "create"],
   UserUpsertWithoutRecipeInput: ["update", "create"],
-  UserUpdateWithoutRecipeInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "currentSavings", "wishlistItems", "expenses", "categories"],
-  UserCreateWithoutCurrentSavingsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "wishlistItems", "expenses", "categories"],
-  UserCreateOrConnectWithoutCurrentSavingsInput: ["where", "create"],
-  UserUpsertWithoutCurrentSavingsInput: ["update", "create"],
-  UserUpdateWithoutCurrentSavingsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "wishlistItems", "expenses", "categories"],
-  UserCreateWithoutWishlistItemsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "expenses", "categories"],
+  UserUpdateWithoutRecipeInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "savings", "wishlistItems", "expenses", "categories", "salary"],
+  UserCreateWithoutSavingsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "wishlistItems", "expenses", "categories", "salary"],
+  UserCreateOrConnectWithoutSavingsInput: ["where", "create"],
+  UserUpsertWithoutSavingsInput: ["update", "create"],
+  UserUpdateWithoutSavingsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "wishlistItems", "expenses", "categories", "salary"],
+  UserCreateWithoutWishlistItemsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "expenses", "categories", "salary"],
   UserCreateOrConnectWithoutWishlistItemsInput: ["where", "create"],
   UserUpsertWithoutWishlistItemsInput: ["update", "create"],
-  UserUpdateWithoutWishlistItemsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "expenses", "categories"],
-  UserCreateWithoutExpensesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "categories"],
+  UserUpdateWithoutWishlistItemsInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "expenses", "categories", "salary"],
+  UserCreateWithoutExpensesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "categories", "salary"],
   UserCreateOrConnectWithoutExpensesInput: ["where", "create"],
   CategoryCreateWithoutExpensesInput: ["id", "user", "name", "bgColor", "createdAt", "updatedAt"],
   CategoryCreateOrConnectWithoutExpensesInput: ["where", "create"],
   UserUpsertWithoutExpensesInput: ["update", "create"],
-  UserUpdateWithoutExpensesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "categories"],
+  UserUpdateWithoutExpensesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "categories", "salary"],
   CategoryUpsertWithWhereUniqueWithoutExpensesInput: ["where", "update", "create"],
   CategoryUpdateWithWhereUniqueWithoutExpensesInput: ["where", "data"],
   CategoryUpdateManyWithWhereWithoutExpensesInput: ["where", "data"],
-  UserCreateWithoutCategoriesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses"],
+  UserCreateWithoutCategoriesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "expenses", "salary"],
   UserCreateOrConnectWithoutCategoriesInput: ["where", "create"],
   ExpenseCreateWithoutCategoriesInput: ["id", "user", "name", "value", "rating", "date", "description", "timesPerMonth", "createdAt", "updatedAt"],
   ExpenseCreateOrConnectWithoutCategoriesInput: ["where", "create"],
   UserUpsertWithoutCategoriesInput: ["update", "create"],
-  UserUpdateWithoutCategoriesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "currentSavings", "wishlistItems", "expenses"],
+  UserUpdateWithoutCategoriesInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "expenses", "salary"],
   ExpenseUpsertWithWhereUniqueWithoutCategoriesInput: ["where", "update", "create"],
   ExpenseUpdateWithWhereUniqueWithoutCategoriesInput: ["where", "data"],
   ExpenseUpdateManyWithWhereWithoutCategoriesInput: ["where", "data"],
+  UserCreateWithoutSalaryInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "expenses", "categories"],
+  UserCreateOrConnectWithoutSalaryInput: ["where", "create"],
+  UserUpsertWithoutSalaryInput: ["update", "create"],
+  UserUpdateWithoutSalaryInput: ["id", "username", "email", "password", "createdAt", "updatedAt", "recipe", "savings", "wishlistItems", "expenses", "categories"],
   RecipeCreateManyUserInput: ["id", "title", "description", "rating", "savedPosition", "createdAt", "updatedAt"],
   SavingCreateManyUserInput: ["id", "value", "date", "createdAt", "updatedAt"],
   WishlistItemCreateManyUserInput: ["id", "itemName", "priceInThousands", "createdAt", "updatedAt"],

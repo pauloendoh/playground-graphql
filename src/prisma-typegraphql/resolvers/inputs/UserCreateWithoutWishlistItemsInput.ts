@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { CategoryCreateNestedManyWithoutUserInput } from "../inputs/CategoryCreateNestedManyWithoutUserInput";
 import { ExpenseCreateNestedManyWithoutUserInput } from "../inputs/ExpenseCreateNestedManyWithoutUserInput";
 import { RecipeCreateNestedManyWithoutUserInput } from "../inputs/RecipeCreateNestedManyWithoutUserInput";
+import { SalaryCreateNestedOneWithoutUserInput } from "../inputs/SalaryCreateNestedOneWithoutUserInput";
 import { SavingCreateNestedManyWithoutUserInput } from "../inputs/SavingCreateNestedManyWithoutUserInput";
 
 @TypeGraphQL.InputType("UserCreateWithoutWishlistItemsInput", {
@@ -49,7 +50,7 @@ export class UserCreateWithoutWishlistItemsInput {
   @TypeGraphQL.Field(_type => SavingCreateNestedManyWithoutUserInput, {
     nullable: true
   })
-  currentSavings?: SavingCreateNestedManyWithoutUserInput | undefined;
+  savings?: SavingCreateNestedManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => ExpenseCreateNestedManyWithoutUserInput, {
     nullable: true
@@ -60,4 +61,9 @@ export class UserCreateWithoutWishlistItemsInput {
     nullable: true
   })
   categories?: CategoryCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => SalaryCreateNestedOneWithoutUserInput, {
+    nullable: true
+  })
+  salary?: SalaryCreateNestedOneWithoutUserInput | undefined;
 }

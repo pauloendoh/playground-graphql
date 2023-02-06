@@ -1,57 +1,63 @@
-import * as TypeGraphQL from 'type-graphql'
-import { Category } from '../models/Category'
-import { Expense } from '../models/Expense'
-import { Recipe } from '../models/Recipe'
-import { Saving } from '../models/Saving'
-import { WishlistItem } from '../models/WishlistItem'
-import { UserCount } from '../resolvers/outputs/UserCount'
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Prisma } from "@prisma/client";
+import { DecimalJSScalar } from "../scalars";
+import { Category } from "../models/Category";
+import { Expense } from "../models/Expense";
+import { Recipe } from "../models/Recipe";
+import { Salary } from "../models/Salary";
+import { Saving } from "../models/Saving";
+import { WishlistItem } from "../models/WishlistItem";
+import { UserCount } from "../resolvers/outputs/UserCount";
 
-@TypeGraphQL.ObjectType('User', {
-  isAbstract: true,
+@TypeGraphQL.ObjectType("User", {
+  isAbstract: true
 })
 export class User {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
-  id!: string
+  id!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
-  username!: string
+  username!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
-  email!: string
+  email!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
-  password!: string
+  password!: string;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
-  createdAt!: Date
+  createdAt!: Date;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
-  updatedAt!: Date
+  updatedAt!: Date;
 
-  recipe?: Recipe[]
+  recipe?: Recipe[];
 
-  savings?: Saving[]
+  savings?: Saving[];
 
-  wishlistItems?: WishlistItem[]
+  wishlistItems?: WishlistItem[];
 
-  expenses?: Expense[]
+  expenses?: Expense[];
 
-  categories?: Category[]
+  categories?: Category[];
 
-  @TypeGraphQL.Field((_type) => UserCount, {
-    nullable: true,
+  salary?: Salary | null;
+
+  @TypeGraphQL.Field(_type => UserCount, {
+    nullable: true
   })
-  _count?: UserCount | null
+  _count?: UserCount | null;
 }

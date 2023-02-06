@@ -6,7 +6,7 @@ import { SavingWhereUniqueInput } from "../../../inputs/SavingWhereUniqueInput";
 import { SavingScalarFieldEnum } from "../../../../enums/SavingScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
-export class UserCurrentSavingsArgs {
+export class UserSavingsArgs {
   @TypeGraphQL.Field(_type => SavingWhereInput, {
     nullable: true
   })

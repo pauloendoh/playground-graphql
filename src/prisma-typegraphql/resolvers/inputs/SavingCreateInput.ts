@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { UserCreateNestedOneWithoutCurrentSavingsInput } from "../inputs/UserCreateNestedOneWithoutCurrentSavingsInput";
+import { UserCreateNestedOneWithoutSavingsInput } from "../inputs/UserCreateNestedOneWithoutSavingsInput";
 
 @TypeGraphQL.InputType("SavingCreateInput", {
   isAbstract: true
@@ -13,10 +13,10 @@ export class SavingCreateInput {
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutCurrentSavingsInput, {
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutSavingsInput, {
     nullable: false
   })
-  user!: UserCreateNestedOneWithoutCurrentSavingsInput;
+  user!: UserCreateNestedOneWithoutSavingsInput;
 
   @TypeGraphQL.Field(_type => DecimalJSScalar, {
     nullable: false
