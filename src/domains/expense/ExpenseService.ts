@@ -35,4 +35,8 @@ export class ExpenseService {
     const deleted = await this.expenseRepository.deleteExpense(id)
     return !!deleted
   }
+
+  async findRecurrentExpenses(userId: string) {
+    return this.expenseRepository.findRecurrentExpenses(userId)
+  }
 }

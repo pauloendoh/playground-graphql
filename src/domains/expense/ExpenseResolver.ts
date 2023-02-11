@@ -49,4 +49,10 @@ export class ExpenseResolver {
   ): Promise<boolean> {
     return this.expenseService.deleteExpense(expenseId, req.user.id)
   }
+
+  @Query(() => [Expense])
+  @UseMiddleware(isAuth)
+  async recurrentExpensesQuery(@Ctx() { req }: MyContext): Promise<Expense[]> {
+    return this.expenseService.findRecurrentExpenses(req.user.id)
+  }
 }

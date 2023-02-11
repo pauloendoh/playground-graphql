@@ -78,4 +78,18 @@ export class ExpenseRepository {
       },
     })
   }
+
+  findRecurrentExpenses(userId: string) {
+    return this.prisma.expense.findMany({
+      where: {
+        userId,
+        timesPerMonth: {
+          gt: 0,
+        },
+      },
+      orderBy: {
+        value: 'desc',
+      },
+    })
+  }
 }
