@@ -2,7 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { IssueLabel } from "../models/IssueLabel";
 import { User } from "../models/User";
+import { IssueCount } from "../resolvers/outputs/IssueCount";
 
 @TypeGraphQL.ObjectType("Issue", {
   isAbstract: true
@@ -19,6 +21,16 @@ export class Issue {
   userId!: string;
 
   user?: User;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  position!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  solvedPosition!: number;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -44,4 +56,11 @@ export class Issue {
     nullable: false
   })
   updatedAt!: Date;
+
+  labels?: IssueLabel[];
+
+  @TypeGraphQL.Field(_type => IssueCount, {
+    nullable: true
+  })
+  _count?: IssueCount | null;
 }

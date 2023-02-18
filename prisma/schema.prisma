@@ -30,6 +30,7 @@ model User {
   categories    Category[]
   salary        Salary?
   issues        Issue[]
+  issueLabels   IssueLabel[]
 }
 
 model Recipe {
@@ -117,9 +118,27 @@ model Issue {
   userId String
   user   User   @relation(fields: [userId], references: [id])
 
+  position       Int @default(1)
+  solvedPosition Int @default(1)
+
   title     String
   solution  String
-  isSolved  Boolean  @default(false)
+  isSolved  Boolean      @default(false)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  labels    IssueLabel[]
+}
+
+model IssueLabel {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  issues Issue[]
+
+  name    String
+  bgColor String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

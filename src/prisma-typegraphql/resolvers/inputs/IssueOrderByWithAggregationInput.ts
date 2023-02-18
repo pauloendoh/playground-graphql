@@ -2,9 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { IssueAvgOrderByAggregateInput } from "../inputs/IssueAvgOrderByAggregateInput";
 import { IssueCountOrderByAggregateInput } from "../inputs/IssueCountOrderByAggregateInput";
 import { IssueMaxOrderByAggregateInput } from "../inputs/IssueMaxOrderByAggregateInput";
 import { IssueMinOrderByAggregateInput } from "../inputs/IssueMinOrderByAggregateInput";
+import { IssueSumOrderByAggregateInput } from "../inputs/IssueSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("IssueOrderByWithAggregationInput", {
@@ -20,6 +22,16 @@ export class IssueOrderByWithAggregationInput {
     nullable: true
   })
   userId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  position?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  solvedPosition?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -51,6 +63,11 @@ export class IssueOrderByWithAggregationInput {
   })
   _count?: IssueCountOrderByAggregateInput | undefined;
 
+  @TypeGraphQL.Field(_type => IssueAvgOrderByAggregateInput, {
+    nullable: true
+  })
+  _avg?: IssueAvgOrderByAggregateInput | undefined;
+
   @TypeGraphQL.Field(_type => IssueMaxOrderByAggregateInput, {
     nullable: true
   })
@@ -60,4 +77,9 @@ export class IssueOrderByWithAggregationInput {
     nullable: true
   })
   _min?: IssueMinOrderByAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => IssueSumOrderByAggregateInput, {
+    nullable: true
+  })
+  _sum?: IssueSumOrderByAggregateInput | undefined;
 }

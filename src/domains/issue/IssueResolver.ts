@@ -10,7 +10,7 @@ import { Issue } from '../../prisma-typegraphql'
 import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
 import { IssueService } from './IssueService'
-import { IssueValidInput } from './types/IssueValidInput'
+import { IssueInput } from './types/IssueInput'
 
 @Resolver()
 export class IssueResolver {
@@ -26,7 +26,7 @@ export class IssueResolver {
   @UseMiddleware(isAuth)
   async saveIssueMutation(
     @Ctx() { req }: MyContext,
-    @Arg('data') data: IssueValidInput
+    @Arg('data') data: IssueInput
   ): Promise<Issue> {
     return this.issueService.saveIssue(data, req.user.id)
   }

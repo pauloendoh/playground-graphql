@@ -35,5 +35,5 @@ export class FindFirstIssueOrThrowArgs {
   @TypeGraphQL.Field(_type => [IssueScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "userId" | "title" | "solution" | "isSolved" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "userId" | "position" | "solvedPosition" | "title" | "solution" | "isSolved" | "createdAt" | "updatedAt"> | undefined;
 }

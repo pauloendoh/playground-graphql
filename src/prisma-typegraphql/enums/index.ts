@@ -1,5 +1,6 @@
 export { CategoryScalarFieldEnum } from "./CategoryScalarFieldEnum";
 export { ExpenseScalarFieldEnum } from "./ExpenseScalarFieldEnum";
+export { IssueLabelScalarFieldEnum } from "./IssueLabelScalarFieldEnum";
 export { IssueScalarFieldEnum } from "./IssueScalarFieldEnum";
 export { QueryMode } from "./QueryMode";
 export { RecipeScalarFieldEnum } from "./RecipeScalarFieldEnum";

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Issue" ADD COLUMN     "position" INTEGER NOT NULL DEFAULT 1,
+ADD COLUMN     "solvedPosition" INTEGER NOT NULL DEFAULT 1;

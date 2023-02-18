@@ -4,6 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
+import { IntFilter } from "../inputs/IntFilter";
+import { IssueLabelListRelationFilter } from "../inputs/IssueLabelListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
 
@@ -41,6 +43,16 @@ export class IssueWhereInput {
   })
   user?: UserRelationFilter | undefined;
 
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  position?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  solvedPosition?: IntFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
@@ -65,4 +77,9 @@ export class IssueWhereInput {
     nullable: true
   })
   updatedAt?: DateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IssueLabelListRelationFilter, {
+    nullable: true
+  })
+  labels?: IssueLabelListRelationFilter | undefined;
 }

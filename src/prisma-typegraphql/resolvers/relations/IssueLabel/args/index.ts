@@ -1,0 +1,1 @@
+export { IssueLabelIssuesArgs } from "./IssueLabelIssuesArgs";

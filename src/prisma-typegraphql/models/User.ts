@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../scalars";
 import { Category } from "../models/Category";
 import { Expense } from "../models/Expense";
 import { Issue } from "../models/Issue";
+import { IssueLabel } from "../models/IssueLabel";
 import { Recipe } from "../models/Recipe";
 import { Salary } from "../models/Salary";
 import { Saving } from "../models/Saving";
@@ -58,6 +59,8 @@ export class User {
   salary?: Salary | null;
 
   issues?: Issue[];
+
+  issueLabels?: IssueLabel[];
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true

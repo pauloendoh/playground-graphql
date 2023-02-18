@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { CategoryUpdateManyWithoutUserNestedInput } from "../inputs/CategoryUpdateManyWithoutUserNestedInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { ExpenseUpdateManyWithoutUserNestedInput } from "../inputs/ExpenseUpdateManyWithoutUserNestedInput";
+import { IssueLabelUpdateManyWithoutUserNestedInput } from "../inputs/IssueLabelUpdateManyWithoutUserNestedInput";
 import { IssueUpdateManyWithoutUserNestedInput } from "../inputs/IssueUpdateManyWithoutUserNestedInput";
 import { RecipeUpdateManyWithoutUserNestedInput } from "../inputs/RecipeUpdateManyWithoutUserNestedInput";
 import { SavingUpdateManyWithoutUserNestedInput } from "../inputs/SavingUpdateManyWithoutUserNestedInput";
@@ -74,4 +75,9 @@ export class UserUpdateWithoutSalaryInput {
     nullable: true
   })
   issues?: IssueUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => IssueLabelUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  issueLabels?: IssueLabelUpdateManyWithoutUserNestedInput | undefined;
 }

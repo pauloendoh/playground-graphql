@@ -2,9 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { IssueAvgAggregate } from "../outputs/IssueAvgAggregate";
 import { IssueCountAggregate } from "../outputs/IssueCountAggregate";
 import { IssueMaxAggregate } from "../outputs/IssueMaxAggregate";
 import { IssueMinAggregate } from "../outputs/IssueMinAggregate";
+import { IssueSumAggregate } from "../outputs/IssueSumAggregate";
 
 @TypeGraphQL.ObjectType("IssueGroupBy", {
   isAbstract: true
@@ -19,6 +21,16 @@ export class IssueGroupBy {
     nullable: false
   })
   userId!: string;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  position!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  solvedPosition!: number;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -49,6 +61,16 @@ export class IssueGroupBy {
     nullable: true
   })
   _count!: IssueCountAggregate | null;
+
+  @TypeGraphQL.Field(_type => IssueAvgAggregate, {
+    nullable: true
+  })
+  _avg!: IssueAvgAggregate | null;
+
+  @TypeGraphQL.Field(_type => IssueSumAggregate, {
+    nullable: true
+  })
+  _sum!: IssueSumAggregate | null;
 
   @TypeGraphQL.Field(_type => IssueMinAggregate, {
     nullable: true

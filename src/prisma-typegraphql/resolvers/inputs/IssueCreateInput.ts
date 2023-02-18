@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { IssueLabelCreateNestedManyWithoutIssuesInput } from "../inputs/IssueLabelCreateNestedManyWithoutIssuesInput";
 import { UserCreateNestedOneWithoutIssuesInput } from "../inputs/UserCreateNestedOneWithoutIssuesInput";
 
 @TypeGraphQL.InputType("IssueCreateInput", {
@@ -17,6 +18,16 @@ export class IssueCreateInput {
     nullable: false
   })
   user!: UserCreateNestedOneWithoutIssuesInput;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  position?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  solvedPosition?: number | undefined;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -42,4 +53,9 @@ export class IssueCreateInput {
     nullable: true
   })
   updatedAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => IssueLabelCreateNestedManyWithoutIssuesInput, {
+    nullable: true
+  })
+  labels?: IssueLabelCreateNestedManyWithoutIssuesInput | undefined;
 }

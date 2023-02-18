@@ -20,7 +20,7 @@ export class GroupByIssueArgs {
   @TypeGraphQL.Field(_type => [IssueScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "userId" | "title" | "solution" | "isSolved" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "userId" | "position" | "solvedPosition" | "title" | "solution" | "isSolved" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => IssueScalarWhereWithAggregatesInput, {
     nullable: true

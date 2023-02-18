@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { ExpenseUpdateManyWithoutUserNestedInput } from "../inputs/ExpenseUpdateManyWithoutUserNestedInput";
+import { IssueLabelUpdateManyWithoutUserNestedInput } from "../inputs/IssueLabelUpdateManyWithoutUserNestedInput";
 import { IssueUpdateManyWithoutUserNestedInput } from "../inputs/IssueUpdateManyWithoutUserNestedInput";
 import { RecipeUpdateManyWithoutUserNestedInput } from "../inputs/RecipeUpdateManyWithoutUserNestedInput";
 import { SalaryUpdateOneWithoutUserNestedInput } from "../inputs/SalaryUpdateOneWithoutUserNestedInput";
@@ -74,4 +75,9 @@ export class UserUpdateWithoutCategoriesInput {
     nullable: true
   })
   issues?: IssueUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => IssueLabelUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  issueLabels?: IssueLabelUpdateManyWithoutUserNestedInput | undefined;
 }

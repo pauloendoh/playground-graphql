@@ -17,6 +17,16 @@ export class IssueMinAggregate {
   })
   userId!: string | null;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  position!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  solvedPosition!: number | null;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })

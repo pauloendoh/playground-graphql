@@ -17,6 +17,16 @@ export class IssueCreateManyInput {
   })
   userId!: string;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  position?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  solvedPosition?: number | undefined;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })

@@ -1,5 +1,5 @@
 import { myPrismaClient } from '../../utils/myPrismaClient'
-import { IssueValidInput } from './types/IssueValidInput'
+import { IssueInput } from './types/IssueInput'
 
 export class IssueRepository {
   constructor(private prismaClient = myPrismaClient) {}
@@ -21,21 +21,26 @@ export class IssueRepository {
     })
   }
 
-  createIssue(input: IssueValidInput, userId: string) {
-    const { user, ...data } = input
+  createIssue(input: IssueInput, userId: string) {
+    const { user, updatedAt, createdAt, labelIds, ...data } = input
     return this.prismaClient.issue.create({
       data: {
         ...data,
+        labels: { connect: input.labelIds?.map((id) => ({ id })) },
         userId,
       },
     })
   }
 
-  updateIssue(input: IssueValidInput) {
-    const { user, updatedAt, ...data } = input
+  updateIssue(input: IssueInput) {
+    const { user, updatedAt, createdAt, labelIds, ...data } = input
 
     return this.prismaClient.issue.update({
-      data,
+      data: {
+        ...data,
+        labels: { connect: input.labelIds?.map((id) => ({ id })) },
+        userId: undefined,
+      },
       where: {
         id: input.id,
       },

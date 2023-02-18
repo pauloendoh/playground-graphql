@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { CategoryCreateNestedManyWithoutUserInput } from "../inputs/CategoryCreateNestedManyWithoutUserInput";
 import { ExpenseCreateNestedManyWithoutUserInput } from "../inputs/ExpenseCreateNestedManyWithoutUserInput";
 import { IssueCreateNestedManyWithoutUserInput } from "../inputs/IssueCreateNestedManyWithoutUserInput";
+import { IssueLabelCreateNestedManyWithoutUserInput } from "../inputs/IssueLabelCreateNestedManyWithoutUserInput";
 import { RecipeCreateNestedManyWithoutUserInput } from "../inputs/RecipeCreateNestedManyWithoutUserInput";
 import { SavingCreateNestedManyWithoutUserInput } from "../inputs/SavingCreateNestedManyWithoutUserInput";
 import { WishlistItemCreateNestedManyWithoutUserInput } from "../inputs/WishlistItemCreateNestedManyWithoutUserInput";
@@ -72,4 +73,9 @@ export class UserCreateWithoutSalaryInput {
     nullable: true
   })
   issues?: IssueCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => IssueLabelCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  issueLabels?: IssueLabelCreateNestedManyWithoutUserInput | undefined;
 }

@@ -1,5 +1,5 @@
 import { IssueRepository } from './IssueRepository'
-import { IssueValidInput } from './types/IssueValidInput'
+import { IssueInput } from './types/IssueInput'
 
 export class IssueService {
   constructor(private issueRepo = new IssueRepository()) {}
@@ -8,17 +8,17 @@ export class IssueService {
     return this.issueRepo.findIssues(userId)
   }
 
-  saveIssue(input: IssueValidInput, userId: string) {
+  saveIssue(input: IssueInput, userId: string) {
     if (input.id) return this.updateIssue(input, userId)
 
     return this.createIssue(input, userId)
   }
 
-  createIssue(input: IssueValidInput, userId: string) {
+  createIssue(input: IssueInput, userId: string) {
     return this.issueRepo.createIssue(input, userId)
   }
 
-  updateIssue(input: IssueValidInput, userId: string) {
+  updateIssue(input: IssueInput, userId: string) {
     const isAllowed = this.issueRepo.userOwnsIssue(input.id!, userId)
     if (!isAllowed) throw new Error('You are not allowed to update this issue')
 

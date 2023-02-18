@@ -4,6 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
+import { IssueLabelUpdateManyWithoutIssuesNestedInput } from "../inputs/IssueLabelUpdateManyWithoutIssuesNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { UserUpdateOneRequiredWithoutIssuesNestedInput } from "../inputs/UserUpdateOneRequiredWithoutIssuesNestedInput";
 
@@ -20,6 +22,16 @@ export class IssueUpdateInput {
     nullable: true
   })
   user?: UserUpdateOneRequiredWithoutIssuesNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  position?: IntFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  solvedPosition?: IntFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
@@ -45,4 +57,9 @@ export class IssueUpdateInput {
     nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => IssueLabelUpdateManyWithoutIssuesNestedInput, {
+    nullable: true
+  })
+  labels?: IssueLabelUpdateManyWithoutIssuesNestedInput | undefined;
 }

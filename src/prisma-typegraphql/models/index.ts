@@ -1,6 +1,7 @@
 export { Category } from "./Category";
 export { Expense } from "./Expense";
 export { Issue } from "./Issue";
+export { IssueLabel } from "./IssueLabel";
 export { Recipe } from "./Recipe";
 export { Salary } from "./Salary";
 export { Saving } from "./Saving";
