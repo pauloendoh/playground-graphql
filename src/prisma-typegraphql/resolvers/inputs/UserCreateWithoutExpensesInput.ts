@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryCreateNestedManyWithoutUserInput } from "../inputs/CategoryCreateNestedManyWithoutUserInput";
+import { IssueCreateNestedManyWithoutUserInput } from "../inputs/IssueCreateNestedManyWithoutUserInput";
 import { RecipeCreateNestedManyWithoutUserInput } from "../inputs/RecipeCreateNestedManyWithoutUserInput";
 import { SalaryCreateNestedOneWithoutUserInput } from "../inputs/SalaryCreateNestedOneWithoutUserInput";
 import { SavingCreateNestedManyWithoutUserInput } from "../inputs/SavingCreateNestedManyWithoutUserInput";
@@ -66,4 +67,9 @@ export class UserCreateWithoutExpensesInput {
     nullable: true
   })
   salary?: SalaryCreateNestedOneWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => IssueCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  issues?: IssueCreateNestedManyWithoutUserInput | undefined;
 }

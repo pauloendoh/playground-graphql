@@ -31,4 +31,9 @@ export class UserCount {
     nullable: false
   })
   categories!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  issues!: number;
 }

@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { CategoryListRelationFilter } from "../inputs/CategoryListRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { ExpenseListRelationFilter } from "../inputs/ExpenseListRelationFilter";
+import { IssueListRelationFilter } from "../inputs/IssueListRelationFilter";
 import { RecipeListRelationFilter } from "../inputs/RecipeListRelationFilter";
 import { SalaryRelationFilter } from "../inputs/SalaryRelationFilter";
 import { SavingListRelationFilter } from "../inputs/SavingListRelationFilter";
@@ -89,4 +90,9 @@ export class UserWhereInput {
     nullable: true
   })
   salary?: SalaryRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IssueListRelationFilter, {
+    nullable: true
+  })
+  issues?: IssueListRelationFilter | undefined;
 }

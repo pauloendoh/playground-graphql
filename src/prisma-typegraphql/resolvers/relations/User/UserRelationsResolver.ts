@@ -1,6 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import { Category } from "../../../models/Category";
 import { Expense } from "../../../models/Expense";
+import { Issue } from "../../../models/Issue";
 import { Recipe } from "../../../models/Recipe";
 import { Salary } from "../../../models/Salary";
 import { Saving } from "../../../models/Saving";
@@ -8,6 +9,7 @@ import { User } from "../../../models/User";
 import { WishlistItem } from "../../../models/WishlistItem";
 import { UserCategoriesArgs } from "./args/UserCategoriesArgs";
 import { UserExpensesArgs } from "./args/UserExpensesArgs";
+import { UserIssuesArgs } from "./args/UserIssuesArgs";
 import { UserRecipeArgs } from "./args/UserRecipeArgs";
 import { UserSavingsArgs } from "./args/UserSavingsArgs";
 import { UserWishlistItemsArgs } from "./args/UserWishlistItemsArgs";
@@ -79,5 +81,16 @@ export class UserRelationsResolver {
         id: user.id,
       },
     }).salary({});
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [Issue], {
+    nullable: false
+  })
+  async issues(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserIssuesArgs): Promise<Issue[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).issues(args);
   }
 }

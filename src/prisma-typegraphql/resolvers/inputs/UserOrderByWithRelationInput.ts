@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryOrderByRelationAggregateInput } from "../inputs/CategoryOrderByRelationAggregateInput";
 import { ExpenseOrderByRelationAggregateInput } from "../inputs/ExpenseOrderByRelationAggregateInput";
+import { IssueOrderByRelationAggregateInput } from "../inputs/IssueOrderByRelationAggregateInput";
 import { RecipeOrderByRelationAggregateInput } from "../inputs/RecipeOrderByRelationAggregateInput";
 import { SalaryOrderByWithRelationInput } from "../inputs/SalaryOrderByWithRelationInput";
 import { SavingOrderByRelationAggregateInput } from "../inputs/SavingOrderByRelationAggregateInput";
@@ -73,4 +74,9 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   salary?: SalaryOrderByWithRelationInput | undefined;
+
+  @TypeGraphQL.Field(_type => IssueOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  issues?: IssueOrderByRelationAggregateInput | undefined;
 }

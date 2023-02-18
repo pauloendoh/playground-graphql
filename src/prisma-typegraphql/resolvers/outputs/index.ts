@@ -1,6 +1,7 @@
 export { AffectedRowsOutput } from "./AffectedRowsOutput";
 export { AggregateCategory } from "./AggregateCategory";
 export { AggregateExpense } from "./AggregateExpense";
+export { AggregateIssue } from "./AggregateIssue";
 export { AggregateRecipe } from "./AggregateRecipe";
 export { AggregateSalary } from "./AggregateSalary";
 export { AggregateSaving } from "./AggregateSaving";
@@ -18,6 +19,10 @@ export { ExpenseGroupBy } from "./ExpenseGroupBy";
 export { ExpenseMaxAggregate } from "./ExpenseMaxAggregate";
 export { ExpenseMinAggregate } from "./ExpenseMinAggregate";
 export { ExpenseSumAggregate } from "./ExpenseSumAggregate";
+export { IssueCountAggregate } from "./IssueCountAggregate";
+export { IssueGroupBy } from "./IssueGroupBy";
+export { IssueMaxAggregate } from "./IssueMaxAggregate";
+export { IssueMinAggregate } from "./IssueMinAggregate";
 export { RecipeAvgAggregate } from "./RecipeAvgAggregate";
 export { RecipeCountAggregate } from "./RecipeCountAggregate";
 export { RecipeGroupBy } from "./RecipeGroupBy";

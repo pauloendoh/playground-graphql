@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Category } from "../models/Category";
 import { Expense } from "../models/Expense";
+import { Issue } from "../models/Issue";
 import { Recipe } from "../models/Recipe";
 import { Salary } from "../models/Salary";
 import { Saving } from "../models/Saving";
@@ -55,6 +56,8 @@ export class User {
   categories?: Category[];
 
   salary?: Salary | null;
+
+  issues?: Issue[];
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true
