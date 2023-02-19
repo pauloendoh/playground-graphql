@@ -1,3 +1,4 @@
+import { Issue } from '@prisma/client'
 import { myPrismaClient } from '../../utils/myPrismaClient'
 import { IssueInput } from './types/IssueInput'
 
@@ -80,5 +81,48 @@ export class IssueRepository {
         id: issueId,
       },
     })
+  }
+
+  findIssuesBetweenPositions = async (params: {
+    userId: string
+    isSolved: boolean
+    fromPosition: number
+    toPosition: number
+  }) => {
+    const { userId, isSolved, fromPosition, toPosition } = params
+
+    const lowerPosition = Math.min(fromPosition, toPosition)
+    const higherPosition = Math.max(fromPosition, toPosition)
+
+    const issues = await this.prismaClient.issue.findMany({
+      where: {
+        userId,
+        isSolved,
+        position: {
+          gte: lowerPosition,
+
+          lte: higherPosition,
+        },
+      },
+      orderBy: {
+        position: 'asc',
+      },
+    })
+
+    return issues
+  }
+
+  updateMany = async (issues: Issue[]) => {
+    // transaction
+    return this.prismaClient.$transaction(
+      issues.map((issue) => {
+        return this.prismaClient.issue.update({
+          where: {
+            id: issue.id,
+          },
+          data: issue,
+        })
+      })
+    )
   }
 }

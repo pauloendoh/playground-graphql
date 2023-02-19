@@ -1,4 +1,5 @@
 import { IssueRepository } from './IssueRepository'
+import { ChangeIssuePositionInput } from './types/ChangeIssuePositionInput'
 import { IssueInput } from './types/IssueInput'
 
 export class IssueService {
@@ -46,5 +47,38 @@ export class IssueService {
 
     const deleted = await this.issueRepo.deleteIssue(issueId)
     return !!deleted
+  }
+
+  async changeIssuePosition(userId: string, input: ChangeIssuePositionInput) {
+    const foundIssue = await this.issueRepo.userOwnsIssue(input.issueId, userId)
+    if (!foundIssue) throw new Error("Issue not found or you don't own it.")
+
+    let issuesBetween = await this.issueRepo.findIssuesBetweenPositions({
+      userId,
+      isSolved: foundIssue.isSolved,
+      fromPosition: input.fromPosition,
+      toPosition: input.toPosition,
+    })
+
+    const isIncreasingPosition = input.fromPosition < input.toPosition
+    if (isIncreasingPosition) {
+      issuesBetween = issuesBetween.map((issue) => ({
+        ...issue,
+        position: issue.position - 1,
+      }))
+    }
+    if (!isIncreasingPosition) {
+      issuesBetween = issuesBetween.map((issue) => ({
+        ...issue,
+        position: issue.position + 1,
+      }))
+    }
+
+    let index = issuesBetween.findIndex((i) => i.id === foundIssue.id)
+    issuesBetween[index].position = input.toPosition
+
+    await this.issueRepo.updateMany(issuesBetween)
+
+    return true
   }
 }
