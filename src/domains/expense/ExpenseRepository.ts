@@ -34,7 +34,7 @@ export class ExpenseRepository {
       },
       data: {
         ...data,
-        categories: { connect: input.categoryIds?.map((id) => ({ id })) },
+        categories: { set: input.categoryIds?.map((id) => ({ id })) },
         userId: undefined,
       },
     })

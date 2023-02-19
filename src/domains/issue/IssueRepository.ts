@@ -38,7 +38,9 @@ export class IssueRepository {
     return this.prismaClient.issue.update({
       data: {
         ...data,
-        labels: { connect: input.labelIds?.map((id) => ({ id })) },
+        labels: {
+          set: input.labelIds?.map((id) => ({ id })),
+        },
         userId: undefined,
       },
       where: {
