@@ -8,19 +8,34 @@ export class IssueService {
     return this.issueRepo.findIssues(userId)
   }
 
-  saveIssue(input: IssueInput, userId: string) {
+  async saveIssue(input: IssueInput, userId: string) {
     if (input.id) return this.updateIssue(input, userId)
 
     return this.createIssue(input, userId)
   }
 
-  createIssue(input: IssueInput, userId: string) {
+  async createIssue(input: IssueInput, userId: string) {
+    input.position = await this.issueRepo.findLastPosition(
+      userId,
+      input.isSolved
+    )
+
     return this.issueRepo.createIssue(input, userId)
   }
 
-  updateIssue(input: IssueInput, userId: string) {
+  async updateIssue(input: IssueInput, userId: string) {
     const isAllowed = this.issueRepo.userOwnsIssue(input.id!, userId)
     if (!isAllowed) throw new Error('You are not allowed to update this issue')
+
+    const prev = await this.issueRepo.findById(input.id)
+    if (!prev) throw new Error('Issue not found')
+
+    if (prev.isSolved !== input.isSolved) {
+      input.position = await this.issueRepo.findLastPosition(
+        userId,
+        input.isSolved
+      )
+    }
 
     return this.issueRepo.updateIssue(input)
   }

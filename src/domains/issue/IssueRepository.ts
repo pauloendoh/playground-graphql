@@ -21,8 +21,17 @@ export class IssueRepository {
     })
   }
 
+  findById(id: string) {
+    return this.prismaClient.issue.findFirst({
+      where: {
+        id,
+      },
+    })
+  }
+
   createIssue(input: IssueInput, userId: string) {
     const { user, updatedAt, createdAt, labelIds, ...data } = input
+
     return this.prismaClient.issue.create({
       data: {
         ...data,
@@ -30,6 +39,22 @@ export class IssueRepository {
         userId,
       },
     })
+  }
+
+  findLastPosition = async (userId: string, isSolved: boolean) => {
+    const lastPosition = await this.prismaClient.issue.findFirst({
+      where: {
+        userId,
+        isSolved,
+      },
+      orderBy: {
+        position: 'desc',
+      },
+    })
+
+    if (!lastPosition) return 1
+
+    return lastPosition.position + 1
   }
 
   updateIssue(input: IssueInput) {
