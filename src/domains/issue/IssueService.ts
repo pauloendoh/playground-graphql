@@ -1,9 +1,13 @@
+import { UserRepository } from '../user/UserRepository'
 import { IssueRepository } from './IssueRepository'
 import { ChangeIssuePositionInput } from './types/ChangeIssuePositionInput'
 import { IssueInput } from './types/IssueInput'
 
 export class IssueService {
-  constructor(private issueRepo = new IssueRepository()) {}
+  constructor(
+    private issueRepo = new IssueRepository(),
+    private userRepo = new UserRepository()
+  ) {}
 
   findIssues(userId: string) {
     return this.issueRepo.findIssues(userId)
@@ -46,6 +50,8 @@ export class IssueService {
     if (!isAllowed) throw new Error('You are not allowed to delete this issue')
 
     const deleted = await this.issueRepo.deleteIssue(issueId)
+
+    await this.normalizeIssuePositionsByUserId(userId)
     return !!deleted
   }
 
@@ -78,6 +84,27 @@ export class IssueService {
     issuesBetween[index].position = input.toPosition
 
     await this.issueRepo.updateMany(issuesBetween)
+
+    return true
+  }
+
+  async normalizeIssuePositionsByUserId(userId: string) {
+    const allIssues = await this.issueRepo.findIssues(userId)
+    const unsolvedIssues = allIssues.filter((i) => !i.isSolved)
+    const solvedIssues = allIssues.filter((i) => i.isSolved)
+
+    const issuesToUpdate = [
+      ...unsolvedIssues.map((issue, index) => ({
+        ...issue,
+        position: index + 1,
+      })),
+      ...solvedIssues.map((issue, index) => ({
+        ...issue,
+        solvedPosition: index + 1,
+      })),
+    ]
+
+    const x = await this.issueRepo.updateMany(issuesToUpdate)
 
     return true
   }
