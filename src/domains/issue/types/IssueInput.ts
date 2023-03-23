@@ -1,9 +1,22 @@
 import * as TypeGraphQL from 'type-graphql'
 import { Int } from 'type-graphql'
-import { Issue, User } from '../../../prisma-typegraphql'
+import {
+  Issue,
+  IssueCount,
+  IssueLabel,
+  User,
+} from '../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
 export class IssueInput implements Issue {
+  @TypeGraphQL.Field(() => Int)
+  frequency: number
+
+  @TypeGraphQL.Field(() => Int)
+  intensity: number
+
+  labels?: IssueLabel[] | undefined
+  _count?: IssueCount | null | undefined
   @TypeGraphQL.Field(() => String, { nullable: true })
   id: string
 

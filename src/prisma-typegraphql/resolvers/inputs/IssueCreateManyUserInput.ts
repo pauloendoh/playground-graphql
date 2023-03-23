@@ -37,6 +37,16 @@ export class IssueCreateManyUserInput {
   })
   isSolved?: boolean | undefined;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  frequency?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  intensity?: number | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

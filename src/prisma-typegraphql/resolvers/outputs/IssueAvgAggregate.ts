@@ -16,4 +16,14 @@ export class IssueAvgAggregate {
     nullable: true
   })
   solvedPosition!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  frequency!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  intensity!: number | null;
 }

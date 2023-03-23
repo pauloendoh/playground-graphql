@@ -8,6 +8,8 @@ export enum IssueScalarFieldEnum {
   title = "title",
   solution = "solution",
   isSolved = "isSolved",
+  frequency = "frequency",
+  intensity = "intensity",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

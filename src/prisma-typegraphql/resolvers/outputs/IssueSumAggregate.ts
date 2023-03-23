@@ -16,4 +16,14 @@ export class IssueSumAggregate {
     nullable: true
   })
   solvedPosition!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  frequency!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  intensity!: number | null;
 }

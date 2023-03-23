@@ -61,6 +61,16 @@ export class IssueScalarWhereWithAggregatesInput {
   })
   isSolved?: BoolWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
+    nullable: true
+  })
+  frequency?: IntWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
+    nullable: true
+  })
+  intensity?: IntWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
     nullable: true
   })

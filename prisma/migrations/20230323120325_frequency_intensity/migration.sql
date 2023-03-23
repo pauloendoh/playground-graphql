@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Issue" ADD COLUMN     "frequency" INTEGER NOT NULL DEFAULT 1,
+ADD COLUMN     "intensity" INTEGER NOT NULL DEFAULT 1;

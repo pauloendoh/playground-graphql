@@ -123,7 +123,10 @@ model Issue {
 
   title     String
   solution  String
-  isSolved  Boolean      @default(false)
+  isSolved  Boolean @default(false)
+  frequency Int     @default(1)
+  intensity Int     @default(1)
+
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
   labels    IssueLabel[]

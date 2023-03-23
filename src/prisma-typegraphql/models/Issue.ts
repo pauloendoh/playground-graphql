@@ -47,6 +47,16 @@ export class Issue {
   })
   isSolved!: boolean;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  frequency!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  intensity!: number;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
