@@ -1,4 +1,5 @@
 import { ColorRepository } from './ColorRepository'
+import { MixedColorInput } from './types/MixedColorInput'
 import { RawColorInput } from './types/RawColorInput'
 
 export class RawColorService {
@@ -14,5 +15,16 @@ export class RawColorService {
 
   async findRawColors(userId: string) {
     return this.savingRepo.findRawColors(userId)
+  }
+
+  async findMixedColors(userId: string) {
+    return this.savingRepo.findMixedColors(userId)
+  }
+
+  async saveMixedColor(input: MixedColorInput, userId: string) {
+    if (input.id) {
+      return this.savingRepo.updateMixedColor(input, userId)
+    }
+    return this.savingRepo.createMixedColor(input, userId)
   }
 }

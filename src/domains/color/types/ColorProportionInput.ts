@@ -1,24 +1,25 @@
-import { Prisma } from '@prisma/client'
-import { IsNumberString } from 'class-validator'
+import { Decimal } from '@prisma/client/runtime'
 import * as TypeGraphQL from 'type-graphql'
-import { Saving, User } from '../../../prisma-typegraphql'
+import { ColorProportion, RawColor } from '../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
-export class SavingValidInput implements Saving {
+export class ColorProportionInput implements ColorProportion {
   @TypeGraphQL.Field(() => String, { nullable: true })
   id: string
 
   @TypeGraphQL.Field(() => String, { nullable: true })
   userId: string
 
-  user?: User | undefined
+  @TypeGraphQL.Field(() => String, { nullable: true })
+  mixedColorId: string
+
+  rawColor?: RawColor | undefined
 
   @TypeGraphQL.Field(() => String, { nullable: false })
-  @IsNumberString()
-  value: Prisma.Decimal
+  rawColorId: string
 
-  @TypeGraphQL.Field(() => String, { nullable: true })
-  date: Date
+  @TypeGraphQL.Field(() => String, { nullable: false })
+  proportion: Decimal
 
   @TypeGraphQL.Field(() => Date, { nullable: true })
   createdAt: Date

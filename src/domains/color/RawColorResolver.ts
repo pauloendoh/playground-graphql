@@ -6,10 +6,11 @@ import {
   Resolver,
   UseMiddleware,
 } from 'type-graphql'
-import { RawColor } from '../../prisma-typegraphql'
+import { MixedColor, RawColor } from '../../prisma-typegraphql'
 import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
 import { RawColorService } from './RawColorService'
+import { MixedColorInput } from './types/MixedColorInput'
 import { RawColorInput } from './types/RawColorInput'
 
 @Resolver()
@@ -29,5 +30,20 @@ export class RawColorResolver {
     @Arg('data') data: RawColorInput
   ): Promise<RawColor> {
     return this.rawColorService.saveRawColor(data, req.user.id)
+  }
+
+  @Query(() => [MixedColor])
+  @UseMiddleware(isAuth)
+  async mixedColorsQuery(@Ctx() { req }: MyContext): Promise<MixedColor[]> {
+    return this.rawColorService.findMixedColors(req.user.id)
+  }
+
+  @Mutation(() => MixedColor)
+  @UseMiddleware(isAuth)
+  async saveMixedColorMutation(
+    @Ctx() { req }: MyContext,
+    @Arg('data') data: MixedColorInput
+  ): Promise<MixedColor> {
+    return this.rawColorService.saveMixedColor(data, req.user.id)
   }
 }
