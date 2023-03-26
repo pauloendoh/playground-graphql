@@ -21,16 +21,19 @@ model User {
   email    String @unique
   password String
 
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  recipe        Recipe[]
-  savings       Saving[]
-  wishlistItems WishlistItem[]
-  expenses      Expense[]
-  categories    Category[]
-  salary        Salary?
-  issues        Issue[]
-  issueLabels   IssueLabel[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  recipe           Recipe[]
+  savings          Saving[]
+  wishlistItems    WishlistItem[]
+  expenses         Expense[]
+  categories       Category[]
+  salary           Salary?
+  issues           Issue[]
+  issueLabels      IssueLabel[]
+  rawColors        RawColor[]
+  mixedColors      MixedColor[]
+  colorProportions ColorProportion[]
 }
 
 model Recipe {
@@ -141,6 +144,49 @@ model IssueLabel {
 
   name    String
   bgColor String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RawColor {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name  String
+  color String
+
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  colorProportions ColorProportion[]
+}
+
+model MixedColor {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name             String
+  color            String
+  colorProportions ColorProportion[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ColorProportion {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  mixedColor   MixedColor @relation(fields: [mixedColorId], references: [id])
+  mixedColorId String
+
+  rawColor   RawColor @relation(fields: [rawColorId], references: [id])
+  rawColorId String
+
+  proportion Decimal
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

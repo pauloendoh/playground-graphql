@@ -3,9 +3,12 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryOrderByRelationAggregateInput } from "../inputs/CategoryOrderByRelationAggregateInput";
+import { ColorProportionOrderByRelationAggregateInput } from "../inputs/ColorProportionOrderByRelationAggregateInput";
 import { ExpenseOrderByRelationAggregateInput } from "../inputs/ExpenseOrderByRelationAggregateInput";
 import { IssueLabelOrderByRelationAggregateInput } from "../inputs/IssueLabelOrderByRelationAggregateInput";
 import { IssueOrderByRelationAggregateInput } from "../inputs/IssueOrderByRelationAggregateInput";
+import { MixedColorOrderByRelationAggregateInput } from "../inputs/MixedColorOrderByRelationAggregateInput";
+import { RawColorOrderByRelationAggregateInput } from "../inputs/RawColorOrderByRelationAggregateInput";
 import { RecipeOrderByRelationAggregateInput } from "../inputs/RecipeOrderByRelationAggregateInput";
 import { SalaryOrderByWithRelationInput } from "../inputs/SalaryOrderByWithRelationInput";
 import { SavingOrderByRelationAggregateInput } from "../inputs/SavingOrderByRelationAggregateInput";
@@ -85,4 +88,19 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   issueLabels?: IssueLabelOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => RawColorOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  rawColors?: RawColorOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => MixedColorOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  mixedColors?: MixedColorOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => ColorProportionOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  colorProportions?: ColorProportionOrderByRelationAggregateInput | undefined;
 }

@@ -1,7 +1,10 @@
 export { CategoryRelationsResolver } from "./Category/CategoryRelationsResolver";
+export { ColorProportionRelationsResolver } from "./ColorProportion/ColorProportionRelationsResolver";
 export { ExpenseRelationsResolver } from "./Expense/ExpenseRelationsResolver";
 export { IssueRelationsResolver } from "./Issue/IssueRelationsResolver";
 export { IssueLabelRelationsResolver } from "./IssueLabel/IssueLabelRelationsResolver";
+export { MixedColorRelationsResolver } from "./MixedColor/MixedColorRelationsResolver";
+export { RawColorRelationsResolver } from "./RawColor/RawColorRelationsResolver";
 export { RecipeRelationsResolver } from "./Recipe/RecipeRelationsResolver";
 export { SalaryRelationsResolver } from "./Salary/SalaryRelationsResolver";
 export { SavingRelationsResolver } from "./Saving/SavingRelationsResolver";

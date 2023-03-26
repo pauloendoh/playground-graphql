@@ -1,17 +1,23 @@
 import * as TypeGraphQL from "type-graphql";
 import { Category } from "../../../models/Category";
+import { ColorProportion } from "../../../models/ColorProportion";
 import { Expense } from "../../../models/Expense";
 import { Issue } from "../../../models/Issue";
 import { IssueLabel } from "../../../models/IssueLabel";
+import { MixedColor } from "../../../models/MixedColor";
+import { RawColor } from "../../../models/RawColor";
 import { Recipe } from "../../../models/Recipe";
 import { Salary } from "../../../models/Salary";
 import { Saving } from "../../../models/Saving";
 import { User } from "../../../models/User";
 import { WishlistItem } from "../../../models/WishlistItem";
 import { UserCategoriesArgs } from "./args/UserCategoriesArgs";
+import { UserColorProportionsArgs } from "./args/UserColorProportionsArgs";
 import { UserExpensesArgs } from "./args/UserExpensesArgs";
 import { UserIssueLabelsArgs } from "./args/UserIssueLabelsArgs";
 import { UserIssuesArgs } from "./args/UserIssuesArgs";
+import { UserMixedColorsArgs } from "./args/UserMixedColorsArgs";
+import { UserRawColorsArgs } from "./args/UserRawColorsArgs";
 import { UserRecipeArgs } from "./args/UserRecipeArgs";
 import { UserSavingsArgs } from "./args/UserSavingsArgs";
 import { UserWishlistItemsArgs } from "./args/UserWishlistItemsArgs";
@@ -105,5 +111,38 @@ export class UserRelationsResolver {
         id: user.id,
       },
     }).issueLabels(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [RawColor], {
+    nullable: false
+  })
+  async rawColors(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserRawColorsArgs): Promise<RawColor[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).rawColors(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [MixedColor], {
+    nullable: false
+  })
+  async mixedColors(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserMixedColorsArgs): Promise<MixedColor[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).mixedColors(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [ColorProportion], {
+    nullable: false
+  })
+  async colorProportions(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserColorProportionsArgs): Promise<ColorProportion[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).colorProportions(args);
   }
 }

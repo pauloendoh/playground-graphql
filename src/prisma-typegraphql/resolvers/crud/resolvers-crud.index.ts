@@ -1,7 +1,10 @@
 export { CategoryCrudResolver } from "./Category/CategoryCrudResolver";
+export { ColorProportionCrudResolver } from "./ColorProportion/ColorProportionCrudResolver";
 export { ExpenseCrudResolver } from "./Expense/ExpenseCrudResolver";
 export { IssueCrudResolver } from "./Issue/IssueCrudResolver";
 export { IssueLabelCrudResolver } from "./IssueLabel/IssueLabelCrudResolver";
+export { MixedColorCrudResolver } from "./MixedColor/MixedColorCrudResolver";
+export { RawColorCrudResolver } from "./RawColor/RawColorCrudResolver";
 export { RecipeCrudResolver } from "./Recipe/RecipeCrudResolver";
 export { SalaryCrudResolver } from "./Salary/SalaryCrudResolver";
 export { SavingCrudResolver } from "./Saving/SavingCrudResolver";

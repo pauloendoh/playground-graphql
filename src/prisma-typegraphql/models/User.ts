@@ -3,9 +3,12 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Category } from "../models/Category";
+import { ColorProportion } from "../models/ColorProportion";
 import { Expense } from "../models/Expense";
 import { Issue } from "../models/Issue";
 import { IssueLabel } from "../models/IssueLabel";
+import { MixedColor } from "../models/MixedColor";
+import { RawColor } from "../models/RawColor";
 import { Recipe } from "../models/Recipe";
 import { Salary } from "../models/Salary";
 import { Saving } from "../models/Saving";
@@ -61,6 +64,12 @@ export class User {
   issues?: Issue[];
 
   issueLabels?: IssueLabel[];
+
+  rawColors?: RawColor[];
+
+  mixedColors?: MixedColor[];
+
+  colorProportions?: ColorProportion[];
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true

@@ -3,10 +3,13 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryListRelationFilter } from "../inputs/CategoryListRelationFilter";
+import { ColorProportionListRelationFilter } from "../inputs/ColorProportionListRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { ExpenseListRelationFilter } from "../inputs/ExpenseListRelationFilter";
 import { IssueLabelListRelationFilter } from "../inputs/IssueLabelListRelationFilter";
 import { IssueListRelationFilter } from "../inputs/IssueListRelationFilter";
+import { MixedColorListRelationFilter } from "../inputs/MixedColorListRelationFilter";
+import { RawColorListRelationFilter } from "../inputs/RawColorListRelationFilter";
 import { RecipeListRelationFilter } from "../inputs/RecipeListRelationFilter";
 import { SalaryRelationFilter } from "../inputs/SalaryRelationFilter";
 import { SavingListRelationFilter } from "../inputs/SavingListRelationFilter";
@@ -101,4 +104,19 @@ export class UserWhereInput {
     nullable: true
   })
   issueLabels?: IssueLabelListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => RawColorListRelationFilter, {
+    nullable: true
+  })
+  rawColors?: RawColorListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => MixedColorListRelationFilter, {
+    nullable: true
+  })
+  mixedColors?: MixedColorListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => ColorProportionListRelationFilter, {
+    nullable: true
+  })
+  colorProportions?: ColorProportionListRelationFilter | undefined;
 }

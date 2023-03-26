@@ -1,8 +1,11 @@
 export { CategoryScalarFieldEnum } from "./CategoryScalarFieldEnum";
+export { ColorProportionScalarFieldEnum } from "./ColorProportionScalarFieldEnum";
 export { ExpenseScalarFieldEnum } from "./ExpenseScalarFieldEnum";
 export { IssueLabelScalarFieldEnum } from "./IssueLabelScalarFieldEnum";
 export { IssueScalarFieldEnum } from "./IssueScalarFieldEnum";
+export { MixedColorScalarFieldEnum } from "./MixedColorScalarFieldEnum";
 export { QueryMode } from "./QueryMode";
+export { RawColorScalarFieldEnum } from "./RawColorScalarFieldEnum";
 export { RecipeScalarFieldEnum } from "./RecipeScalarFieldEnum";
 export { SalaryScalarFieldEnum } from "./SalaryScalarFieldEnum";
 export { SavingScalarFieldEnum } from "./SavingScalarFieldEnum";

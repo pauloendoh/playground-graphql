@@ -3,8 +3,11 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryCreateNestedManyWithoutUserInput } from "../inputs/CategoryCreateNestedManyWithoutUserInput";
+import { ColorProportionCreateNestedManyWithoutUserInput } from "../inputs/ColorProportionCreateNestedManyWithoutUserInput";
 import { IssueCreateNestedManyWithoutUserInput } from "../inputs/IssueCreateNestedManyWithoutUserInput";
 import { IssueLabelCreateNestedManyWithoutUserInput } from "../inputs/IssueLabelCreateNestedManyWithoutUserInput";
+import { MixedColorCreateNestedManyWithoutUserInput } from "../inputs/MixedColorCreateNestedManyWithoutUserInput";
+import { RawColorCreateNestedManyWithoutUserInput } from "../inputs/RawColorCreateNestedManyWithoutUserInput";
 import { RecipeCreateNestedManyWithoutUserInput } from "../inputs/RecipeCreateNestedManyWithoutUserInput";
 import { SalaryCreateNestedOneWithoutUserInput } from "../inputs/SalaryCreateNestedOneWithoutUserInput";
 import { SavingCreateNestedManyWithoutUserInput } from "../inputs/SavingCreateNestedManyWithoutUserInput";
@@ -78,4 +81,19 @@ export class UserCreateWithoutExpensesInput {
     nullable: true
   })
   issueLabels?: IssueLabelCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => RawColorCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  rawColors?: RawColorCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => MixedColorCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  mixedColors?: MixedColorCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => ColorProportionCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  colorProportions?: ColorProportionCreateNestedManyWithoutUserInput | undefined;
 }

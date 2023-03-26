@@ -8,7 +8,7 @@
     "build": "tsc",
     "build:release": "tsc && npx prisma migrate deploy",
     "start": "node ./dist/src/server.js",
-    "migrate": "prisma migrate dev --name",
+    "migrate": "prisma migrate dev",
     "postinstall": "prisma generate",
     "prepare": "husky install"
   },
@@ -43,6 +43,7 @@
     "jsonwebtoken": "^9.0.0",
     "puppeteer": "^19.7.5",
     "reflect-metadata": "^0.1.13",
+    "routing-controllers": "^0.10.2",
     "tslib": "^2.4.1",
     "type-graphql": "^1.1.1",
     "user-agents": "^1.0.1325"

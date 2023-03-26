@@ -1,7 +1,10 @@
 export { UserCategoriesArgs } from "./UserCategoriesArgs";
+export { UserColorProportionsArgs } from "./UserColorProportionsArgs";
 export { UserExpensesArgs } from "./UserExpensesArgs";
 export { UserIssueLabelsArgs } from "./UserIssueLabelsArgs";
 export { UserIssuesArgs } from "./UserIssuesArgs";
+export { UserMixedColorsArgs } from "./UserMixedColorsArgs";
+export { UserRawColorsArgs } from "./UserRawColorsArgs";
 export { UserRecipeArgs } from "./UserRecipeArgs";
 export { UserSavingsArgs } from "./UserSavingsArgs";
 export { UserWishlistItemsArgs } from "./UserWishlistItemsArgs";

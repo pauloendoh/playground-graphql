@@ -3,10 +3,13 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CategoryUpdateManyWithoutUserNestedInput } from "../inputs/CategoryUpdateManyWithoutUserNestedInput";
+import { ColorProportionUpdateManyWithoutUserNestedInput } from "../inputs/ColorProportionUpdateManyWithoutUserNestedInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { ExpenseUpdateManyWithoutUserNestedInput } from "../inputs/ExpenseUpdateManyWithoutUserNestedInput";
 import { IssueLabelUpdateManyWithoutUserNestedInput } from "../inputs/IssueLabelUpdateManyWithoutUserNestedInput";
 import { IssueUpdateManyWithoutUserNestedInput } from "../inputs/IssueUpdateManyWithoutUserNestedInput";
+import { MixedColorUpdateManyWithoutUserNestedInput } from "../inputs/MixedColorUpdateManyWithoutUserNestedInput";
+import { RawColorUpdateManyWithoutUserNestedInput } from "../inputs/RawColorUpdateManyWithoutUserNestedInput";
 import { RecipeUpdateManyWithoutUserNestedInput } from "../inputs/RecipeUpdateManyWithoutUserNestedInput";
 import { SavingUpdateManyWithoutUserNestedInput } from "../inputs/SavingUpdateManyWithoutUserNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
@@ -80,4 +83,19 @@ export class UserUpdateWithoutSalaryInput {
     nullable: true
   })
   issueLabels?: IssueLabelUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => RawColorUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  rawColors?: RawColorUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => MixedColorUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  mixedColors?: MixedColorUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => ColorProportionUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  colorProportions?: ColorProportionUpdateManyWithoutUserNestedInput | undefined;
 }
