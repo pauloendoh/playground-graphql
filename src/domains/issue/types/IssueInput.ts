@@ -42,6 +42,9 @@ export class IssueInput implements Issue {
   @TypeGraphQL.Field(() => Boolean)
   isSolved: boolean
 
+  @TypeGraphQL.Field(() => Date, { nullable: true })
+  solvedAt?: Date | null | undefined
+
   @TypeGraphQL.Field(() => [String], { defaultValue: [] })
   labelIds: string[]
 

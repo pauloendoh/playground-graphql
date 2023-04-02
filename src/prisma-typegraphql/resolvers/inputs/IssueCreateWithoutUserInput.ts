@@ -38,6 +38,11 @@ export class IssueCreateWithoutUserInput {
   })
   isSolved?: boolean | undefined;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  solvedAt?: Date | undefined;
+
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })

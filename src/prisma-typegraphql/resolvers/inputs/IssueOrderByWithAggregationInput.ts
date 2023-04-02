@@ -51,6 +51,11 @@ export class IssueOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  solvedAt?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   frequency?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {

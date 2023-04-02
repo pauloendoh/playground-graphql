@@ -45,6 +45,11 @@ export class IssueCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  solvedAt!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   frequency!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

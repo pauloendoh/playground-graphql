@@ -42,6 +42,11 @@ export class IssueMinAggregate {
   })
   isSolved!: boolean | null;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  solvedAt!: Date | null;
+
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })

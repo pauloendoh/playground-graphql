@@ -47,6 +47,11 @@ export class IssueGroupBy {
   })
   isSolved!: boolean;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  solvedAt!: Date | null;
+
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
