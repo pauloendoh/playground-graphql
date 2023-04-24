@@ -5,6 +5,7 @@ export enum SavingScalarFieldEnum {
   userId = "userId",
   value = "value",
   date = "date",
+  selectedAsAverageMonthlyGrowth = "selectedAsAverageMonthlyGrowth",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

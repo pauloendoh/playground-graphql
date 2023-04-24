@@ -30,6 +30,11 @@ export class Saving {
   })
   date!: Date;
 
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: false
+  })
+  selectedAsAverageMonthlyGrowth!: boolean;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })

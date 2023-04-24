@@ -17,6 +17,11 @@ export class SavingValidInput implements Saving {
   @IsNumberString()
   value: Prisma.Decimal
 
+  @TypeGraphQL.Field(() => Boolean, { nullable: true })
+  selectedAsAverageMonthlyGrowth: boolean
+
+  
+
   @TypeGraphQL.Field(() => String, { nullable: true })
   date: Date
 

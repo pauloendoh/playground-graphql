@@ -56,4 +56,14 @@ export class UserCount {
     nullable: false
   })
   colorProportions!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  nhFavorites!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  nhAuthors!: number;
 }

@@ -8,6 +8,8 @@ import { ExpenseCreateNestedManyWithoutUserInput } from "../inputs/ExpenseCreate
 import { IssueCreateNestedManyWithoutUserInput } from "../inputs/IssueCreateNestedManyWithoutUserInput";
 import { IssueLabelCreateNestedManyWithoutUserInput } from "../inputs/IssueLabelCreateNestedManyWithoutUserInput";
 import { MixedColorCreateNestedManyWithoutUserInput } from "../inputs/MixedColorCreateNestedManyWithoutUserInput";
+import { NhAuthorCreateNestedManyWithoutUserInput } from "../inputs/NhAuthorCreateNestedManyWithoutUserInput";
+import { NhFavoriteCreateNestedManyWithoutUserInput } from "../inputs/NhFavoriteCreateNestedManyWithoutUserInput";
 import { RecipeCreateNestedManyWithoutUserInput } from "../inputs/RecipeCreateNestedManyWithoutUserInput";
 import { SalaryCreateNestedOneWithoutUserInput } from "../inputs/SalaryCreateNestedOneWithoutUserInput";
 import { SavingCreateNestedManyWithoutUserInput } from "../inputs/SavingCreateNestedManyWithoutUserInput";
@@ -96,4 +98,14 @@ export class UserCreateWithoutRawColorsInput {
     nullable: true
   })
   colorProportions?: ColorProportionCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => NhFavoriteCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  nhFavorites?: NhFavoriteCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => NhAuthorCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  nhAuthors?: NhAuthorCreateNestedManyWithoutUserInput | undefined;
 }

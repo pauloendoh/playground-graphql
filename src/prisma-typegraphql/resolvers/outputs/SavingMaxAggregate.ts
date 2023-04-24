@@ -27,6 +27,11 @@ export class SavingMaxAggregate {
   })
   date!: Date | null;
 
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  selectedAsAverageMonthlyGrowth!: boolean | null;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

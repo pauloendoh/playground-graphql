@@ -9,6 +9,8 @@ import { ExpenseListRelationFilter } from "../inputs/ExpenseListRelationFilter";
 import { IssueLabelListRelationFilter } from "../inputs/IssueLabelListRelationFilter";
 import { IssueListRelationFilter } from "../inputs/IssueListRelationFilter";
 import { MixedColorListRelationFilter } from "../inputs/MixedColorListRelationFilter";
+import { NhAuthorListRelationFilter } from "../inputs/NhAuthorListRelationFilter";
+import { NhFavoriteListRelationFilter } from "../inputs/NhFavoriteListRelationFilter";
 import { RawColorListRelationFilter } from "../inputs/RawColorListRelationFilter";
 import { RecipeListRelationFilter } from "../inputs/RecipeListRelationFilter";
 import { SalaryRelationFilter } from "../inputs/SalaryRelationFilter";
@@ -119,4 +121,14 @@ export class UserWhereInput {
     nullable: true
   })
   colorProportions?: ColorProportionListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => NhFavoriteListRelationFilter, {
+    nullable: true
+  })
+  nhFavorites?: NhFavoriteListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => NhAuthorListRelationFilter, {
+    nullable: true
+  })
+  nhAuthors?: NhAuthorListRelationFilter | undefined;
 }

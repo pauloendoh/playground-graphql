@@ -34,6 +34,8 @@ model User {
   rawColors        RawColor[]
   mixedColors      MixedColor[]
   colorProportions ColorProportion[]
+  nhFavorites      NhFavorite[]
+  nhAuthors        NhAuthor[]
 }
 
 model Recipe {
@@ -56,6 +58,8 @@ model Saving {
 
   value Decimal
   date  DateTime @default(now())
+
+  selectedAsAverageMonthlyGrowth Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -191,4 +195,25 @@ model ColorProportion {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model NhAuthor {
+  url    String @id
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  checkedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  favorites NhFavorite[]
+}
+
+model NhFavorite {
+  url       String   @id
+  authorUrl String
+  author    NhAuthor @relation(fields: [authorUrl], references: [url])
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 }

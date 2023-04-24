@@ -4,6 +4,8 @@ export { UserExpensesArgs } from "./UserExpensesArgs";
 export { UserIssueLabelsArgs } from "./UserIssueLabelsArgs";
 export { UserIssuesArgs } from "./UserIssuesArgs";
 export { UserMixedColorsArgs } from "./UserMixedColorsArgs";
+export { UserNhAuthorsArgs } from "./UserNhAuthorsArgs";
+export { UserNhFavoritesArgs } from "./UserNhFavoritesArgs";
 export { UserRawColorsArgs } from "./UserRawColorsArgs";
 export { UserRecipeArgs } from "./UserRecipeArgs";
 export { UserSavingsArgs } from "./UserSavingsArgs";

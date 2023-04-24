@@ -4,6 +4,7 @@
     "module": "commonjs",
     "rootDirs": ["src"],
     "outDir": "dist",
+    "lib": ["es2019", "dom"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false

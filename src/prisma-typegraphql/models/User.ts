@@ -8,6 +8,8 @@ import { Expense } from "../models/Expense";
 import { Issue } from "../models/Issue";
 import { IssueLabel } from "../models/IssueLabel";
 import { MixedColor } from "../models/MixedColor";
+import { NhAuthor } from "../models/NhAuthor";
+import { NhFavorite } from "../models/NhFavorite";
 import { RawColor } from "../models/RawColor";
 import { Recipe } from "../models/Recipe";
 import { Salary } from "../models/Salary";
@@ -70,6 +72,10 @@ export class User {
   mixedColors?: MixedColor[];
 
   colorProportions?: ColorProportion[];
+
+  nhFavorites?: NhFavorite[];
+
+  nhAuthors?: NhAuthor[];
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true

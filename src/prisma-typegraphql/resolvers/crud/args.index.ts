@@ -4,6 +4,8 @@ export * from "./Expense/args";
 export * from "./Issue/args";
 export * from "./IssueLabel/args";
 export * from "./MixedColor/args";
+export * from "./NhAuthor/args";
+export * from "./NhFavorite/args";
 export * from "./RawColor/args";
 export * from "./Recipe/args";
 export * from "./Salary/args";

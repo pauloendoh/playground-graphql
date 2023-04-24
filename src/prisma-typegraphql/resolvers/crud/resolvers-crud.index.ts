@@ -4,6 +4,8 @@ export { ExpenseCrudResolver } from "./Expense/ExpenseCrudResolver";
 export { IssueCrudResolver } from "./Issue/IssueCrudResolver";
 export { IssueLabelCrudResolver } from "./IssueLabel/IssueLabelCrudResolver";
 export { MixedColorCrudResolver } from "./MixedColor/MixedColorCrudResolver";
+export { NhAuthorCrudResolver } from "./NhAuthor/NhAuthorCrudResolver";
+export { NhFavoriteCrudResolver } from "./NhFavorite/NhFavoriteCrudResolver";
 export { RawColorCrudResolver } from "./RawColor/RawColorCrudResolver";
 export { RecipeCrudResolver } from "./Recipe/RecipeCrudResolver";
 export { SalaryCrudResolver } from "./Salary/SalaryCrudResolver";

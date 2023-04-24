@@ -9,6 +9,8 @@ import { ExpenseUpdateManyWithoutUserNestedInput } from "../inputs/ExpenseUpdate
 import { IssueLabelUpdateManyWithoutUserNestedInput } from "../inputs/IssueLabelUpdateManyWithoutUserNestedInput";
 import { IssueUpdateManyWithoutUserNestedInput } from "../inputs/IssueUpdateManyWithoutUserNestedInput";
 import { MixedColorUpdateManyWithoutUserNestedInput } from "../inputs/MixedColorUpdateManyWithoutUserNestedInput";
+import { NhAuthorUpdateManyWithoutUserNestedInput } from "../inputs/NhAuthorUpdateManyWithoutUserNestedInput";
+import { NhFavoriteUpdateManyWithoutUserNestedInput } from "../inputs/NhFavoriteUpdateManyWithoutUserNestedInput";
 import { RawColorUpdateManyWithoutUserNestedInput } from "../inputs/RawColorUpdateManyWithoutUserNestedInput";
 import { RecipeUpdateManyWithoutUserNestedInput } from "../inputs/RecipeUpdateManyWithoutUserNestedInput";
 import { SalaryUpdateOneWithoutUserNestedInput } from "../inputs/SalaryUpdateOneWithoutUserNestedInput";
@@ -104,4 +106,14 @@ export class UserUpdateInput {
     nullable: true
   })
   colorProportions?: ColorProportionUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => NhFavoriteUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  nhFavorites?: NhFavoriteUpdateManyWithoutUserNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => NhAuthorUpdateManyWithoutUserNestedInput, {
+    nullable: true
+  })
+  nhAuthors?: NhAuthorUpdateManyWithoutUserNestedInput | undefined;
 }

@@ -4,6 +4,8 @@ export { Expense } from "./Expense";
 export { Issue } from "./Issue";
 export { IssueLabel } from "./IssueLabel";
 export { MixedColor } from "./MixedColor";
+export { NhAuthor } from "./NhAuthor";
+export { NhFavorite } from "./NhFavorite";
 export { RawColor } from "./RawColor";
 export { Recipe } from "./Recipe";
 export { Salary } from "./Salary";

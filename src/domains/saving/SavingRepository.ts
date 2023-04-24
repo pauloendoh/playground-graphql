@@ -49,4 +49,26 @@ export class SavingRepository {
       },
     })
   }
+
+  async unselectAllSavingsAsAverageMonthlyGrowth(userId: string) {
+    return this.prismaClient.saving.updateMany({
+      where: {
+        userId,
+      },
+      data: {
+        selectedAsAverageMonthlyGrowth: false,
+      },
+    })
+  }
+
+  async selectSavingAsAverageMonthlyGrowth(savingId: string) {
+    return this.prismaClient.saving.update({
+      where: {
+        id: savingId,
+      },
+      data: {
+        selectedAsAverageMonthlyGrowth: true,
+      },
+    })
+  }
 }

@@ -2,7 +2,7 @@ import { config } from 'dotenv'
 config()
 
 export const myEnvs = {
-  NH_URL: envToStringOrThrow('NH_URL'),
+  NH_URL: process.env.NH_URL, // can be undefined
 }
 
 function envToStringOrThrow(envName: string): string {

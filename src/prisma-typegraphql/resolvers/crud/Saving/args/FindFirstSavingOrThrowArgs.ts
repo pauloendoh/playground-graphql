@@ -35,5 +35,5 @@ export class FindFirstSavingOrThrowArgs {
   @TypeGraphQL.Field(_type => [SavingScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "userId" | "value" | "date" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "userId" | "value" | "date" | "selectedAsAverageMonthlyGrowth" | "createdAt" | "updatedAt"> | undefined;
 }

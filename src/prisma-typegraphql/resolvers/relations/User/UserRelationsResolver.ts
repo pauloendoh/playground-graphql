@@ -5,6 +5,8 @@ import { Expense } from "../../../models/Expense";
 import { Issue } from "../../../models/Issue";
 import { IssueLabel } from "../../../models/IssueLabel";
 import { MixedColor } from "../../../models/MixedColor";
+import { NhAuthor } from "../../../models/NhAuthor";
+import { NhFavorite } from "../../../models/NhFavorite";
 import { RawColor } from "../../../models/RawColor";
 import { Recipe } from "../../../models/Recipe";
 import { Salary } from "../../../models/Salary";
@@ -17,6 +19,8 @@ import { UserExpensesArgs } from "./args/UserExpensesArgs";
 import { UserIssueLabelsArgs } from "./args/UserIssueLabelsArgs";
 import { UserIssuesArgs } from "./args/UserIssuesArgs";
 import { UserMixedColorsArgs } from "./args/UserMixedColorsArgs";
+import { UserNhAuthorsArgs } from "./args/UserNhAuthorsArgs";
+import { UserNhFavoritesArgs } from "./args/UserNhFavoritesArgs";
 import { UserRawColorsArgs } from "./args/UserRawColorsArgs";
 import { UserRecipeArgs } from "./args/UserRecipeArgs";
 import { UserSavingsArgs } from "./args/UserSavingsArgs";
@@ -144,5 +148,27 @@ export class UserRelationsResolver {
         id: user.id,
       },
     }).colorProportions(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [NhFavorite], {
+    nullable: false
+  })
+  async nhFavorites(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserNhFavoritesArgs): Promise<NhFavorite[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).nhFavorites(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [NhAuthor], {
+    nullable: false
+  })
+  async nhAuthors(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserNhAuthorsArgs): Promise<NhAuthor[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).nhAuthors(args);
   }
 }

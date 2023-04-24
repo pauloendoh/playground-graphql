@@ -7,8 +7,8 @@ import {
   UseMiddleware,
 } from 'type-graphql'
 import { Saving } from '../../prisma-typegraphql'
-import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
+import { isAuth } from '../../utils/auth/isAuth'
 import { SavingService } from './SavingService'
 import { SavingValidInput } from './types/SavingValidInput'
 
@@ -38,5 +38,17 @@ export class SavingResolver {
     @Arg('savingId') savingId: string
   ) {
     return this.savingService.deleteSaving(savingId, req.user.id)
+  }
+
+  @Mutation(() => Saving)
+  @UseMiddleware(isAuth)
+  async selectSavingAsAverageMonthlyGrowthMutation(
+    @Ctx() { req }: MyContext,
+    @Arg('savingId') savingId: string
+  ): Promise<Saving> {
+    return this.savingService.selectSavingAsAverageMonthlyGrowth({
+      requesterId: req.user.id,
+      savingId,
+    })
   }
 }

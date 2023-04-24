@@ -20,7 +20,7 @@ export class GroupBySavingArgs {
   @TypeGraphQL.Field(_type => [SavingScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "userId" | "value" | "date" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "userId" | "value" | "date" | "selectedAsAverageMonthlyGrowth" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => SavingScalarWhereWithAggregatesInput, {
     nullable: true

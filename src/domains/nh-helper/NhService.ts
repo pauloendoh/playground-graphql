@@ -1,40 +1,57 @@
-import UserAgent from 'user-agents'
-import puppeteer from 'puppeteer'
-import { sleep } from '../../utils/sleep'
-import { myEnvs } from '../../utils/myEnvs'
+import { NhRepository } from './NhRepository'
 
 export class NhService {
-  async scrape() {
-    const browser = await puppeteer.launch({
-      headless: false,
+  constructor(private repo = new NhRepository()) {}
+
+  async findFavoriteCountByAuthor(userId: string) {
+    const data = await this.repo.findFavoriteCountByAuthor(userId)
+    return data.map((x) => ({
+      authorUrl: x.authorUrl,
+      count: x._count._all,
+    }))
+  }
+
+  async saveFavorite(params: {
+    authorUrl: string
+    url: string
+    userId: string
+  }) {
+    const { authorUrl, url, userId } = params
+
+    const alreadyExists = await this.repo.userOwnsFavorite(url, userId)
+    if (alreadyExists) {
+      return alreadyExists
+    }
+
+    const authorExists = await this.repo.userOwnsAuthor(authorUrl, userId)
+    if (!authorExists) {
+      await this.repo.createAuthor({
+        url: authorUrl,
+        userId: userId,
+      })
+    }
+
+    return await this.repo.createFavorite(params)
+  }
+
+  async toggleAuthorCheck(params: { url: string; userId: string }) {
+    const author = await this.repo.userOwnsAuthor(params.url, params.userId)
+    if (!author) {
+      throw new Error('Author does not exist')
+    }
+
+    await this.repo.toggleAuthorCheck({
+      checkedAt: author.checkedAt ? null : new Date().toISOString(),
+      url: params.url,
+      userId: params.userId,
     })
-    const page = await browser.newPage()
-    await page.setUserAgent(new UserAgent().random().toString())
 
-    await page.goto(myEnvs.NH_URL)
+    const authors = await this.repo.findNhAuthorsByUserId(params.userId)
 
-    // Set screen size
-    await page.setViewport({ width: 1080, height: 1024 })
-    // await 5 seconsd
-    await sleep(100000000)
+    return authors.find((x) => x.url === params.url)
+  }
 
-    // Type into search box
-    await page.type('.search input', 'automate beyond recorder')
-
-    // Wait and click on first result
-    const searchResultSelector = '.search-box__link'
-    await page.waitForSelector(searchResultSelector)
-    await page.click(searchResultSelector)
-
-    // Locate the full title with a unique string
-    const textSelector = await page.waitForSelector(
-      'text/Customize and automate'
-    )
-    const fullTitle = await textSelector?.evaluate((el) => el.textContent)
-
-    // Print the full title
-    console.log('The title of this blog post is "%s".', fullTitle)
-
-    await browser.close()
+  async findNhAuthorsByUserId(userId: string) {
+    return await this.repo.findNhAuthorsByUserId(userId)
   }
 }

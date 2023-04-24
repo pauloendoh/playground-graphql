@@ -28,6 +28,11 @@ export class SavingCreateInput {
   })
   date?: Date | undefined;
 
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  selectedAsAverageMonthlyGrowth?: boolean | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

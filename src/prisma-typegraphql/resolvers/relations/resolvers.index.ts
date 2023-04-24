@@ -4,6 +4,8 @@ export { ExpenseRelationsResolver } from "./Expense/ExpenseRelationsResolver";
 export { IssueRelationsResolver } from "./Issue/IssueRelationsResolver";
 export { IssueLabelRelationsResolver } from "./IssueLabel/IssueLabelRelationsResolver";
 export { MixedColorRelationsResolver } from "./MixedColor/MixedColorRelationsResolver";
+export { NhAuthorRelationsResolver } from "./NhAuthor/NhAuthorRelationsResolver";
+export { NhFavoriteRelationsResolver } from "./NhFavorite/NhFavoriteRelationsResolver";
 export { RawColorRelationsResolver } from "./RawColor/RawColorRelationsResolver";
 export { RecipeRelationsResolver } from "./Recipe/RecipeRelationsResolver";
 export { SalaryRelationsResolver } from "./Salary/SalaryRelationsResolver";

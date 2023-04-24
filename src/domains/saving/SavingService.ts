@@ -32,4 +32,20 @@ export class SavingService {
     const deleted = await this.savingRepo.deleteSaving(savingId)
     return !!deleted
   }
+
+  async selectSavingAsAverageMonthlyGrowth(params: {
+    requesterId: string
+    savingId: string
+  }) {
+    const { requesterId, savingId } = params
+    const isAllowed = this.savingRepo.userOwnsSaving(savingId, requesterId)
+    if (!isAllowed)
+      throw new Error(
+        'You are not allowed to select this saving as average monthly growth'
+      )
+
+    await this.savingRepo.unselectAllSavingsAsAverageMonthlyGrowth(requesterId)
+
+    return this.savingRepo.selectSavingAsAverageMonthlyGrowth(savingId)
+  }
 }

@@ -8,6 +8,8 @@ import { ExpenseOrderByRelationAggregateInput } from "../inputs/ExpenseOrderByRe
 import { IssueLabelOrderByRelationAggregateInput } from "../inputs/IssueLabelOrderByRelationAggregateInput";
 import { IssueOrderByRelationAggregateInput } from "../inputs/IssueOrderByRelationAggregateInput";
 import { MixedColorOrderByRelationAggregateInput } from "../inputs/MixedColorOrderByRelationAggregateInput";
+import { NhAuthorOrderByRelationAggregateInput } from "../inputs/NhAuthorOrderByRelationAggregateInput";
+import { NhFavoriteOrderByRelationAggregateInput } from "../inputs/NhFavoriteOrderByRelationAggregateInput";
 import { RawColorOrderByRelationAggregateInput } from "../inputs/RawColorOrderByRelationAggregateInput";
 import { RecipeOrderByRelationAggregateInput } from "../inputs/RecipeOrderByRelationAggregateInput";
 import { SalaryOrderByWithRelationInput } from "../inputs/SalaryOrderByWithRelationInput";
@@ -103,4 +105,14 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   colorProportions?: ColorProportionOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => NhFavoriteOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  nhFavorites?: NhFavoriteOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => NhAuthorOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  nhAuthors?: NhAuthorOrderByRelationAggregateInput | undefined;
 }

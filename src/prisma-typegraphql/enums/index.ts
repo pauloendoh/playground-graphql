@@ -4,6 +4,8 @@ export { ExpenseScalarFieldEnum } from "./ExpenseScalarFieldEnum";
 export { IssueLabelScalarFieldEnum } from "./IssueLabelScalarFieldEnum";
 export { IssueScalarFieldEnum } from "./IssueScalarFieldEnum";
 export { MixedColorScalarFieldEnum } from "./MixedColorScalarFieldEnum";
+export { NhAuthorScalarFieldEnum } from "./NhAuthorScalarFieldEnum";
+export { NhFavoriteScalarFieldEnum } from "./NhFavoriteScalarFieldEnum";
 export { QueryMode } from "./QueryMode";
 export { RawColorScalarFieldEnum } from "./RawColorScalarFieldEnum";
 export { RecipeScalarFieldEnum } from "./RecipeScalarFieldEnum";
