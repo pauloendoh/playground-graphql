@@ -35,5 +35,5 @@ export class FindFirstWishlistItemArgs {
   @TypeGraphQL.Field(_type => [WishlistItemScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "userId" | "itemName" | "priceInThousands" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "userId" | "itemName" | "priceInThousands" | "price" | "createdAt" | "updatedAt"> | undefined;
 }

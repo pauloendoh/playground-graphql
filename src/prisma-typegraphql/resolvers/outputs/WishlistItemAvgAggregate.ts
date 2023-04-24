@@ -11,4 +11,9 @@ export class WishlistItemAvgAggregate {
     nullable: true
   })
   priceInThousands!: Prisma.Decimal | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  price!: number | null;
 }

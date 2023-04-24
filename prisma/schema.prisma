@@ -73,6 +73,8 @@ model WishlistItem {
   itemName         String
   priceInThousands Decimal
 
+  price Int?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

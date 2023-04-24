@@ -5,6 +5,7 @@ export enum WishlistItemScalarFieldEnum {
   userId = "userId",
   itemName = "itemName",
   priceInThousands = "priceInThousands",
+  price = "price",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

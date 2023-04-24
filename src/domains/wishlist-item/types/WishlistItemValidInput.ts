@@ -23,6 +23,9 @@ export class WishlistItemValidInput implements WishlistItem {
   @IsNumberString()
   priceInThousands: Decimal
 
+  @Field(() => Number, { nullable: true })
+  price?: number | null | undefined
+
   @Field(() => String, { nullable: true })
   createdAt: Date
 

@@ -12,4 +12,9 @@ export class WishlistItemAvgOrderByAggregateInput {
     nullable: true
   })
   priceInThousands?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  price?: "asc" | "desc" | undefined;
 }

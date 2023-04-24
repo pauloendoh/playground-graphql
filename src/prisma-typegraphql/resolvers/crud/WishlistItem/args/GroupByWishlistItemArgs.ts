@@ -20,7 +20,7 @@ export class GroupByWishlistItemArgs {
   @TypeGraphQL.Field(_type => [WishlistItemScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "userId" | "itemName" | "priceInThousands" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "userId" | "itemName" | "priceInThousands" | "price" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => WishlistItemScalarWhereWithAggregatesInput, {
     nullable: true

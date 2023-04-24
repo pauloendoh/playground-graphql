@@ -32,6 +32,11 @@ export class WishlistItemGroupBy {
   })
   priceInThousands!: Prisma.Decimal;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  price!: number | null;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })

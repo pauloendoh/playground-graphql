@@ -22,6 +22,11 @@ export class WishlistItemCreateWithoutUserInput {
   })
   priceInThousands!: Prisma.Decimal;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  price?: number | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
