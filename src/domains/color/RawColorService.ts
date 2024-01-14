@@ -3,28 +3,42 @@ import { MixedColorInput } from './types/MixedColorInput'
 import { RawColorInput } from './types/RawColorInput'
 
 export class RawColorService {
-  constructor(private savingRepo = new ColorRepository()) {}
+  constructor(private colorRepo = new ColorRepository()) {}
 
   async saveRawColor(input: RawColorInput, userId: string) {
     if (input.id) {
-      return this.savingRepo.updateRawColor(input)
+      return this.colorRepo.updateRawColor(input)
     }
 
-    return this.savingRepo.createRawColor(input, userId)
+    return this.colorRepo.createRawColor(input, userId)
   }
 
   async findRawColors(userId: string) {
-    return this.savingRepo.findRawColors(userId)
+    return this.colorRepo.findRawColors(userId)
   }
 
   async findMixedColors(userId: string) {
-    return this.savingRepo.findMixedColors(userId)
+    return this.colorRepo.findMixedColors(userId)
   }
 
   async saveMixedColor(input: MixedColorInput, userId: string) {
     if (input.id) {
-      return this.savingRepo.updateMixedColor(input, userId)
+      return this.colorRepo.updateMixedColor(input, userId)
     }
-    return this.savingRepo.createMixedColor(input, userId)
+    return this.colorRepo.createMixedColor(input, userId)
+  }
+
+  async deleteMixedColor(id: string, userId: string) {
+    const result = await this.colorRepo.deleteMixedColor(id, userId)
+
+    if (!result) {
+      throw new Error('Could not delete mixed color')
+    }
+
+    if (result.count === 0) {
+      throw new Error('Could not delete mixed color')
+    }
+
+    return true
   }
 }

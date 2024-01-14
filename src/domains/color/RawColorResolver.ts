@@ -7,8 +7,8 @@ import {
   UseMiddleware,
 } from 'type-graphql'
 import { MixedColor, RawColor } from '../../prisma-typegraphql'
-import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
+import { isAuth } from '../../utils/auth/isAuth'
 import { RawColorService } from './RawColorService'
 import { MixedColorInput } from './types/MixedColorInput'
 import { RawColorInput } from './types/RawColorInput'
@@ -45,5 +45,14 @@ export class RawColorResolver {
     @Arg('data') data: MixedColorInput
   ): Promise<MixedColor> {
     return this.rawColorService.saveMixedColor(data, req.user.id)
+  }
+
+  @Mutation(() => Boolean)
+  @UseMiddleware(isAuth)
+  async deleteMixedColorMutation(
+    @Ctx() { req }: MyContext,
+    @Arg('id') id: string
+  ): Promise<boolean> {
+    return this.rawColorService.deleteMixedColor(id, req.user.id)
   }
 }

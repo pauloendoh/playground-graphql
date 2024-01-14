@@ -95,4 +95,13 @@ export class ColorRepository {
       },
     })
   }
+
+  deleteMixedColor(id: string, userId: string) {
+    return this.prismaClient.mixedColor.deleteMany({
+      where: {
+        id,
+        userId,
+      },
+    })
+  }
 }
