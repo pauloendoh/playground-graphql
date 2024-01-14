@@ -25,6 +25,22 @@ export class RawColorService {
     if (input.id) {
       return this.colorRepo.updateMixedColor(input, userId)
     }
+
+    const existingMixedColor = await this.colorRepo.findMixedColorByName(
+      input.name,
+      userId
+    )
+
+    if (existingMixedColor) {
+      return this.colorRepo.updateMixedColor(
+        {
+          ...input,
+          id: existingMixedColor.id,
+        },
+        userId
+      )
+    }
+
     return this.colorRepo.createMixedColor(input, userId)
   }
 
