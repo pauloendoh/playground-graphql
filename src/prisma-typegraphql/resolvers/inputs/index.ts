@@ -126,6 +126,9 @@ export { ExpenseUpsertWithWhereUniqueWithoutCategoriesInput } from "./ExpenseUps
 export { ExpenseUpsertWithWhereUniqueWithoutUserInput } from "./ExpenseUpsertWithWhereUniqueWithoutUserInput";
 export { ExpenseWhereInput } from "./ExpenseWhereInput";
 export { ExpenseWhereUniqueInput } from "./ExpenseWhereUniqueInput";
+export { FloatFieldUpdateOperationsInput } from "./FloatFieldUpdateOperationsInput";
+export { FloatFilter } from "./FloatFilter";
+export { FloatWithAggregatesFilter } from "./FloatWithAggregatesFilter";
 export { IntFieldUpdateOperationsInput } from "./IntFieldUpdateOperationsInput";
 export { IntFilter } from "./IntFilter";
 export { IntNullableFilter } from "./IntNullableFilter";
@@ -243,6 +246,7 @@ export { NestedDecimalNullableWithAggregatesFilter } from "./NestedDecimalNullab
 export { NestedDecimalWithAggregatesFilter } from "./NestedDecimalWithAggregatesFilter";
 export { NestedFloatFilter } from "./NestedFloatFilter";
 export { NestedFloatNullableFilter } from "./NestedFloatNullableFilter";
+export { NestedFloatWithAggregatesFilter } from "./NestedFloatWithAggregatesFilter";
 export { NestedIntFilter } from "./NestedIntFilter";
 export { NestedIntNullableFilter } from "./NestedIntNullableFilter";
 export { NestedIntNullableWithAggregatesFilter } from "./NestedIntNullableWithAggregatesFilter";

@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
-import { DecimalFilter } from "../inputs/DecimalFilter";
+import { FloatFilter } from "../inputs/FloatFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("ColorProportionScalarWhereInput", {
@@ -45,10 +45,10 @@ export class ColorProportionScalarWhereInput {
   })
   rawColorId?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => DecimalFilter, {
+  @TypeGraphQL.Field(_type => FloatFilter, {
     nullable: true
   })
-  proportion?: DecimalFilter | undefined;
+  proportion?: FloatFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

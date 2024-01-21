@@ -7,8 +7,8 @@ import { DecimalJSScalar } from "../../scalars";
   isAbstract: true
 })
 export class ColorProportionSumAggregate {
-  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
     nullable: true
   })
-  proportion!: Prisma.Decimal | null;
+  proportion!: number | null;
 }

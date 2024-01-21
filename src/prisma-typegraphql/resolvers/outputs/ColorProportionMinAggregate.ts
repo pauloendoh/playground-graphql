@@ -27,10 +27,10 @@ export class ColorProportionMinAggregate {
   })
   rawColorId!: string | null;
 
-  @TypeGraphQL.Field(_type => DecimalJSScalar, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
     nullable: true
   })
-  proportion!: Prisma.Decimal | null;
+  proportion!: number | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

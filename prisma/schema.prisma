@@ -193,7 +193,7 @@ model ColorProportion {
   rawColor   RawColor @relation(fields: [rawColorId], references: [id])
   rawColorId String
 
-  proportion Decimal
+  proportion Float
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

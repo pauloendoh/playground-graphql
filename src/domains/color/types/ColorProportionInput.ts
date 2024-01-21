@@ -1,4 +1,3 @@
-import { Decimal } from '@prisma/client/runtime'
 import * as TypeGraphQL from 'type-graphql'
 import { ColorProportion, RawColor } from '../../../prisma-typegraphql'
 
@@ -18,8 +17,8 @@ export class ColorProportionInput implements ColorProportion {
   @TypeGraphQL.Field(() => String, { nullable: false })
   rawColorId: string
 
-  @TypeGraphQL.Field(() => String, { nullable: false })
-  proportion: Decimal
+  @TypeGraphQL.Field(() => Number, { nullable: false })
+  proportion: number
 
   @TypeGraphQL.Field(() => Date, { nullable: true })
   createdAt: Date
