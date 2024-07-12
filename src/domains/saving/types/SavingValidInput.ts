@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { IsNumberString } from 'class-validator'
 import * as TypeGraphQL from 'type-graphql'
-import { Saving, User } from '../../../prisma-typegraphql'
+import { Saving, User } from '../../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
 export class SavingValidInput implements Saving {
@@ -19,8 +19,6 @@ export class SavingValidInput implements Saving {
 
   @TypeGraphQL.Field(() => Boolean, { nullable: true })
   selectedAsAverageMonthlyGrowth: boolean
-
-  
 
   @TypeGraphQL.Field(() => String, { nullable: true })
   date: Date

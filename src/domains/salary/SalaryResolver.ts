@@ -6,7 +6,7 @@ import {
   Resolver,
   UseMiddleware,
 } from 'type-graphql'
-import { Salary } from '../../prisma-typegraphql'
+import { Salary } from '../../../prisma-typegraphql'
 import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
 import { SalaryService } from './SalaryService'

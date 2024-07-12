@@ -1,7 +1,7 @@
 import { Decimal } from '@prisma/client/runtime'
 import { IsNumberString, IsString, MinLength } from 'class-validator'
 import { Field, InputType } from 'type-graphql'
-import { User, WishlistItem } from '../../../prisma-typegraphql'
+import { User, WishlistItem } from '../../../../prisma-typegraphql'
 
 @InputType()
 export class WishlistItemValidInput implements WishlistItem {

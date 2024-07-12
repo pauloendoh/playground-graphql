@@ -1,5 +1,5 @@
 import { Field, InputType } from 'type-graphql'
-import { IssueLabel } from '../../../prisma-typegraphql'
+import { IssueLabel } from '../../../../prisma-typegraphql'
 
 @InputType()
 export class IssueLabelInput implements IssueLabel {

@@ -1,5 +1,5 @@
 import * as TypeGraphQL from 'type-graphql'
-import { RawColor, User } from '../../../prisma-typegraphql'
+import { RawColor, User } from '../../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
 export class RawColorInput implements RawColor {

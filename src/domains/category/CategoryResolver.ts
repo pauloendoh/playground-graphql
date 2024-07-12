@@ -1,5 +1,5 @@
 import { Arg, Ctx, Mutation, Query, UseMiddleware } from 'type-graphql'
-import { Category } from '../../prisma-typegraphql'
+import { Category } from '../../../prisma-typegraphql'
 import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
 import { CategoryService } from './CategoryService'

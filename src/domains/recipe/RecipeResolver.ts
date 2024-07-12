@@ -6,7 +6,7 @@ import {
   Resolver,
   UseMiddleware,
 } from 'type-graphql'
-import { Recipe } from '../../prisma-typegraphql'
+import { Recipe } from '../../../prisma-typegraphql'
 import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
 import { RecipeService } from './RecipeService'

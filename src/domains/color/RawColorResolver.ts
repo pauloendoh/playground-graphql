@@ -6,7 +6,7 @@ import {
   Resolver,
   UseMiddleware,
 } from 'type-graphql'
-import { MixedColor, RawColor } from '../../prisma-typegraphql'
+import { MixedColor, RawColor } from '../../../prisma-typegraphql'
 import { MyContext } from '../../utils/auth/MyContext'
 import { isAuth } from '../../utils/auth/isAuth'
 import { RawColorService } from './RawColorService'

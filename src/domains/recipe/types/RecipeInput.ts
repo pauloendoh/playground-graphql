@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator'
 import * as TypeGraphQL from 'type-graphql'
-import { Recipe, User } from '../../../prisma-typegraphql'
+import { Recipe, User } from '../../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
 export class RecipeInput implements Recipe {

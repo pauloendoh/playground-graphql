@@ -1,5 +1,5 @@
 import * as TypeGraphQL from 'type-graphql'
-import { ColorProportion, RawColor } from '../../../prisma-typegraphql'
+import { ColorProportion, RawColor } from '../../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
 export class ColorProportionInput implements ColorProportion {

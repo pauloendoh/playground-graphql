@@ -5,7 +5,7 @@ import {
   IssueCount,
   IssueLabel,
   User,
-} from '../../../prisma-typegraphql'
+} from '../../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
 export class IssueInput implements Issue {

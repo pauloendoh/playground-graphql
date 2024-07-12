@@ -4,7 +4,7 @@ import {
   MixedColor,
   MixedColorCount,
   User,
-} from '../../../prisma-typegraphql'
+} from '../../../../prisma-typegraphql'
 import { ColorProportionInput } from './ColorProportionInput'
 
 @TypeGraphQL.InputType()

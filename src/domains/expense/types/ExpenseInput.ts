@@ -6,7 +6,7 @@ import {
   Expense,
   ExpenseCount,
   User,
-} from '../../../prisma-typegraphql'
+} from '../../../../prisma-typegraphql'
 
 @InputType()
 export class ExpenseInput implements Expense {

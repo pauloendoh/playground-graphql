@@ -1,5 +1,5 @@
 import { Arg, Ctx, Mutation, Query, UseMiddleware } from 'type-graphql'
-import { IssueLabel } from '../../prisma-typegraphql'
+import { IssueLabel } from '../../../prisma-typegraphql'
 import { isAuth } from '../../utils/auth/isAuth'
 import { MyContext } from '../../utils/auth/MyContext'
 import { IssueLabelService } from './IssueLabelService'

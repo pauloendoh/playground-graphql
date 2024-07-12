@@ -1,1 +1,0 @@
-export { MixedColorColorProportionsArgs } from "./MixedColorColorProportionsArgs";

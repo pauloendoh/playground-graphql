@@ -1,7 +1,7 @@
 import { Field, InputType } from 'type-graphql'
-import { Expense, User } from '../../../prisma-typegraphql'
-import { Category } from '../../../prisma-typegraphql/models/Category'
-import { CategoryCount } from '../../../prisma-typegraphql/resolvers/outputs/CategoryCount'
+import { Expense, User } from '../../../../prisma-typegraphql'
+import { Category } from '../../../../prisma-typegraphql/models/Category'
+import { CategoryCount } from '../../../../prisma-typegraphql/resolvers/outputs/CategoryCount'
 
 @InputType()
 export class CategoryInput implements Category {

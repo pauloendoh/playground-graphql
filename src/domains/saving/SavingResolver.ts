@@ -6,7 +6,7 @@ import {
   Resolver,
   UseMiddleware,
 } from 'type-graphql'
-import { Saving } from '../../prisma-typegraphql'
+import { Saving } from '../../../prisma-typegraphql'
 import { MyContext } from '../../utils/auth/MyContext'
 import { isAuth } from '../../utils/auth/isAuth'
 import { SavingService } from './SavingService'

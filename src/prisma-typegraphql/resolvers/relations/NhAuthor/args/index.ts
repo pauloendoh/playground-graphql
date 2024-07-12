@@ -1,1 +1,0 @@
-export { NhAuthorFavoritesArgs } from "./NhAuthorFavoritesArgs";
