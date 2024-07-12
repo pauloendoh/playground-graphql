@@ -31,4 +31,7 @@ export class WishlistItemValidInput implements WishlistItem {
 
   @Field(() => String, { nullable: true })
   updatedAt: Date
+
+  @Field(() => Number, { nullable: true })
+  priority: number | null
 }
