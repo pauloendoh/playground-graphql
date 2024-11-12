@@ -2,7 +2,7 @@ import { SalaryRepository } from './SalaryRepository'
 import { SalaryValidInput } from './types/SalaryValidInput'
 
 export class SalaryService {
-  constructor(private repo = new SalaryRepository()) {}
+  constructor(private readonly repo = new SalaryRepository()) {}
 
   findUnique(userId: string) {
     return this.repo.find(userId)

@@ -14,7 +14,7 @@ import { SalaryValidInput } from './types/SalaryValidInput'
 
 @Resolver()
 export class SalaryResolver {
-  constructor(private salaryService = new SalaryService()) {}
+  constructor(private readonly salaryService = new SalaryService()) {}
 
   @Query(() => Salary, { nullable: true })
   @UseMiddleware(isAuth)

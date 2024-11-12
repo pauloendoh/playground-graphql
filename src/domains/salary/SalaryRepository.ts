@@ -2,7 +2,7 @@ import { myPrismaClient } from '../../utils/myPrismaClient'
 import { SalaryValidInput } from './types/SalaryValidInput'
 
 export class SalaryRepository {
-  constructor(private prismaClient = myPrismaClient) {}
+  constructor(private readonly prismaClient = myPrismaClient) {}
 
   userOwns(salaryId: string, userId: string) {
     return this.prismaClient.salary.findFirst({
@@ -45,6 +45,7 @@ export class SalaryRepository {
     return this.prismaClient.salary.update({
       data: {
         value: data.value,
+        jobHoursPerMonth: data.jobHoursPerMonth,
       },
       where: {
         userId,

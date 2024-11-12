@@ -1,6 +1,6 @@
 import { IsNumber } from 'class-validator'
 import * as TypeGraphQL from 'type-graphql'
-import { Field, Int } from 'type-graphql'
+import { Field, Float, Int } from 'type-graphql'
 import { Salary, User } from '../../../../prisma-typegraphql'
 
 @TypeGraphQL.InputType()
@@ -14,6 +14,10 @@ export class SalaryValidInput implements Salary {
   @Field(() => Int, { nullable: true })
   @IsNumber()
   value: number
+
+  @Field(() => Float)
+  @IsNumber()
+  jobHoursPerMonth: number
 
   createdAt: Date
   updatedAt: Date

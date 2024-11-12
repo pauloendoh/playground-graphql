@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "jobHoursPerMonth" DOUBLE PRECISION NOT NULL DEFAULT 160;

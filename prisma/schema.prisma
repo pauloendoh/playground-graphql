@@ -118,7 +118,8 @@ model Salary {
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  value Int
+  value            Int
+  jobHoursPerMonth Float @default(160) // 40 hours per week, 4 weeks per month
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
