@@ -16,7 +16,7 @@ import { PaginationInput } from './types/PaginationInput'
 
 @Resolver()
 export class ExpenseResolver {
-  constructor(private expenseService = new ExpenseService()) {}
+  constructor(private readonly expenseService = new ExpenseService()) {}
 
   @Query(() => [Expense])
   @UseMiddleware(isAuth)

@@ -89,6 +89,8 @@ model Expense {
   name          String
   value         Decimal
   rating        Int?
+  benefitScore  Float?
+  costScore     Float?
   date          DateTime? @default(now())
   description   String?
   timesPerMonth Decimal?

@@ -49,4 +49,10 @@ export class ExpenseInput implements Expense {
 
   categories?: Category[] | undefined
   _count?: ExpenseCount | null | undefined
+
+  @Field(() => Number, { nullable: true })
+  costScore?: number | null | undefined
+
+  @Field(() => Number, { nullable: true })
+  benefitScore?: number | null | undefined
 }

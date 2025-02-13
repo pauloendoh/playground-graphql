@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Expense" ADD COLUMN     "benefitScore" DOUBLE PRECISION,
+ALTER COLUMN "costScore" SET DATA TYPE DOUBLE PRECISION;
