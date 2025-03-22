@@ -19,6 +19,9 @@ export class SalaryValidInput implements Salary {
   @IsNumber()
   jobHoursPerMonth: number
 
+  @Field(() => String)
+  notes: string
+
   createdAt: Date
   updatedAt: Date
 }
