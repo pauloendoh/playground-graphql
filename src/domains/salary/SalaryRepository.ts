@@ -46,6 +46,7 @@ export class SalaryRepository {
       data: {
         value: data.value,
         jobHoursPerMonth: data.jobHoursPerMonth,
+        notes: data.notes,
       },
       where: {
         userId,
